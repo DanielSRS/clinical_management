@@ -8,8 +8,9 @@ public class Doctor extends User {
 	private Specialty specialty;
 	private Specialty sub_specialty;
 
-	public Doctor(String name, String cpf) {
+	public Doctor(String name, String cpf, Specialty specialty) {
 		super(name, cpf, OrderTypes.DOCTOR);
+		this.specialty = specialty;
 	}
 
 	public Specialty getSpecialty() {
