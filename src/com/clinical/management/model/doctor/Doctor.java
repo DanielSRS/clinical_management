@@ -1,6 +1,7 @@
 package com.clinical.management.model.doctor;
 
 import com.clinical.management.model.specialty.Specialty;
+import com.clinical.management.model.users.OrderTypes;
 import com.clinical.management.model.users.User;
 
 public class Doctor extends User {
@@ -8,7 +9,7 @@ public class Doctor extends User {
 	private Specialty sub_specialty;
 
 	public Doctor(String name, String cpf) {
-		super(name, cpf);
+		super(name, cpf, OrderTypes.DOCTOR);
 	}
 
 	public Specialty getSpecialty() {
