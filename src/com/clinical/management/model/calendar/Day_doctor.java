@@ -14,6 +14,11 @@ public class Day_doctor {
 		this.duration_service = duration_service;
 		Calendar d = Calendar.getInstance();
 		d.set(2000, Calendar.DECEMBER, 01, start_service, 0);
+		this.Start_service = d;
+		Calendar b = Calendar.getInstance();
+		b.set(2000, Calendar.DECEMBER, 01, end_service, 0);
+		this.End_service = b;
+		
 	}
 
 	public Calendar getStart_service() {
