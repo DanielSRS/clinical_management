@@ -17,7 +17,27 @@ public class Queries {
 		this.listQuery = listQuery;
 	}
 	
+	public List<Query> patientQuery(String name){
+		List<Query> temp = new ArrayList<>();
+		for(int i = 0; i < this.listQuery.size(); i++) {
+			if(name.equals(this.listQuery.get(i).getScheduling().getPatient().getName()) ) {
+				temp.add(this.listQuery.get(i));
+			}
+		}
+		
+		return temp;
+	}
 	
+	public List<Query> doctorQuery(String name){
+		List<Query> temp = new ArrayList<>();
+		for(int i = 0; i < this.listQuery.size(); i++) {
+			if(name.equals(this.listQuery.get(i).getScheduling().getDoctor().getName()) ) {
+				temp.add(this.listQuery.get(i));
+			}
+		}
+		
+		return temp;
+	}
 	
 	
 	

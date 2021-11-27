@@ -33,7 +33,7 @@ public class Query {
 	
 	public List<MedicalRecord> consultRecords(String name) {
 		for(int i = 0; i < this.medicalRecords.patientRecords().size(); i++) {
-			if(name == this.medicalRecords.patientRecords().get(i).getPatient().getUser().getName()) {
+			if(name.equals(this.medicalRecords.patientRecords().get(i).getPatient().getUser().getName())) {
 				return this.medicalRecords.patientRecords();
 			}
 		}
