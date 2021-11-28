@@ -1,6 +1,10 @@
 package com.clinical.management.main;
 
+import java.io.IOException;
+
 import com.clinical.management.util.FXResizeHelper;
+import com.clinical.management.view.navigation.StackNavigator;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -21,6 +25,9 @@ public class Main extends Application {
     private double offsetX;
 	private double offsetY;
 	
+	// Navegação
+	private StackNavigator stackNavigator = new StackNavigator();
+	
 	//redimensiona
 	FXResizeHelper re;
 
@@ -30,7 +37,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(buildWindow(stage), null);
+    	FXMLLoader loginPage = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
+    	Parent root = loginPage.load();
+    	BorderPane window = buildWindow(stage);
+        Scene scene = new Scene(window, null);
+        stackNavigator.setInitialPage(root);
+        window.setCenter(StackNavigator.GetNavigator());
+    	
 
         stage.setScene(scene);
         FXResizeHelper re = new FXResizeHelper(stage, 0, 10);
