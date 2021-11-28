@@ -14,10 +14,6 @@ public class Users {
 	public List<User> getListUsers() {
 		return listUsers;
 	}
-
-	public void setListUsers(List<User> listUsers) {
-		this.listUsers = listUsers;
-	}
 	
 	public boolean addUser(User i) {
 		for(User j: this.listUsers) {
@@ -44,5 +40,25 @@ public class Users {
 		for(User u: this.listUsers) {
 			System.out.println(u.getName());
 		}
+	}
+	
+	public User getUserByCPF(String name) {
+		for(User u: this.listUsers) {
+			if (u.getName().equals(name)) {
+				return u;
+			}
+		}
+		
+		return null;
+	}
+	
+	public User getUserByPassword(String name) {
+		for(User u: this.listUsers) {
+			if (u.getPassword().equals(name)) {
+				return u;
+			}
+		}
+		
+		return null;
 	}
 }
