@@ -1,5 +1,6 @@
 package com.clinical.management.main;
 
+import com.clinical.management.util.FXResizeHelper;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -19,6 +20,9 @@ public class Main extends Application {
     // Posição da janela
     private double offsetX;
 	private double offsetY;
+	
+	//redimensiona
+	FXResizeHelper re;
 
     public static void main(String[] args) {
         launch();
@@ -29,6 +33,8 @@ public class Main extends Application {
         Scene scene = new Scene(buildWindow(stage), null);
 
         stage.setScene(scene);
+        FXResizeHelper re = new FXResizeHelper(stage, 0, 10);
+        this.re = re;
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
     }
