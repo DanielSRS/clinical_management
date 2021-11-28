@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="603.0" prefWidth="1044.0" styleClass=".dark" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.MainPageController">
+   <left>
+      <VBox prefHeight="352.0" prefWidth="254.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS" />
+            <AnchorPane fx:id="logout" layoutX="10.0" layoutY="548.0" onMouseClicked="#signout" prefHeight="55.0" prefWidth="254.0" styleClass="drawerItem" stylesheets="@../css/applicationStyles.css">
+               <children>
+                  <ImageView id="icon" fitHeight="15.0" fitWidth="15.0" layoutX="18.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="19.0" />
+                  <Label layoutX="45.0" layoutY="18.0" prefHeight="17.0" prefWidth="189.0" text="Sair" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="11.0" layoutY="19.0" maxHeight="16.0" maxWidth="3.0" prefHeight="16.0" prefWidth="3.0" styleClass="selector" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="19.0" />
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding></VBox>
+   </left>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="62.0" styleClass="drawerContent" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Usuário logado!!" />
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>
