@@ -2,11 +2,16 @@ package com.clinical.management.main;
 
 import java.io.IOException;
 
+import com.clinical.management.controller.AuthenticationController;
+import com.clinical.management.controller.LoginController;
+import com.clinical.management.controller.MainPageController;
 import com.clinical.management.util.FXResizeHelper;
+import com.clinical.management.util.UserListener;
 import com.clinical.management.view.navigation.StackNavigator;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,7 +24,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Main extends Application {
+public class Main extends Application implements UserListener {
 
     // Posição da janela
     private double offsetX;
@@ -27,6 +32,9 @@ public class Main extends Application {
 	
 	// Navegação
 	private StackNavigator stackNavigator = new StackNavigator();
+	
+	// Auth
+	AuthenticationController auth = new AuthenticationController();
 	
 	//redimensiona
 	FXResizeHelper re;
@@ -39,6 +47,12 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
     	FXMLLoader loginPage = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
     	Parent root = loginPage.load();
+    	LoginController loginPageController = loginPage.getController();
+    	loginPageController.setAuth(auth);
+    	
+    	this.auth.addListner(this);
+    	
+    	
     	BorderPane window = buildWindow(stage);
         Scene scene = new Scene(window, null);
         stackNavigator.setInitialPage(root);
@@ -72,6 +86,12 @@ public class Main extends Application {
 
     private Node buildTitleBar(Stage stage) {
         HBox titleBarContainer = new HBox();  // Container da barra de titulo
+        
+        // Nome da janela
+        //Label windowName = new Label("barra de titulo");
+        //titleBarContainer.getChildren().add(windowName);
+        //HBox.setHgrow(windowName, Priority.ALWAYS);
+        
 
         // Estilos da barra de titulo
         titleBarContainer.setId("titleBar");
@@ -151,6 +171,32 @@ public class Main extends Application {
 
         return titleBarContainer;
     }
+
+	
+    @Override
+	public void loggedUserChanged() {
+    	if(this.auth.getCurrentUser() == null) {
+    		FXMLLoader login = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
+    		try {
+    			Parent root = login.load();
+    			stackNavigator.changeInitialPage(root);
+    			LoginController loginPageController = login.getController();
+            	loginPageController.setAuth(auth);
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    		return;
+    	}
+    	FXMLLoader main = new FXMLLoader(getClass().getResource("../view/pages/Main.fxml"));
+    	try {
+			Parent root = main.load();
+			stackNavigator.changeInitialPage(root);
+			MainPageController mainPageController = main.getController();
+			mainPageController.setAuth(auth);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
     public void handleMaximize() {
     	if (this.re != null) {
