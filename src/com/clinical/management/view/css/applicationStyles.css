@@ -1,19 +1,53 @@
+
+
+* {
+	-base-color: #F3F3F3;
+	-layer-color: #FFFFFFB3;
+	-layer-border-color: #0000000F;
+	-accent-blue: #005FB8;
+	-font-color: black;
+	-window-border: #75757566;
+	-button-color: #005FB8;
+	-button-border-color: #FFFFFF14;
+	-button-text-color: #FFFFFF;
+}
+
+.dark *, .dark, * .dark {
+	-base-color: #202020;
+	-layer-color: #3A3A3A4D;
+	-layer-border-color: #0000001A;
+	-accent-blue: #60CDFF;
+	-font-color: white;
+	-window-border: #75757566;
+	-button-color: #60CDFF;
+	-button-border-color: #FFFFFF14;
+	-button-text-color: #000000;
+}
+
+.dark .text {
+	-fx-fill: white;
+}
+
 #titleBar {
     -fx-alignment: center-right;
-    /*-fx-background-color: #202020;
     /*-fx-padding: 5px;
-    -fx-border-width: 0.5 0.5 0 0.5px;
-    -fx-border-color: #FFFFFF1F;*/
+    -fx-border-width: 1 1 0 1px;
+    -fx-border-color: #0000001F;*/
     -fx-background-radius: 10px 10px 0px 0px;
     -fx-border-radius: 10px 10px 0px 0px;
 }
 
+#titleBar .decorated, .decorated #titlebar {
+    -fx-pref-width: 0;
+	-fx-opacity: 0;
+}
+
 #windowContainer {
-    -fx-background-color: #202020;
+    -fx-background-color: -base-color;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
-    -fx-border-width: 0.5 0.5 0.5 0.5px;
-    -fx-border-color: #FFFFFF1F;
+    -fx-border-width: 1 1 1 0.5px;
+    -fx-border-color: -window-border;
 }
 
 #closeButton:hover {
@@ -25,4 +59,161 @@
 #closeButton {
     -fx-background-color: transparent;
     -fx-height: 40px;
+}
+
+#minimizeButton {
+    -fx-background-color: transparent;
+    -fx-height: 40px;
+}
+
+#maxButton {
+	-fx-background-color: transparent;
+    -fx-height: 40px;
+}
+
+#maxButton:hover {
+	-fx-background-color: #0000000A;
+}
+
+#minimizeButton:hover {
+    -fx-background-color: #0000000A;
+}
+
+#voltarButton {
+	-fx-background-color: transparent;
+    -fx-height: 40px;
+}
+
+#voltarButton:hover {
+	-fx-background-color: #0000000A;
+}
+
+#bp {
+	-fx-background-color: yellow;
+}
+
+.layer {
+	-fx-background-color: -layer-color;
+	-fx-border-width: 1px;
+    -fx-border-color: -layer-border-color;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+}
+
+
+
+#voltarButton {
+	-fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area .tab {
+	-fx-pref-height: 150;
+	-fx-pref-width: 20;
+}
+
+.tab-pane .tab-header-area .tab {
+	-fx-pref-width: 50;
+	-fx-background-color: blue;
+}
+
+.tab .tab-label { 
+	-fx-background-color: red;
+	-fx-pref-width: 40;
+	
+ }
+ 
+ #t1 .tab-label {
+	-fx-pref-width: 80;
+	-fx-pref-height: 170;
+	-fx-background-color: green;
+	-fx-rotate: 90;
+	-fx-border-insets: -30 0 -10 0;
+    -fx-background-insets: -30 0 -15 0;
+}
+
+.drawerContent {
+	-fx-background-color: -layer-color;
+	-fx-background-radius: 10 0 10 0px;
+    -fx-border-radius: 10 0 10 0px;
+    -fx-border-width: 1px;
+    -fx-border-color: -layer-border-color;
+}
+
+.dark .drawerContent {
+    -layer-color: #3A3A3A4D;
+	-layer-border-color: #0000001A;
+	-fx-background-color: -layer-color;
+    -fx-border-color: -layer-border-color;
+}
+
+.drawerItem {
+	-fx-border-insets: 3 5 3 5px;
+    -fx-background-insets: 3 5 3 5px;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -selector-color: transparent;
+}
+
+
+.drawerItem:hover {
+	-fx-background-color: #0000000F;
+	-selector-color: -accent-blue;
+}
+
+.selector {
+	-fx-background-color: -selector-color;
+	-fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+}
+
+.drawerItem ImageView {
+	-fx-image: url("../images/sairIcon.png");
+}
+
+.defaultButton {
+	-fx-background-color: -button-color;
+	-fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-color: -button-border-color;
+}
+
+.defaultButton .text {
+	-fx-fill: -button-text-color;
+}
+
+.input {
+	-fx-background-color: #FFFFFFB3;
+	-fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-pref-height: 32;
+    -fx-border-width: 1px;
+    -fx-border-color: #0000000F #0000000F #8B8B8B #0000000F;
+}
+
+.input .dark, .dark .input {
+	-fx-background-color: #FFFFFF0F;
+    -fx-border-color: #FFFFFF14 #FFFFFF14 #9F9F9F #FFFFFF14;
+}
+
+.input:focused .dark, .dark .input:focused {
+	-fx-background-color: #1E1E1EB3;
+    -fx-border-width: 1 1 2 1px;
+    -fx-border-color: #FFFFFF14 #FFFFFF14 #60CDFF #FFFFFF14;
+}
+
+.input:hover {
+	-fx-background-color: #F9F9F980;
+}
+
+.input:hover .dark, .dark .input:hover {
+	-fx-background-color: #FFFFFF17;
+}
+
+.input:pressed, .input:focused {
+	-fx-background-color: #F9F9F980;
+    -fx-border-width: 1 1 2 1px;
+    -fx-border-color: #0000000F #0000000F #005FB8 #0000000F;
+}
+
 }

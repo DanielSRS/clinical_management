@@ -5,11 +5,13 @@ public class User {
 	private String name;
 	private String cpf;
 	private OrderTypes types;
+	private String password;
 	
-	public User(String name, String cpf, OrderTypes types) {
+	public User(String name, String cpf, OrderTypes types, String password) {
 		this.name = name;
 		this.cpf = cpf;
 		this.types = types;
+		this.password = password;
 	}
 
 	public String getName() {
@@ -36,7 +38,8 @@ public class User {
 		this.types = types;
 	}
 	
-	
-	
-	
+	public String getPassword() {
+		return this.password;
+	}
+
 }
