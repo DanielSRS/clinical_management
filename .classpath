@@ -47,6 +47,17 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="libs/sqlite/sqlite-jdbc-3.36.0.3.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-jupiter-5.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-jupiter-api-5.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-jupiter-engine-5.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-jupiter-migrationsupport-5.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-jupiter-params-5.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-platform-commons-1.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-platform-engine-1.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-platform-launcher-1.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-platform-runner-1.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/junit-platform-suite-api-1.8.2.jar"/>
+	<classpathentry kind="lib" path="libs/JUnit/org.opentest4j_1.2.0.v20190826-0900.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -2,7 +2,7 @@ package com.clinical.management.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
