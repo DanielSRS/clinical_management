@@ -121,7 +121,6 @@ public class StackNavigator {
         try {
 			((HBox) backButton).getChildren().get(0).setDisable(false);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

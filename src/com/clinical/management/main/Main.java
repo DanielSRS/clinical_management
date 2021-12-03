@@ -6,6 +6,7 @@ import com.clinical.management.controller.AuthenticationController;
 import com.clinical.management.controller.LoginController;
 import com.clinical.management.controller.MainPageController;
 import com.clinical.management.util.FXResizeHelper;
+import com.clinical.management.util.MicaMaterial;
 import com.clinical.management.util.UserListener;
 import com.clinical.management.view.navigation.StackNavigator;
 
@@ -14,21 +15,16 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Main extends Application implements UserListener {
-
-    // Posição da janela
-    private double offsetX;
-	private double offsetY;
 	
 	// Navegação
 	private StackNavigator stackNavigator = new StackNavigator();
@@ -38,40 +34,52 @@ public class Main extends Application implements UserListener {
 	
 	//redimensiona
 	FXResizeHelper re;
+	
+	//login page
+	Parent root;
 
     public static void main(String[] args) {
+    	/*UserDAO cc = new UserDAO();
+    	User newUser = new User("Teste", "00000000000", null, "password");
+    	boolean usuarioSalvoComSucesso = cc.saveUser(newUser);
+    	if(usuarioSalvoComSucesso) {
+    		System.out.println("Salvo com sucesso!!");
+    	} else {
+    		System.out.println("Erro ao salvar!!");
+    	}*/
         launch();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
     	FXMLLoader loginPage = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
-    	Parent root = loginPage.load();
+    	this.root = loginPage.load();
     	LoginController loginPageController = loginPage.getController();
     	loginPageController.setAuth(auth);
     	
     	this.auth.addListner(this);
     	
-    	
-    	BorderPane window = buildWindow(stage);
-        Scene scene = new Scene(window, null);
+    	MicaMaterial micaMaterial = new MicaMaterial();
+    	StackPane st = micaMaterial.getMica(stage);
+    	this.re = micaMaterial.getResizeHelper();
+    	BorderPane window = buildWindow();
         stackNavigator.setInitialPage(root);
         window.setCenter(StackNavigator.GetNavigator());
-    	
-
-        stage.setScene(scene);
-        FXResizeHelper re = new FXResizeHelper(stage, 0, 10);
-        this.re = re;
-        stage.initStyle(StageStyle.TRANSPARENT);
+        st.getChildren().add(window);
+        st.getStylesheets().add(getClass().getResource("../view/css/applicationStyles.css").toString());
         stage.show();
     }
 
-    private BorderPane buildWindow(Stage stage) {
+    /**
+     * Cria um formato de janela com barra de titulo e uma area para o conteúdo
+     * @return BorderPane com a barra de titulo no Top e a area de conteúdo no Center
+     */
+    private BorderPane buildWindow() {
         BorderPane windowContainer = new BorderPane();  // Container da janela
-        windowContainer.setPrefSize(1175, 651); // Tamanho inicial da janela
+        //windowContainer.setPrefSize(1175, 651); // Tamanho inicial da janela
         BorderPane top = new BorderPane(); //Top
 
-        Node titleBarContainer = buildTitleBar(stage);
+        Node titleBarContainer = buildTitleBar();
         top.setCenter(titleBarContainer);
         top.setLeft(stackNavigator.getBackButton());
 
@@ -84,7 +92,11 @@ public class Main extends Application implements UserListener {
         return windowContainer;
     }
 
-    private Node buildTitleBar(Stage stage) {
+    /**
+     * Cria uma barra de titulo com botões de maximizar, minimizar e fechar
+     * @return Hbox contendo so elementos da barra de titulo
+     */
+    private Node buildTitleBar() {
         HBox titleBarContainer = new HBox();  // Container da barra de titulo
         
         // Nome da janela
@@ -136,11 +148,11 @@ public class Main extends Application implements UserListener {
         closeButton.setGraphic(img);
         closeButton.setPrefSize(45, 35);
 
-		closeButton.setOnAction(e -> stage.close());
+		closeButton.setOnAction(e -> this.handleClose());
         titleBarContainer.getChildren().add(closeButton);  // Adiciona o botão de fechar na barra de titulo
 
         // Inicio mover tela
-		titleBarContainer.setOnMousePressed((EventHandler<? super MouseEvent>) new EventHandler<MouseEvent>() {
+		/*titleBarContainer.setOnMousePressed((EventHandler<? super MouseEvent>) new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
             	offsetX = stage.getX() - event.getScreenX();
@@ -153,8 +165,9 @@ public class Main extends Application implements UserListener {
             public void handle(MouseEvent event) {
             	stage.setX(event.getScreenX() + offsetX);
             	stage.setY(event.getScreenY() + offsetY);
+	            //IMGb.setViewport(viewportRect);
             }
-        });
+        });*/
 		// fim mover tela
 		
 		// double click para window mode
@@ -172,17 +185,20 @@ public class Main extends Application implements UserListener {
         return titleBarContainer;
     }
 
-	
+	/**
+     * Quando houver alteração do usuário logado, alterna entre tela de login e a tela
+     * principal do programa
+     */
     @Override
 	public void loggedUserChanged() {
     	if(this.auth.getCurrentUser() == null) {
-    		FXMLLoader login = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
+    		//FXMLLoader login = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
     		try {
-    			Parent root = login.load();
-    			stackNavigator.changeInitialPage(root);
-    			LoginController loginPageController = login.getController();
-            	loginPageController.setAuth(auth);
-    		} catch (IOException e) {
+    			//Parent root = login.load();
+    			//LoginController loginPageController = login.getController();
+            	//loginPageController.setAuth(auth);
+            	stackNavigator.changeInitialPage(this.root);
+    		} catch (Exception e) {
     			e.printStackTrace();
     		}
     		return;
@@ -198,15 +214,31 @@ public class Main extends Application implements UserListener {
 		}
 	}
 
+    /**
+     * Altera o modo da janela
+     * @see com.clinical.management.util.FXResizeHelper#switchWindowedMode()
+     */
     public void handleMaximize() {
     	if (this.re != null) {
     		this.re.switchWindowedMode();
     	}
     }
     
+    /**
+     * Minimiza a janela
+     */
     public void handleMinimize() {
     	if (this.re != null) {
     		this.re.minimize();
     	}
+    }
+
+    /**
+     * Fecha a janela
+     */
+    public void handleClose() {
+        if (this.re != null) {
+            this.re.close();
+        }
     }
 }

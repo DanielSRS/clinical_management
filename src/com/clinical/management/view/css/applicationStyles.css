@@ -12,6 +12,26 @@
 	-button-text-color: #FFFFFF;
 }
 
+.transp {
+    -fx-background-color: #202020;
+}
+
+.darkk .h {
+	-fx-opacity: 0;
+}
+
+#micaBG {
+	-fx-background-color: -base-color;
+	-fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.mica {
+    -fx-background-color: -base-color;
+	-fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
 .dark *, .dark, * .dark {
 	-base-color: #202020;
 	-layer-color: #3A3A3A4D;
@@ -43,7 +63,6 @@
 }
 
 #windowContainer {
-    -fx-background-color: -base-color;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-border-width: 1 1 1 0.5px;
@@ -214,6 +233,4 @@
 	-fx-background-color: #F9F9F980;
     -fx-border-width: 1 1 2 1px;
     -fx-border-color: #0000000F #0000000F #005FB8 #0000000F;
-}
-
 }

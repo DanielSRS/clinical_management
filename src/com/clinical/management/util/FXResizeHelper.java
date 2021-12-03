@@ -1,8 +1,10 @@
 package com.clinical.management.util;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -21,6 +23,7 @@ public class FXResizeHelper {
   private final int TR;
   private final int TM;
   private final double SCREEN_WIDTH, SCREEN_HEIGHT;
+  private final ImageView  IMG;
 
   private double mPresSceneX, mPresSceneY;
   private double mPresScreeX, mPresScreeY;
@@ -37,11 +40,15 @@ public class FXResizeHelper {
    * @param dt    - The area (in px) where the user can drag the window.
    * @param rt    - The area (in px) where the user can resize the window.
    */
-  public FXResizeHelper(Stage stage, int dt, int rt) {
+  public FXResizeHelper(ImageView img, Stage stage, int dt, int rt) {
+	if (img == null) {
+		img = new ImageView();
+	}
     this.TR = rt;
     this.TM = dt + rt;
     this.STAGE = stage;
     this.SCENE = stage.getScene();
+    this.IMG = img;
 
     this.SCREEN_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
     this.SCREEN_WIDTH = Screen.getPrimary().getVisualBounds().getWidth();
@@ -55,6 +62,13 @@ public class FXResizeHelper {
    */
   public void minimize() {
     STAGE.setIconified(true);
+  }
+
+  /**
+   * Close the stage
+   */
+  public void close() {
+    STAGE.close();
   }
 
   /**
@@ -89,10 +103,14 @@ public class FXResizeHelper {
       if (newHeight > STAGE.getMinHeight()) {
         STAGE.setY(event.getScreenY() - mPresSceneY);
         STAGE.setHeight(newHeight);
+        Rectangle2D viewportRect = new Rectangle2D(STAGE.getX(), (event.getScreenY() - mPresSceneY), STAGE.getWidth(), newHeight);
+		    IMG.setViewport(viewportRect);
       }
       if (newWidth > STAGE.getMinWidth()) {
         STAGE.setX(event.getScreenX() - mPresSceneX);
         STAGE.setWidth(newWidth);
+        Rectangle2D viewportRect = new Rectangle2D((event.getScreenX() - mPresSceneX), STAGE.getY(), newWidth, STAGE.getHeight());
+		    IMG.setViewport(viewportRect);
       }
     });
 
@@ -104,6 +122,8 @@ public class FXResizeHelper {
       if (newWidth > STAGE.getMinWidth()) {
         STAGE.setX(event.getScreenX() - mPresSceneX);
         STAGE.setWidth(newWidth);
+        Rectangle2D viewportRect = new Rectangle2D((event.getScreenX() - mPresSceneX), STAGE.getY(), newWidth, STAGE.getHeight());
+		    IMG.setViewport(viewportRect);
       }
     });
 
@@ -114,15 +134,29 @@ public class FXResizeHelper {
       if (newHeight > STAGE.getMinHeight()) {
         STAGE.setHeight(newHeight);
         STAGE.setY(event.getScreenY() - mPresSceneY);
+        Rectangle2D viewportRect = new Rectangle2D(STAGE.getX(), (event.getScreenY() - mPresSceneY), STAGE.getWidth(), newHeight);
+		    IMG.setViewport(viewportRect);
       }
-      if (newWidth > STAGE.getMinWidth()) STAGE.setWidth(newWidth);
+      if (newWidth > STAGE.getMinWidth()) {
+    	  STAGE.setWidth(newWidth);
+    	  Rectangle2D viewportRect = new Rectangle2D(STAGE.getX(), STAGE.getY(), newWidth, STAGE.getHeight());
+  		  IMG.setViewport(viewportRect);
+      }
     });
 
     LISTENER.put(Cursor.SE_RESIZE, event -> {
       double newWidth = mPresStageW + (event.getScreenX() - mPresScreeX);
       double newHeight = mPresStageH + (event.getScreenY() - mPresScreeY);
-      if (newHeight > STAGE.getMinHeight()) STAGE.setHeight(newHeight);
-      if (newWidth > STAGE.getMinWidth()) STAGE.setWidth(newWidth);
+      if (newHeight > STAGE.getMinHeight()) {
+    	  STAGE.setHeight(newHeight);
+    	  Rectangle2D viewportRect = new Rectangle2D(STAGE.getX(), STAGE.getY(), STAGE.getWidth(), newHeight);
+  		  IMG.setViewport(viewportRect);
+      }
+      if (newWidth > STAGE.getMinWidth()) {
+    	  STAGE.setWidth(newWidth);
+    	  Rectangle2D viewportRect = new Rectangle2D(STAGE.getX(), STAGE.getY(), newWidth, STAGE.getHeight());
+  		  IMG.setViewport(viewportRect);
+      }
     });
 
     LISTENER.put(Cursor.E_RESIZE, event -> {
@@ -130,12 +164,18 @@ public class FXResizeHelper {
       if (newWidth > STAGE.getMinWidth()) {
         STAGE.setX(event.getScreenX() - mPresSceneX);
         STAGE.setWidth(newWidth);
+        Rectangle2D viewportRect = new Rectangle2D((event.getScreenX() - mPresSceneX), STAGE.getY(), newWidth, STAGE.getHeight());
+		IMG.setViewport(viewportRect);
       }
     });
 
     LISTENER.put(Cursor.W_RESIZE, event -> {
       double newWidth = mPresStageW + (event.getScreenX() - mPresScreeX);
-      if (newWidth > STAGE.getMinWidth()) STAGE.setWidth(newWidth);
+      if (newWidth > STAGE.getMinWidth()) {
+    	  STAGE.setWidth(newWidth);
+    	  Rectangle2D viewportRect = new Rectangle2D(STAGE.getX(), STAGE.getY(), newWidth, STAGE.getHeight());
+  		  IMG.setViewport(viewportRect);
+      }
     });
 
     LISTENER.put(Cursor.N_RESIZE, event -> {
@@ -143,17 +183,25 @@ public class FXResizeHelper {
       if (newHeight > STAGE.getMinHeight()) {
         STAGE.setY(event.getScreenY() - mPresSceneY);
         STAGE.setHeight(newHeight);
+        Rectangle2D viewportRect = new Rectangle2D(STAGE.getX(), STAGE.getY(), STAGE.getWidth(), STAGE.getHeight());
+  	    IMG.setViewport(viewportRect);
       }
     });
 
     LISTENER.put(Cursor.S_RESIZE, event -> {
       double newHeight = mPresStageH + (event.getScreenY() - mPresScreeY);
-      if (newHeight > STAGE.getMinHeight()) STAGE.setHeight(newHeight);
+      if (newHeight > STAGE.getMinHeight()) {
+    	  STAGE.setHeight(newHeight);
+    	  Rectangle2D viewportRect = new Rectangle2D(STAGE.getX(), STAGE.getY(), STAGE.getWidth(), STAGE.getHeight());
+    	  IMG.setViewport(viewportRect);
+      }
     });
 
     LISTENER.put(Cursor.OPEN_HAND, event -> {
       STAGE.setX(event.getScreenX() - mPresSceneX);
       STAGE.setY(event.getScreenY() - mPresSceneY);
+      Rectangle2D viewportRect = new Rectangle2D(STAGE.getX(), STAGE.getY(), STAGE.getWidth(), STAGE.getHeight());
+	  IMG.setViewport(viewportRect);
     });
   }
 
