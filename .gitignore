@@ -24,3 +24,6 @@ hs_err_pid*
 
 /doc
 /bin
+
+# Database files
+*.db
