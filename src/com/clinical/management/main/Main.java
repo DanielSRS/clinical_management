@@ -8,6 +8,7 @@ import com.clinical.management.controller.MainPageController;
 import com.clinical.management.util.FXResizeHelper;
 import com.clinical.management.util.MicaMaterial;
 import com.clinical.management.util.UserListener;
+import com.clinical.management.util.WindowsRegistry;
 import com.clinical.management.view.navigation.StackNavigator;
 
 import javafx.application.Application;
@@ -66,6 +67,15 @@ public class Main extends Application implements UserListener {
         stackNavigator.setInitialPage(root);
         window.setCenter(StackNavigator.GetNavigator());
         st.getChildren().add(window);
+
+        ///verifica tema do sistema
+        String tema = "0x0";
+        if (System.getProperty("os.name").equals("Windows 10")) {
+            tema = WindowsRegistry.readRegistry("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "AppsUseLightTheme");
+        } 
+        if (tema.equals("0x0"))  {
+            st.getStyleClass().add("dark");
+        }
         st.getStylesheets().add(getClass().getResource("../view/css/applicationStyles.css").toString());
         stage.show();
     }

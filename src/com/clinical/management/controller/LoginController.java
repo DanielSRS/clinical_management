@@ -25,8 +25,10 @@ public class LoginController {
 	
 	@FXML private void themes() {
 		System.out.println("Current theme dark: " + this.isDarkMode);
-		if (this.isDarkMode) {
-			this.theme.getScene().getRoot().getStyleClass().remove("dark");
+		boolean themeIsDark = this.theme.getScene().getRoot().getStyleClass().contains("dark");
+		if (themeIsDark) {
+			//this.theme.getScene().getRoot().getStyleClass().remove("dark");
+			this.theme.getScene().getRoot().getStyleClass().removeAll("dark");
 			/*this.theme.getScene().getRoot().getStyleClass().add("decorated");
 			Stage stage;
 			Scene currentScene = this.theme.getScene();
