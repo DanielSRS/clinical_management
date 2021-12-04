@@ -4,26 +4,30 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.clinical.management.dao.UserDAO;
 import com.clinical.management.model.users.OrderTypes;
 import com.clinical.management.model.users.User;
-import com.clinical.management.model.users.Users;
 import com.clinical.management.util.UserListener;
 
 public class AuthenticationController {
 	
 	private User currentLoggedUser;
-	private Users users = new Users();
+	private UserDAO userDao = new UserDAO();
 	private List<UserListener> listners;
 
 	public AuthenticationController() {
+		userDao.createDatabase();
 		User newUser = new User("admin", "12345678900", OrderTypes.ADMIN, "admin");
-		this.users.addUser(newUser);
+		List<User> u = userDao.getUsers();
+		if(u.size() <= 0) {
+			userDao.saveUser(newUser);
+		}
 		this.listners = new ArrayList<>();
 	}
 	
 	public boolean signin(String cpf, String password) {
-		User user = users.getUserByCPF(cpf);
-		if (user != null && user.getPassword().equals(password)) {
+		User user = userDao.getUserByNameAndPassword(cpf, password);
+		if (user != null) {
 			currentLoggedUser = user;
 			System.out.println(user.getName() + " esta logado!!");
 			loggedUserChanged();
