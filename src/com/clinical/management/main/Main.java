@@ -40,14 +40,6 @@ public class Main extends Application implements UserListener {
 	Parent root;
 
     public static void main(String[] args) {
-    	/*UserDAO cc = new UserDAO();
-    	User newUser = new User("Teste", "00000000000", null, "password");
-    	boolean usuarioSalvoComSucesso = cc.saveUser(newUser);
-    	if(usuarioSalvoComSucesso) {
-    		System.out.println("Salvo com sucesso!!");
-    	} else {
-    		System.out.println("Erro ao salvar!!");
-    	}*/
         launch();
     }
 
