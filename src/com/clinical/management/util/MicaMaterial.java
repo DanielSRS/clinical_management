@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -82,7 +83,12 @@ public class MicaMaterial {
         scene.setFill(null);
         primaryStage.setScene(scene);
         this.resizeHelper = new FXResizeHelper(imageView, primaryStage, 10, 10);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+
+		Rectangle clip = new Rectangle(st.getWidth(), st.getHeight());
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        st.setClip(clip);
 
         return st;
 	}
