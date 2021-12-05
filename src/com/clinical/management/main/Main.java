@@ -45,10 +45,18 @@ public class Main extends Application implements UserListener {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        // pagina de login
     	FXMLLoader loginPage = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
     	this.root = loginPage.load();
     	LoginController loginPageController = loginPage.getController();
     	loginPageController.setAuth(auth);
+
+        // pagina main
+        FXMLLoader main = new FXMLLoader(getClass().getResource("../view/pages/Main.fxml"));
+        Parent mainPage = main.load();
+        MainPageController mainPageController = main.getController();
+        mainPageController.setAuth(auth);
     	
     	this.auth.addListner(this);
     	
@@ -56,7 +64,13 @@ public class Main extends Application implements UserListener {
     	StackPane st = micaMaterial.getMica(stage);
     	this.re = micaMaterial.getResizeHelper();
     	BorderPane window = buildWindow();
-        stackNavigator.setInitialPage(root);
+        
+        // se houver um usuári logado
+        if (auth.getCurrentUser() != null) {
+            stackNavigator.setInitialPage(mainPage);
+        } else {
+            stackNavigator.setInitialPage(root);
+        }
         window.setCenter(StackNavigator.GetNavigator());
         st.getChildren().add(window);
 

@@ -22,6 +22,13 @@ public class AuthenticationController {
 		if(u.size() <= 0) {
 			userDao.saveUser(newUser);
 		}
+		User loggedUser = userDao.getLoggedUser();
+		if (loggedUser == null) {
+			System.out.println("Não há usuário logado");
+		} else {
+			System.out.println("Usuário logado: " + loggedUser.getName());
+			this.currentLoggedUser = loggedUser;
+		}
 		this.listners = new ArrayList<>();
 	}
 	
@@ -30,6 +37,7 @@ public class AuthenticationController {
 		if (user != null) {
 			currentLoggedUser = user;
 			System.out.println(user.getName() + " esta logado!!");
+			userDao.saveLoggedUser(user);
 			loggedUserChanged();
 			return true;
 		}
@@ -40,6 +48,7 @@ public class AuthenticationController {
 		if (currentLoggedUser != null) {
 			System.out.println(currentLoggedUser.getName() + " esta deslogado!!");
 			currentLoggedUser = null;
+			userDao.removeLoggedUser();
 			loggedUserChanged();
 			return true;
 		}

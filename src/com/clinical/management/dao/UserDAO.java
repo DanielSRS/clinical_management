@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class UserDAO extends DatabaseConnection {
 			preparedStatement.setString(3, userToBeSaved.getPassword());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
+			desconectar();
 			return false;
 		}
 		desconectar();
@@ -69,6 +71,7 @@ public class UserDAO extends DatabaseConnection {
 			System.out.println("Erro ao recuperar usuários");
 		}
 		
+		desconectar();
 		return userList;
 	}
 
@@ -105,6 +108,94 @@ public class UserDAO extends DatabaseConnection {
 			System.out.println("Erro ao recuperar usuários");
 		}
 		
+		desconectar();
 		return user;
+	}
+
+	public User getLoggedUser() {
+
+		User user =  null;
+		Integer userID = null;
+		Integer logged_user = null;
+
+		conectar();
+
+		String sql = "SELECT id, logged_user FROM settings";
+		String sqlUser = "SELECT id, name, cpf, password FROM users WHERE id = ?";
+
+		ResultSet result = null;
+		PreparedStatement preparedStatement = null;
+
+		// Obter id do usuario logado
+		try {
+			preparedStatement = criarPreparedStatement(sql);
+			result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+				userID = result.getInt("id");
+				logged_user = result.getInt("logged_user");
+			}
+
+			if (logged_user == null) {
+				desconectar();
+				return null;
+			}
+		} catch(SQLException e) {
+			System.out.println("Erro ao recuperar usuários");
+		}
+
+		// Obter usuario
+		try {
+			preparedStatement = criarPreparedStatement(sqlUser);
+			preparedStatement.setInt(1, logged_user);
+			result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+				String name = result.getString("name");
+				int id = result.getInt("id");
+				String cpf = result.getString("cpf");
+				String password = result.getString("password");
+				user = new User(name, cpf, id, password);
+			}
+		} catch(SQLException e) {
+			System.out.println("Erro ao recuperar usuários");
+			desconectar();
+			return user;
+		}
+		
+		desconectar();
+		return user;
+	}
+
+	public boolean saveLoggedUser(User userToBeSaved) {
+		conectar();
+		String sql = "UPDATE settings SET logged_user = ? WHERE id = 1;";
+		
+		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try {
+			preparedStatement.setInt(1, userToBeSaved.getID());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			desconectar();
+			return false;
+		}
+		desconectar();
+		return true;
+	}
+
+	public boolean removeLoggedUser() {
+		conectar();
+		String sql = "UPDATE settings SET logged_user = ? WHERE id = 1;";
+		
+		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try {
+			preparedStatement.setNull(1, Types.INTEGER);;
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			desconectar();
+			return false;
+		}
+		desconectar();
+		return true;
 	}
 }

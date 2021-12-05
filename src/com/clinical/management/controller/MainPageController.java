@@ -35,6 +35,9 @@ public class MainPageController {
 	 * Exibe o nome do do usuário na Label no centro da tela
 	 */
 	public void printAllData() {
+		if (this.auth.getCurrentUser() == null){
+			return;
+		}
 		centerLebel.setText("\n\nUser: " + this.auth.getCurrentUser().getName());
 	}
 
