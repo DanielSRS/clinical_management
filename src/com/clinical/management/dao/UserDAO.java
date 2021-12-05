@@ -115,7 +115,6 @@ public class UserDAO extends DatabaseConnection {
 	public User getLoggedUser() {
 
 		User user =  null;
-		Integer userID = null;
 		Integer logged_user = null;
 
 		conectar();
@@ -132,7 +131,6 @@ public class UserDAO extends DatabaseConnection {
 			result = preparedStatement.executeQuery();
 
 			if (result.next()) {
-				userID = result.getInt("id");
 				logged_user = result.getInt("logged_user");
 			}
 
