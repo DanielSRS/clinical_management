@@ -109,6 +109,13 @@ public class DatabaseConnection {
 				+ " name VARCHAR(255) NOT NULL,\n"
 				+ " password VARCHAR(50) NOT NULL\n"
                 + ");";
+
+			// Cria a tabela de configurações caso não exista
+			String settingsTable = "CREATE TABLE IF NOT EXISTS settings (\n"
+                + "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+                + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+                + "	logged_user INT REFERENCES users (id)\n"
+                + ");";
 			
 			// Cria banco de dados caso não exista e cria conexão
 			Connection con = DriverManager.getConnection(url);
@@ -116,6 +123,7 @@ public class DatabaseConnection {
 
 			// Cria as tabelas
 			prep.executeUpdate(ussersTable);
+			prep.executeUpdate(settingsTable);
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
 			return false;
