@@ -12,6 +12,8 @@
 	-button-color-pressed: #005FB8CC;
 	-button-border-color: #FFFFFF14;
 	-button-text-color: #FFFFFF;
+	-titlebar-button-hover: #0000000A;
+	-titlebar-button-pressed: #00000005;
 }
 
 .transp {
@@ -46,6 +48,8 @@
 	-button-color-pressed: #60CDFFCC;
 	-button-border-color: #FFFFFF14;
 	-button-text-color: #000000;
+	-titlebar-button-hover: #FFFFFF0F;
+	-titlebar-button-pressed: #FFFFFF0A;
 }
 
 .dark .text {
@@ -82,29 +86,33 @@
 #closeButton {
     -fx-background-color: transparent;
     -fx-height: 40px;
+	-fx-font: 10 "Segoe Fluent Icons";
 }
 
 #minimizeButton {
     -fx-background-color: transparent;
     -fx-height: 40px;
+	-fx-font: 10 "Segoe Fluent Icons";
 }
 
 #maxButton {
 	-fx-background-color: transparent;
     -fx-height: 40px;
+	-fx-font: 10 "Segoe Fluent Icons";
 }
 
 #maxButton:hover {
-	-fx-background-color: #0000000A;
+	-fx-background-color: -titlebar-button-hover;
 }
 
 #minimizeButton:hover {
-    -fx-background-color: #0000000A;
+    -fx-background-color: -titlebar-button-hover;
 }
 
 #voltarButton {
 	-fx-background-color: transparent;
     -fx-height: 40px;
+	-fx-font: 10 "Segoe Fluent Icons";
 }
 
 #voltarButton:hover {

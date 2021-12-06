@@ -125,44 +125,26 @@ public class Main extends Application implements UserListener {
         titleBarContainer.setId("titleBar");
         titleBarContainer.getStylesheets().add(getClass().getResource("../view/css/applicationStyles.css").toString());
 
-		Button closeButton = new Button();  // Botão de fechar a janela
+		Button closeButton = new Button("");  // Botão de fechar a janela
         closeButton.setId("closeButton"); //windowCloseIcon
         
         
         /// bottaõ de minimizar
-        Button minimizeButton = new Button();  // Botão de min a janela
+        Button minimizeButton = new Button("");  // Botão de min a janela
         minimizeButton.setId("minimizeButton"); //windowCloseIcon
         minimizeButton.setOnAction(e -> this.handleMinimize());
-        Image minimizeIcon = new Image(getClass().getResourceAsStream("../view/images/windowMinimizeIcon.png"));
-        ImageView windowMinimizeIcon = new ImageView(minimizeIcon);
-        windowMinimizeIcon.setPreserveRatio(true);
-        windowMinimizeIcon.fitWidthProperty().set(10);
-        windowMinimizeIcon.fitHeightProperty().set(10);
-        minimizeButton.setGraphic(windowMinimizeIcon);
-        minimizeButton.setPrefSize(45, 35);
+        minimizeButton.setPrefSize(46, 32);
         titleBarContainer.getChildren().add(minimizeButton);
         
-        Button maxButton = new Button();  // Botão de max a janela
+        Button maxButton = new Button("");  // Botão de max a janela
         maxButton.setId("maxButton"); //windowCloseIcon
         maxButton.getStyleClass().add("svv");
         maxButton.setOnAction(e -> this.handleMaximize());
-        Image maximizeIcon = new Image(getClass().getResourceAsStream("../view/images/windowMaximizeIcon.png"));
-        ImageView windowMaximizeIcon = new ImageView(maximizeIcon);
-        windowMaximizeIcon.setPreserveRatio(true);
-        windowMaximizeIcon.fitWidthProperty().set(10);
-        windowMaximizeIcon.fitHeightProperty().set(10);
-        maxButton.setGraphic(windowMaximizeIcon);
-        maxButton.setPrefSize(45, 35);
+        maxButton.setPrefSize(46, 32);
         titleBarContainer.getChildren().add(maxButton);
 
         // imagem do botão de fechcar
-        Image imageOk = new Image(getClass().getResourceAsStream("../view/images/windowCloseIcon.png"));
-        ImageView img = new ImageView(imageOk);
-        img.setPreserveRatio(true);
-        img.fitWidthProperty().set(10);
-        img.fitHeightProperty().set(10);
-        closeButton.setGraphic(img);
-        closeButton.setPrefSize(45, 35);
+        closeButton.setPrefSize(46, 32);
 
 		closeButton.setOnAction(e -> this.handleClose());
         titleBarContainer.getChildren().add(closeButton);  // Adiciona o botão de fechar na barra de titulo

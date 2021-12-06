@@ -47,16 +47,10 @@ public class StackNavigator {
         //isUndecorated = false;
 
         pages.setId("AplicationBackground");
-        Button bt = new Button();
+        Button bt = new Button("");
         bt.setId("voltarButton");
-        bt.setPrefSize(45, 35);
+        bt.setPrefSize(46, 32);
         bt.getStylesheets().add(getClass().getResource("../../view/css/applicationStyles.css").toString());
-        Image imageOk = new Image(getClass().getResourceAsStream("../../view/images/arrowLeft.png"));
-        ImageView img = new ImageView(imageOk);
-        img.setPreserveRatio(true);
-        img.fitWidthProperty().set(10);
-        img.fitHeightProperty().set(10);
-        bt.setGraphic(img);
         bt.setOnAction(new EventHandler<ActionEvent>(){
 
             @Override
