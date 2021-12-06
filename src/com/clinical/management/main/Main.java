@@ -19,8 +19,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -47,19 +45,6 @@ public class Main extends Application implements UserListener {
 
     @Override
     public void start(Stage stage) throws Exception {
-
-        // pagina de login
-    	FXMLLoader loginPage = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
-    	this.root = loginPage.load();
-    	LoginController loginPageController = loginPage.getController();
-    	loginPageController.setAuth(auth);
-
-        // pagina main
-        FXMLLoader main = new FXMLLoader(getClass().getResource("../view/pages/Main.fxml"));
-        Parent mainPage = main.load();
-        MainPageController mainPageController = main.getController();
-        mainPageController.setAuth(auth);
-    	
     	this.auth.addListner(this);
     	
     	MicaMaterial micaMaterial = new MicaMaterial();
@@ -69,8 +54,20 @@ public class Main extends Application implements UserListener {
         
         // se houver um usuári logado
         if (auth.getCurrentUser() != null) {
+            // pagina main
+            System.out.println("start loading main");
+            FXMLLoader main = new FXMLLoader(getClass().getResource("../view/pages/Main.fxml"));
+            Parent mainPage = main.load();
+            MainPageController mainPageController = main.getController();
+            mainPageController.setAuth(auth);
             stackNavigator.setInitialPage(mainPage);
+            System.out.println("finish loading main");
         } else {
+            // pagina de login
+            FXMLLoader loginPage = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
+            this.root = loginPage.load();
+            LoginController loginPageController = loginPage.getController();
+            loginPageController.setAuth(auth);
             stackNavigator.setInitialPage(root);
         }
         window.setCenter(StackNavigator.GetNavigator());
@@ -104,6 +101,14 @@ public class Main extends Application implements UserListener {
 				}
             }
         });
+
+        if (auth.getCurrentUser() != null) {
+            // pagina de login
+            FXMLLoader loginPage = new FXMLLoader(getClass().getResource("../view/pages/Login.fxml"));
+            this.root = loginPage.load();
+            LoginController loginPageController = loginPage.getController();
+            loginPageController.setAuth(auth);
+        }
     }
 
     /**
