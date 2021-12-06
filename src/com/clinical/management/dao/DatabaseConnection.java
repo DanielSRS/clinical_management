@@ -1,11 +1,9 @@
 package com.clinical.management.dao;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -90,13 +88,6 @@ public class DatabaseConnection {
 	 */
 	public boolean createDatabase() {
 		try {
-			try {
-				// Cria diretório caso não exista
-				Files.createDirectories(Paths.get(System.getProperty("user.dir") + "/db/"));
-			} catch (IOException e) {
-				//
-			}
-
 			// Caminho para o banco de dados
 			String pathToDB = System.getProperty("user.dir") + "\\db\\cmdb.db";
 			String url = "jdbc:sqlite:" + pathToDB;
@@ -129,6 +120,38 @@ public class DatabaseConnection {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Verifica se há uma tabela no banco de dados
+	 * @param tableName Nome da tabela
+	 * @return true se houver a tabela no banco, do contrario, false
+	 */
+	public Boolean thereIsATable(String tableName) {
+		conectar();
+
+		String sql = "SELECT name FROM sqlite_master WHERE type='table' AND name = ? ";
+
+		ResultSet result = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			preparedStatement = criarPreparedStatement(sql);
+			preparedStatement.setString(1, tableName);
+			result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+				desconectar();
+		        return true;
+			}
+		} catch(SQLException e) {
+			System.out.println("Erro ao recuperar usuários");
+			desconectar();
+			return false;
+		}
+		
+		desconectar();
+		return false;
 	}
 
 }
