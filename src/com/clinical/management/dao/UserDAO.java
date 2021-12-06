@@ -119,7 +119,7 @@ public class UserDAO extends DatabaseConnection {
 
 		conectar();
 
-		String sql = "SELECT id, logged_user FROM settings";
+		String sql = "SELECT id, logged_user FROM settings WHERE entity = ?";
 		String sqlUser = "SELECT id, name, cpf, password FROM users WHERE id = ?";
 
 		ResultSet result = null;
@@ -128,6 +128,7 @@ public class UserDAO extends DatabaseConnection {
 		// Obter id do usuario logado
 		try {
 			preparedStatement = criarPreparedStatement(sql);
+			preparedStatement.setString(1, "system");
 			result = preparedStatement.executeQuery();
 
 			if (result.next()) {
@@ -167,12 +168,22 @@ public class UserDAO extends DatabaseConnection {
 
 	public boolean saveLoggedUser(User userToBeSaved) {
 		conectar();
-		String sql = "UPDATE settings SET logged_user = ? WHERE id = 1;";
+		int result = -1;
+		String sql = "UPDATE settings SET logged_user = ? WHERE entity = ?";
+		String sql2 = "INSERT INTO settings (logged_user, entity) VALUES (?, ?);";
 		
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
 			preparedStatement.setInt(1, userToBeSaved.getID());
-			preparedStatement.executeUpdate();
+			preparedStatement.setString(2, "system");
+			result = preparedStatement.executeUpdate();
+
+			if (result == 0) {
+				preparedStatement = criarPreparedStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+				preparedStatement.setInt(1, userToBeSaved.getID());
+				preparedStatement.setString(2, "system");
+				result = preparedStatement.executeUpdate();
+			}
 		} catch (SQLException e) {
 			desconectar();
 			return false;

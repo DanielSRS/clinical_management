@@ -2,7 +2,7 @@ package com.clinical.management.model.users;
 
 public class User {
 
-	private int id;
+	private Integer id;
 	private String name;
 	private String cpf;
 	private OrderTypes types;
@@ -20,7 +20,7 @@ public class User {
 		this.cpf = cpf;
 		this.types = types;
 		this.password = password;
-		this.id = -1;
+		this.id = null;
 	}
 
 	/**

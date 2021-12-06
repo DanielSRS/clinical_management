@@ -105,7 +105,8 @@ public class DatabaseConnection {
 			String settingsTable = "CREATE TABLE IF NOT EXISTS settings (\n"
                 + "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
                 + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
-                + "	logged_user INT REFERENCES users (id)\n"
+                + "	logged_user INT REFERENCES users (id),\n"
+				+ "	entity VARCHAR(6) NOT NULL\n"
                 + ");";
 			
 			// Cria banco de dados caso não exista e cria conexão
