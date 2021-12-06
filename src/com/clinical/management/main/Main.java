@@ -12,6 +12,8 @@ import com.clinical.management.util.WindowsRegistry;
 import com.clinical.management.view.navigation.StackNavigator;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -84,6 +86,24 @@ public class Main extends Application implements UserListener {
         }
         st.getStylesheets().add(getClass().getResource("../view/css/applicationStyles.css").toString());
         stage.show();
+
+        stage.getScene().getWindow().focusedProperty().addListener(new ChangeListener<Boolean>(){
+
+            @Override
+            public void changed(ObservableValue<? extends Boolean> propriedade, Boolean valorAnterior, Boolean valorAtual) {
+				boolean themeIsDark = st.getStyleClass().contains("dark");
+				String tema = "0x0";
+				if (System.getProperty("os.name").equals("Windows 10")) {
+					tema = WindowsRegistry.readRegistry("HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "AppsUseLightTheme");
+				} 
+				if (tema.equals("0x0") && !themeIsDark)  {
+					st.getStyleClass().add("dark");
+				}
+				if (!tema.equals("0x0") && themeIsDark)  {
+					st.getStyleClass().removeAll("dark");
+				}
+            }
+        });
     }
 
     /**

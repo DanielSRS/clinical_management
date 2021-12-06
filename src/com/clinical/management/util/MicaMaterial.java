@@ -69,7 +69,7 @@ public class MicaMaterial {
         Blend blend = new Blend();
         blend.setMode(BlendMode.DARKEN);
         p1.setEffect(blend);
-        p1.setOpacity(0.83);
+        p1.setOpacity(0.8);
         
         st.setId("micaBG");
         st.getChildren().add(p1);
