@@ -439,3 +439,46 @@
 	-fx-background-color: #005FB8;
 	-fx-border-color:#005FB8;
 }
+
+
+/************************************/
+
+/*normal button */
+
+.normalButton {
+	-fx-background-color: #FFFFFFB3;
+	-fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-color: #0000000F;
+}
+
+.normalButton:hover {
+	-fx-background-color: #F9F9F980;
+}
+
+.normalButton:pressed {
+	-fx-background-color: #F9F9F94D;
+}
+
+.normalButton .text {
+	-fx-fill: #000000E6;
+}
+
+.dark .normalButton {
+	-fx-background-color: #FFFFFF0F;
+    -fx-border-color: #FFFFFF1A;
+}
+
+.dark .normalButton:hover {
+	-fx-background-color: #FFFFFF17;
+}
+
+.dark .normalButton:pressed {
+	-fx-background-color: #FFFFFF0A;
+	-fx-border-color: #FFFFFF12;
+}
+
+.dark .normalButton .text {
+	-fx-fill: #FFFFFF;
+}
