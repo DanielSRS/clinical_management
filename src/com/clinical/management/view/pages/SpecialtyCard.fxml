@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="600.0" styleClass="layer" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.SpecialtyCardController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="249.0">
+         <children>
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="48.0" prefWidth="48.0" style="-fx-background-color: #EEE; -fx-border-color: #CCC; -fx-border-width: 1px; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" />
+               </children>
+               <HBox.margin>
+                  <Insets left="29.0" />
+               </HBox.margin>
+            </StackPane>
+            <Label fx:id="specialtyName" prefHeight="17.0" prefWidth="182.0" text="Nome da especialidade">
+               <HBox.margin>
+                  <Insets left="31.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="126.0" HBox.hgrow="ALWAYS" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <MenuButton fx:id="dotsButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" styleClass="dotsButton" text="..." textAlignment="CENTER">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Editar" />
+                <MenuItem mnemonicParsing="false" onAction="#deleteSpecialty" text="Deletar" />
+              </items>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="6.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets right="6.0" />
+               </HBox.margin>
+            </MenuButton>
+         </children>
+      </HBox>
+   </children>
+</HBox>
