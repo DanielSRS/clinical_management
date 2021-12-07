@@ -119,6 +119,15 @@ public class DatabaseConnection {
 				    + "diagnoses VARCHAR (8000) NOT NULL, \n"
 				    + "treatments VARCHAR (8000) NOT NULL\n"
 				    + ");";
+			
+			String specialty = "CREATE TABLE IF NOT EXISTS specialty (\n"
+					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+					+ " name VARCHAR(50) UNIQUE NOT NULL, \n"
+		            + " description VARCHAR(50)"
+					+ ");";
+		            
+			
 			// Cria banco de dados caso não exista e cria conexão
 			Connection con = DriverManager.getConnection(url);
 			Statement prep = con.createStatement();
