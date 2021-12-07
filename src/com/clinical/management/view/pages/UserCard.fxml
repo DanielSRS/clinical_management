@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="600.0" styleClass="layer" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.UserCardController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="218.0">
@@ -62,7 +61,7 @@
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="76.0" styleClass="defaultButton" text="Detalhes">
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="76.0" styleClass="normalButton" text="Detalhes">
                <HBox.margin>
                   <Insets right="56.0" />
                </HBox.margin>
