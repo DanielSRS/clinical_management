@@ -126,7 +126,14 @@ public class DatabaseConnection {
 					+ " name VARCHAR(50) UNIQUE NOT NULL, \n"
 		            + " description VARCHAR(50)"
 					+ ");";
-		            
+			
+			String doctor = "CREATE TABLE IF NOT EXISTS doctor (\n"
+					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+		            + " specialty_id  VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
+		            + " sub_specialty VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
+		            + ");";
+			
 			
 			// Cria banco de dados caso não exista e cria conexão
 			Connection con = DriverManager.getConnection(url);
@@ -136,6 +143,8 @@ public class DatabaseConnection {
 			prep.executeUpdate(ussersTable);
 			prep.executeUpdate(settingsTable);
 			prep.executeUpdate(medicalRecord);
+			prep.executeUpdate(specialty);
+			prep.executeUpdate(doctor);
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
 			return false;
