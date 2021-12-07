@@ -109,6 +109,32 @@ public class DatabaseConnection {
 				+ "	entity VARCHAR(6) NOT NULL\n"
                 + ");";
 			
+			String medicalRecord = "CREATE TABLE IF NOT EXISTS medical_record (\n"
+					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+				    + "user_id INT REFERENCES users (id) NOT NULL, \n"
+				    + "anamnesis VARCHAR (8000) NOT NULL,\n"
+				    + "physical_exam VARCHAR (8000) NOT NULL, \n"
+				    + "hypotheses VARCHAR (8000) NOT NULL, \n"
+				    + "diagnoses VARCHAR (8000) NOT NULL, \n"
+				    + "treatments VARCHAR (8000) NOT NULL\n"
+				    + ");";
+			
+			String specialty = "CREATE TABLE IF NOT EXISTS specialty (\n"
+					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+					+ " name VARCHAR(50) UNIQUE NOT NULL, \n"
+		            + " description VARCHAR(50)"
+					+ ");";
+			
+			String doctor = "CREATE TABLE IF NOT EXISTS doctor (\n"
+					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+		            + " specialty_id  VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
+		            + " sub_specialty VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
+		            + ");";
+			
+			
 			// Cria banco de dados caso não exista e cria conexão
 			Connection con = DriverManager.getConnection(url);
 			Statement prep = con.createStatement();
@@ -116,6 +142,9 @@ public class DatabaseConnection {
 			// Cria as tabelas
 			prep.executeUpdate(ussersTable);
 			prep.executeUpdate(settingsTable);
+			prep.executeUpdate(medicalRecord);
+			prep.executeUpdate(specialty);
+			prep.executeUpdate(doctor);
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
 			return false;
