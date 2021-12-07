@@ -56,10 +56,10 @@ public class Main extends Application implements UserListener {
         if (auth.getCurrentUser() != null) {
             // pagina main
             System.out.println("start loading main");
-            FXMLLoader main = new FXMLLoader(getClass().getResource("../view/pages/Main.fxml"));
+            FXMLLoader main = new FXMLLoader(getClass().getResource("../view/pages/SpecialtyPage.fxml"));
             Parent mainPage = main.load();
-            MainPageController mainPageController = main.getController();
-            mainPageController.setAuth(auth);
+            //MainPageController mainPageController = main.getController();
+            //mainPageController.setAuth(auth);
             stackNavigator.setInitialPage(mainPage);
             System.out.println("finish loading main");
         } else {

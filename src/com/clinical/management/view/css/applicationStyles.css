@@ -183,8 +183,13 @@
     -fx-background-radius: 3px;
     -fx-border-radius: 3px;
     -selector-color: transparent;
+	-fx-background-color: transparent;
 }
 
+.drawerItem:selected {
+	-fx-background-color: #0000000F;
+	-selector-color: -accent-blue;
+}
 
 .drawerItem:hover {
 	-fx-background-color: #0000000F;
@@ -481,4 +486,12 @@
 
 .dark .normalButton .text {
 	-fx-fill: #FFFFFF;
+}
+
+#addSpecialtyIMG {
+	-fx-image: url("../images/addSpecialty.png");
+}
+
+.dark #addSpecialtyIMG {
+	-fx-image: url("../images/addSpecialty.png");
 }

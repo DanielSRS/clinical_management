@@ -1,9 +1,6 @@
 package com.clinical.management.controller;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -16,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 
 /**
@@ -26,6 +25,18 @@ public class MainPageController {
 	@FXML private Label centerLebel;
 
 	@FXML VBox usersContainer;
+
+	@FXML ToggleButton users;
+
+	@FXML ToggleButton medicalCare;
+
+	@FXML ToggleButton selfService;
+
+	@FXML ToggleButton schedule;
+
+	@FXML ToggleButton specialty;
+
+	private ToggleGroup sideMenuGroup;
 		
 	/**
 	 * Desloga o usuario atual
@@ -76,6 +87,12 @@ public class MainPageController {
 	}
 
 	public void initialize() {
+		/*this.sideMenuGroup = new ToggleGroup();
+		this.users.setToggleGroup(sideMenuGroup);
+		this.medicalCare.setToggleGroup(sideMenuGroup);
+		this.selfService.setToggleGroup(sideMenuGroup);
+		this.schedule.setToggleGroup(sideMenuGroup);
+		this.specialty.setToggleGroup(sideMenuGroup);*/
 		renderUsers();
 	}
 
