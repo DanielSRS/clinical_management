@@ -124,16 +124,54 @@ public class DatabaseConnection {
 					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
 		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
 					+ " name VARCHAR(50) UNIQUE NOT NULL, \n"
-		            + " description VARCHAR(50)"
+		            + " description VARCHAR(50)\n"
 					+ ");";
 			
 			String doctor = "CREATE TABLE IF NOT EXISTS doctor (\n"
 					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
 		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
 		            + " specialty_id  VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
-		            + " sub_specialty VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
+		            + " sub_specialty VARCHAR (50) REFERENCES specialty (id) NOT NULL\n"
 		            + ");";
 			
+			String scheduling = "CREATE TABLE IF NOT EXISTS scheduling (\n"
+					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+		            + "day DATETIME NOT NULL, \n"
+		            + "hour DATETIME NOT NULL, \n"
+		            + "doctor_id INT REFERENCES doctor (id) NOT NULL, \n"
+		            + "specialty_id INT REFERENCES users (id) NOT NULL, \n"
+		            + "status STRING NOT NULL, \n"
+		            + "user_id INT REFERENCES users (id) NOT NULL\n"
+		            + ");";
+			
+			String query = "CREATE TABLE IF NOT EXISTS query (\n"
+					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+		            + "scheduling_id INT REFERENCES scheduling (id) NOT NULL, \n"
+		            + "medicalRecords_id INT REFERENCES medical_record (id) NOT NULL\n"
+		            + ");";
+			
+			String day_doctor = "CREATE TABLE IF NOT EXISTS day_doctor (\n"
+					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+		            + "start_service DATETIME NOT NULL, \n"
+		            + "end_service DATETIME NOT NULL, \n"
+		            + "doctor_id INT REFERENCES users (id) NOT NULL, \n"
+		            + "duration_service INT NOT NULL\n"
+		            + ");";
+			
+			String calendar_doctor = "CREATE TABLE IF NOT EXISTS calendar_doctor (\n"
+					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
+		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+					+ "sunday_id    INT REFERENCES users (id), \n"
+				    + "monday_id    INT REFERENCES users (id), \n"
+				    + "tuesday_id   INT REFERENCES users (id), \n"
+				    + "wednesday_id INT REFERENCES users (id), \n"
+				    + "thursday_id  INT REFERENCES users (id), \n"
+				    + "friday_id    INT REFERENCES users (id), \n"
+				    + "saturday_id  INT REFERENCES users (id)\n" 
+				    + ");";
 			
 			// Cria banco de dados caso não exista e cria conexão
 			Connection con = DriverManager.getConnection(url);
@@ -145,6 +183,10 @@ public class DatabaseConnection {
 			prep.executeUpdate(medicalRecord);
 			prep.executeUpdate(specialty);
 			prep.executeUpdate(doctor);
+			prep.executeUpdate(scheduling);
+			prep.executeUpdate(query);
+			prep.executeUpdate(day_doctor);
+			prep.executeUpdate(calendar_doctor);
 		} catch(SQLException e) {
 			System.err.println(e.getMessage());
 			return false;

@@ -6,78 +6,78 @@ import java.util.List;
 
 public class Calendar_doctor {
 
-	private Day_doctor domingo;
-	private Day_doctor segunda;
-	private Day_doctor terca;
-	private Day_doctor quarta;
-	private Day_doctor quinta;
-	private Day_doctor sexta;
-	private Day_doctor sabado;
+	private Day_doctor sunday;
+	private Day_doctor monday;
+	private Day_doctor tuesday;
+	private Day_doctor wednesday;
+	private Day_doctor thursday;
+	private Day_doctor friday;
+	private Day_doctor saturday;
 
 	public Calendar_doctor() {
 	}
 
-	public Day_doctor getDomingo() {
-		return domingo;
+	public Day_doctor getSunday() {
+		return sunday;
 	}
 
-	public void setDomingo(Day_doctor domingo) {
-		this.domingo = domingo;
+	public void setSunday(Day_doctor sunday) {
+		this.sunday = sunday;
 	}
 
-	public Day_doctor getSegunda() {
-		return segunda;
+	public Day_doctor getMonday() {
+		return monday;
 	}
 
-	public void setSegunda(Day_doctor segunda) {
-		this.segunda = segunda;
+	public void setMonday(Day_doctor monday) {
+		this.monday = monday;
 	}
 
-	public Day_doctor getTerca() {
-		return terca;
+	public Day_doctor getTuesday() {
+		return tuesday;
 	}
 
-	public void setTerca(Day_doctor terca) {
-		this.terca = terca;
+	public void setTuesday(Day_doctor tuesday) {
+		this.tuesday = tuesday;
 	}
 
-	public Day_doctor getQuarta() {
-		return quarta;
+	public Day_doctor getWednesday() {
+		return wednesday;
 	}
 
-	public void setQuarta(Day_doctor quarta) {
-		this.quarta = quarta;
+	public void setWednesday(Day_doctor wednesday) {
+		this.wednesday = wednesday;
 	}
 
-	public Day_doctor getQuinta() {
-		return quinta;
+	public Day_doctor getThursday() {
+		return thursday;
 	}
 
-	public void setQuinta(Day_doctor quinta) {
-		this.quinta = quinta;
+	public void setThursday(Day_doctor thursday) {
+		this.thursday = thursday;
 	}
 
-	public Day_doctor getSexta() {
-		return sexta;
+	public Day_doctor getFriday() {
+		return friday;
 	}
 
-	public void setSexta(Day_doctor sexta) {
-		this.sexta = sexta;
+	public void setFriday(Day_doctor friday) {
+		this.friday = friday;
 	}
 
-	public Day_doctor getSabado() {
-		return sabado;
+	public Day_doctor getSaturday() {
+		return saturday;
 	}
 
-	public void setSabado(Day_doctor sabado) {
-		this.sabado = sabado;
+	public void setSaturday(Day_doctor saturday) {
+		this.saturday = saturday;
 	}
 	
 	public List<Scheduling> generateCalendarDoctor(){
 		List<Scheduling> mark = new ArrayList<>();
-		if(this.domingo != null) {
-			long timeAvailable = (this.domingo.getEnd_service().getTimeInMillis() - this.domingo.getStart_service().getTimeInMillis()) / 1000 * 60;
-			Integer duration = (int) (timeAvailable/ this.domingo.getDuration_service());
+		if(this.sunday != null) {
+			long timeAvailable = (this.sunday.getEnd_service().getTimeInMillis() - this.sunday.getStart_service().getTimeInMillis()) / 1000 * 60;
+			Integer duration = (int) (timeAvailable/ this.sunday.getDuration_service());
 			for(int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 		        int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -87,14 +87,14 @@ public class Calendar_doctor {
 		            if (diaDaSemana == 1) {
 		            	Calendar day_final = Calendar.getInstance();
 		            	day_final.set(Calendar.DAY_OF_MONTH, j);
-		            	day_final.set(Calendar.HOUR_OF_DAY, this.domingo.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.domingo.getDuration_service());
-		                mark.add(new Scheduling(day_final, day_final, this.domingo.getDoctor(), this.domingo.getDoctor().getSpecialty()));
+		            	day_final.set(Calendar.HOUR_OF_DAY, this.sunday.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.sunday.getDuration_service());
+		                mark.add(new Scheduling(day_final, day_final, this.sunday.getDoctor(), this.sunday.getDoctor().getSpecialty()));
 		            }
 		        }
 			}
-		} if(this.segunda != null) {
-			long timeAvailable = (this.domingo.getEnd_service().getTimeInMillis() - this.domingo.getStart_service().getTimeInMillis()) / 1000 * 60;
-			Integer duration = (int) (timeAvailable/ this.domingo.getDuration_service());
+		} if(this.monday != null) {
+			long timeAvailable = (this.monday.getEnd_service().getTimeInMillis() - this.monday.getStart_service().getTimeInMillis()) / 1000 * 60;
+			Integer duration = (int) (timeAvailable/ this.monday.getDuration_service());
 			for(int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 		        int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -104,14 +104,14 @@ public class Calendar_doctor {
 		            if (diaDaSemana == 2) {
 		            	Calendar day_final = Calendar.getInstance();
 		            	day_final.set(Calendar.DAY_OF_MONTH, j);
-		            	day_final.set(Calendar.HOUR_OF_DAY, this.domingo.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.domingo.getDuration_service());
-		                mark.add(new Scheduling(day_final, day_final, this.domingo.getDoctor(), this.domingo.getDoctor().getSpecialty()));
+		            	day_final.set(Calendar.HOUR_OF_DAY, this.monday.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.monday.getDuration_service());
+		                mark.add(new Scheduling(day_final, day_final, this.monday.getDoctor(), this.monday.getDoctor().getSpecialty()));
 		            }
 		        }
 			}
-		} if(this.terca != null) {
-			long timeAvailable = (this.domingo.getEnd_service().getTimeInMillis() - this.domingo.getStart_service().getTimeInMillis()) / 1000 * 60;
-			Integer duration = (int) (timeAvailable/ this.domingo.getDuration_service());
+		} if(this.tuesday != null) {
+			long timeAvailable = (this.tuesday.getEnd_service().getTimeInMillis() - this.tuesday.getStart_service().getTimeInMillis()) / 1000 * 60;
+			Integer duration = (int) (timeAvailable/ this.tuesday.getDuration_service());
 			for(int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 		        int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -121,14 +121,14 @@ public class Calendar_doctor {
 		            if (diaDaSemana == 3) {
 		            	Calendar day_final = Calendar.getInstance();
 		            	day_final.set(Calendar.DAY_OF_MONTH, j);
-		            	day_final.set(Calendar.HOUR_OF_DAY, this.domingo.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.domingo.getDuration_service());
-		                mark.add(new Scheduling(day_final, day_final, this.domingo.getDoctor(), this.domingo.getDoctor().getSpecialty()));
+		            	day_final.set(Calendar.HOUR_OF_DAY, this.tuesday.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.tuesday.getDuration_service());
+		                mark.add(new Scheduling(day_final, day_final, this.tuesday.getDoctor(), this.tuesday.getDoctor().getSpecialty()));
 		            }
 		        }
 			}
-		} if(this.quarta != null) {
-			long timeAvailable = (this.domingo.getEnd_service().getTimeInMillis() - this.domingo.getStart_service().getTimeInMillis()) / 1000 * 60;
-			Integer duration = (int) (timeAvailable/ this.domingo.getDuration_service());
+		} if(this.wednesday != null) {
+			long timeAvailable = (this.wednesday.getEnd_service().getTimeInMillis() - this.wednesday.getStart_service().getTimeInMillis()) / 1000 * 60;
+			Integer duration = (int) (timeAvailable/ this.wednesday.getDuration_service());
 			for(int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 		        int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -138,14 +138,14 @@ public class Calendar_doctor {
 		            if (diaDaSemana == 4) {
 		            	Calendar day_final = Calendar.getInstance();
 		            	day_final.set(Calendar.DAY_OF_MONTH, j);
-		            	day_final.set(Calendar.HOUR_OF_DAY, this.domingo.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.domingo.getDuration_service());
-		                mark.add(new Scheduling(day_final, day_final, this.domingo.getDoctor(), this.domingo.getDoctor().getSpecialty()));
+		            	day_final.set(Calendar.HOUR_OF_DAY, this.wednesday.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.wednesday.getDuration_service());
+		                mark.add(new Scheduling(day_final, day_final, this.wednesday.getDoctor(), this.wednesday.getDoctor().getSpecialty()));
 		            }
 		        }
 			}
-		} if(this.quinta != null) {
-			long timeAvailable = (this.domingo.getEnd_service().getTimeInMillis() - this.domingo.getStart_service().getTimeInMillis()) / 1000 * 60;
-			Integer duration = (int) (timeAvailable/ this.domingo.getDuration_service());
+		} if(this.thursday != null) {
+			long timeAvailable = (this.thursday.getEnd_service().getTimeInMillis() - this.thursday.getStart_service().getTimeInMillis()) / 1000 * 60;
+			Integer duration = (int) (timeAvailable/ this.thursday.getDuration_service());
 			for(int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 		        int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -155,14 +155,14 @@ public class Calendar_doctor {
 		            if (diaDaSemana == 5) {
 		            	Calendar day_final = Calendar.getInstance();
 		            	day_final.set(Calendar.DAY_OF_MONTH, j);
-		            	day_final.set(Calendar.HOUR_OF_DAY, this.domingo.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.domingo.getDuration_service());
-		                mark.add(new Scheduling(day_final, day_final, this.domingo.getDoctor(), this.domingo.getDoctor().getSpecialty()));
+		            	day_final.set(Calendar.HOUR_OF_DAY, this.thursday.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.thursday.getDuration_service());
+		                mark.add(new Scheduling(day_final, day_final, this.thursday.getDoctor(), this.thursday.getDoctor().getSpecialty()));
 		            }
 		        }
 			}
-		} if(this.sexta != null) {
-			long timeAvailable = (this.domingo.getEnd_service().getTimeInMillis() - this.domingo.getStart_service().getTimeInMillis()) / 1000 * 60;
-			Integer duration = (int) (timeAvailable/ this.domingo.getDuration_service());
+		} if(this.friday != null) {
+			long timeAvailable = (this.friday.getEnd_service().getTimeInMillis() - this.friday.getStart_service().getTimeInMillis()) / 1000 * 60;
+			Integer duration = (int) (timeAvailable/ this.friday.getDuration_service());
 			for(int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 		        int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -172,14 +172,14 @@ public class Calendar_doctor {
 		            if (diaDaSemana == 6) {
 		            	Calendar day_final = Calendar.getInstance();
 		            	day_final.set(Calendar.DAY_OF_MONTH, j);
-		            	day_final.set(Calendar.HOUR_OF_DAY, this.domingo.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.domingo.getDuration_service());
-		                mark.add(new Scheduling(day_final, day_final, this.domingo.getDoctor(), this.domingo.getDoctor().getSpecialty()));
+		            	day_final.set(Calendar.HOUR_OF_DAY, this.friday.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.friday.getDuration_service());
+		                mark.add(new Scheduling(day_final, day_final, this.friday.getDoctor(), this.friday.getDoctor().getSpecialty()));
 		            }
 		        }
 			}
-		} if(this.sabado != null) {
-			long timeAvailable = (this.domingo.getEnd_service().getTimeInMillis() - this.domingo.getStart_service().getTimeInMillis()) / 1000 * 60;
-			Integer duration = (int) (timeAvailable/ this.domingo.getDuration_service());
+		} if(this.saturday != null) {
+			long timeAvailable = (this.saturday.getEnd_service().getTimeInMillis() - this.saturday.getStart_service().getTimeInMillis()) / 1000 * 60;
+			Integer duration = (int) (timeAvailable/ this.saturday.getDuration_service());
 			for(int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 		        int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -189,8 +189,8 @@ public class Calendar_doctor {
 		            if (diaDaSemana == 7) {
 		            	Calendar day_final = Calendar.getInstance();
 		            	day_final.set(Calendar.DAY_OF_MONTH, j);
-		            	day_final.set(Calendar.HOUR_OF_DAY, this.domingo.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.domingo.getDuration_service());
-		                mark.add(new Scheduling(day_final, day_final, this.domingo.getDoctor(), this.domingo.getDoctor().getSpecialty()));
+		            	day_final.set(Calendar.HOUR_OF_DAY, this.saturday.getStart_service().get(Calendar.HOUR_OF_DAY) + i * this.saturday.getDuration_service());
+		                mark.add(new Scheduling(day_final, day_final, this.saturday.getDoctor(), this.saturday.getDoctor().getSpecialty()));
 		            }
 		        }
 			}
