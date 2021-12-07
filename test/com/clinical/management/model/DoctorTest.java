@@ -18,7 +18,7 @@ class DoctorTest {
      */
     @BeforeEach
     void setUp() throws Exception {
-        specialty = new Specialty("Oftalmologista");
+        specialty = new Specialty("Oftalmologista", "");
         doctor = new Doctor("User Full Name", "00145232548", specialty, "password");
     }
 

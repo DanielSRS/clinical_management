@@ -37,7 +37,7 @@ public class Specialties {
 	}
 	
 	public boolean add_specialties(String name) {
-		Specialty s = new Specialty(name);
+		Specialty s = new Specialty(name, "");
 		for(Specialty i: listSpecialities) {
 			if(i.equals(s)) {
 				return false;
