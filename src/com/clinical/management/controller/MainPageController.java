@@ -1,11 +1,16 @@
 package com.clinical.management.controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import com.clinical.management.dao.UserDAO;
 import com.clinical.management.model.users.User;
+import com.clinical.management.view.navigation.StackNavigator;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +47,23 @@ public class MainPageController {
 		this.auth = auth;
 		printAllData();
 	}
+
+	@FXML public void addUser() {
+		FXMLLoader addUserModal = new FXMLLoader(getClass().getResource("../view/pages/AddUserModal.fxml"));
+        try {
+			Parent modal = addUserModal.load();
+			modal.prefHeight(centerLebel.getScene().getHeight());
+			modal.maxHeight(centerLebel.getScene().getHeight());
+			AddUserModalController modelController = addUserModal.getController();
+			modelController.addController(this);
+			StackNavigator.addModal(modal);
+			System.out.println("foi");
+			//loginPageController.setAuth(auth);
+			//stackNavigator.setInitialPage(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * Exibe o nome do do usuário na Label no centro da tela
@@ -63,6 +85,7 @@ public class MainPageController {
 	public void renderUsers() {
 		UserDAO usersDB = new UserDAO();
 		List<User> users =  usersDB.getUsers(); // Obtem todos os usuários
+		Collections.reverse(users);
 		Iterator<User> it = users.iterator();
 		this.usersContainer.getChildren().clear(); // Apaga qualquer dado preexistente
 		while (it.hasNext()) {

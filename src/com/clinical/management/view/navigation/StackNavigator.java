@@ -118,6 +118,48 @@ public class StackNavigator {
 
     }
 
+    public static void addModal(Node newPage) {
+        if (pages == null) {
+            return;
+        }
+
+        StackPane smoke = new StackPane();
+        smoke.getStyleClass().add("smoke");
+        smoke.opacityProperty().set(0);
+        //newPage.translateYProperty().set(sp.getHeight());
+        newPage.opacityProperty().set(0);
+        newPage.scaleXProperty().set(0.75);
+        newPage.scaleYProperty().set(0.75);
+
+        smoke.getChildren().add(newPage);
+        sp.getChildren().add(smoke);
+
+        /*
+         * Animar transição entre telas
+         */
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(smoke.opacityProperty(), 1, Interpolator.EASE_BOTH);
+        KeyValue kv2 = new KeyValue(newPage.opacityProperty(), 1, Interpolator.EASE_BOTH);
+        KeyValue kv3 = new KeyValue(newPage.scaleXProperty(), 1.0, Interpolator.EASE_BOTH);
+        KeyValue kv4 = new KeyValue(newPage.scaleYProperty(), 1.0, Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.3), kv);
+        KeyFrame kf2 = new KeyFrame(Duration.seconds(0.3), kv2);
+        KeyFrame kf3 = new KeyFrame(Duration.seconds(0.3), kv3);
+        KeyFrame kf4 = new KeyFrame(Duration.seconds(0.3), kv4);
+        timeline.getKeyFrames().add(kf2);
+        timeline.getKeyFrames().add(kf);
+        timeline.getKeyFrames().add(kf3);
+        timeline.getKeyFrames().add(kf4);
+        timeline.play();
+        actualPageIndex = actualPageIndex + 1;
+        try {
+			((HBox) backButton).getChildren().get(0).setDisable(false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+    }
+
     public static void removeLastPage() {
         if (pages == null || sp.getChildren().size() == 1) {
             return;
@@ -138,6 +180,39 @@ public class StackNavigator {
         KeyFrame kf5 = new KeyFrame(Duration.seconds(0.5), kv5);
         timeline.getKeyFrames().add(kf2);
         timeline.getKeyFrames().add(kf);
+        timeline.getKeyFrames().add(kf3);
+        timeline.getKeyFrames().add(kf4);
+        if (sp.getChildren().size() == 2) {
+            timeline.getKeyFrames().add(kf5);
+        }
+        timeline.play();
+        actualPageIndex = actualPageIndex - 1;
+        ((HBox) backButton).getChildren().get(0).setDisable(sp.getChildren().size() - 1 <= 1);
+        timeline.setOnFinished(e -> sp.getChildren().remove(sp.getChildren().size() - 1));
+    }
+
+    public static void removeModal() {
+        if (pages == null || sp.getChildren().size() == 1) {
+            return;
+        }
+        Node lastPage = sp.getChildren().get(sp.getChildren().size() - 1);
+        Node rootPage = sp.getChildren().get(0);
+        StackPane bg = (StackPane) lastPage;
+        lastPage = bg.getChildren().get(0);
+
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(bg.opacityProperty(), 0, Interpolator.EASE_BOTH);
+        KeyValue kv2 = new KeyValue(bg.opacityProperty(), 0, Interpolator.EASE_BOTH);
+        KeyValue kv3 = new KeyValue(lastPage.scaleXProperty(), 0.75, Interpolator.EASE_BOTH);
+        KeyValue kv4 = new KeyValue(lastPage.scaleYProperty(), 0.75, Interpolator.EASE_BOTH);
+        KeyValue kv5 = new KeyValue(rootPage.opacityProperty(), 1, Interpolator.EASE_BOTH);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.2), kv);
+        KeyFrame kf2 = new KeyFrame(Duration.seconds(0.2), kv2);
+        KeyFrame kf3 = new KeyFrame(Duration.seconds(0.2), kv3);
+        KeyFrame kf4 = new KeyFrame(Duration.seconds(0.2), kv4);
+        KeyFrame kf5 = new KeyFrame(Duration.seconds(0.2), kv5);
+        timeline.getKeyFrames().add(kf2);
+        //timeline.getKeyFrames().add(kf);
         timeline.getKeyFrames().add(kf3);
         timeline.getKeyFrames().add(kf4);
         if (sp.getChildren().size() == 2) {
