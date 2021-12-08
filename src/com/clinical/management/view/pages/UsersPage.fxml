@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="1044.0" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.SpecialtyPageController">
+<BorderPane prefHeight="400.0" prefWidth="1044.0" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.UsersPageController">
    <center>
       <StackPane prefHeight="150.0" prefWidth="62.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,7 +22,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <HBox fillHeight="false" maxWidth="56.0" minWidth="5.0" prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
-                              <Label prefWidth="480.0" text="Especialidades">
+                              <Label prefWidth="480.0" text="Usuários">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -54,7 +54,7 @@
                                  </children>
                               </VBox>
                               <HBox minWidth="0.0" prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" onAction="#addSpecialty" prefHeight="27.0" prefWidth="146.0" styleClass="defaultButton" text="Adicionar especialidade" HBox.hgrow="ALWAYS">
+                              <Button mnemonicParsing="false" onAction="#addUser" prefWidth="115.0" styleClass="defaultButton" text="Adicionar usuário" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
@@ -62,7 +62,23 @@
                               <HBox layoutX="395.0" layoutY="10.0" maxWidth="47.0" minWidth="5.0" prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <VBox fx:id="specialtysContainer" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="4.0" prefWidth="786.0">
+                           <children>
+                              <HBox maxWidth="56.0" prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Button graphicTextGap="2.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="99.0" styleClass="outlineButton" text="Administrador" />
+                                    <Button graphicTextGap="2.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="72.0" styleClass="outlineButton" text="Paciente" />
+                                    <Button graphicTextGap="2.0" layoutX="119.0" layoutY="10.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" styleClass="outlineButton" text="Medico" />
+                                    <Button graphicTextGap="2.0" layoutX="199.0" layoutY="10.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" styleClass="outlineButton" text="Recepcionista" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <VBox fx:id="usersContainer" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>

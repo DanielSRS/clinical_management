@@ -14,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-//import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 
 /**
@@ -84,12 +83,6 @@ public class SpecialtyPageController {
 	}
 
 	public void initialize() {
-		/*this.sideMenuGroup = new ToggleGroup();
-		this.users.setToggleGroup(sideMenuGroup);
-		this.medicalCare.setToggleGroup(sideMenuGroup);
-		this.selfService.setToggleGroup(sideMenuGroup);
-		this.schedule.setToggleGroup(sideMenuGroup);
-		this.specialty.setToggleGroup(sideMenuGroup);*/
 		renderSpecialty();
 	}
 

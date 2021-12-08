@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 public class MicaMaterial {
 	
 	private FXResizeHelper resizeHelper;
+	ImageView imageView = null;
 	
 	/**
 	 * Cria uma janela sem decoração e handlers para redimensionamento e movimentação da janela
@@ -44,7 +45,6 @@ public class MicaMaterial {
 		
 		//*******************************************
 		StackPane st = new StackPane();
-		ImageView imageView = null;
 
 		if (appImg != null) {
 			
@@ -86,6 +86,45 @@ public class MicaMaterial {
 
         return st;
 	}
+
+	public void updateMica() {
+		String wallpaperLocation = "\\AppData\\Roaming\\Microsoft\\Windows\\Themes\\CachedFiles";
+		String userHomeLocation = System.getProperty("user.home");
+		String fileName = null;
+		String appImg = null;
+
+		File folder = new File(userHomeLocation + wallpaperLocation);
+		File[] listOfFiles = folder.listFiles();
+		
+		if (listOfFiles != null && listOfFiles.length > 0) {
+			fileName = listOfFiles[0].getName();
+		}
+		
+		if (fileName != null) {
+			System.out.println("Wallpaper path: " + userHomeLocation + wallpaperLocation + "\\" + fileName);
+			appImg = userHomeLocation + wallpaperLocation + "\\" + fileName;
+		}
+		
+		//*******************************************
+
+		if (appImg != null && imageView != null) {
+			
+			try {
+		        FileInputStream input = new FileInputStream(appImg);
+		        Image image = new Image(input);
+		        imageView = new ImageView(image);
+		        
+		        imageView.setEffect(new BoxBlur(255, 255, 6));
+		        
+		        imageView.getStyleClass().add("h");
+				System.out.println("trocou");
+				
+			} catch(FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 
 	/**
 	 * Obtem resizeHelper

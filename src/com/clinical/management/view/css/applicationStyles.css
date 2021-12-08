@@ -177,6 +177,19 @@
     -fx-border-color: -layer-border-color;
 }
 
+
+* {
+	-sec-color: transparent;
+}
+
+.sec {
+	-fx-background-color: -sec-color;
+}
+
+.sec:hover {
+	-sec-color: blue;
+}
+
 .drawerItem {
 	-fx-border-insets: 3 5 3 5px;
     -fx-background-insets: 3 5 3 5px;
@@ -193,7 +206,15 @@
 
 .drawerItem:hover {
 	-fx-background-color: #0000000F;
-	-selector-color: -accent-blue;
+}
+
+.dark .drawerItem:hover {
+	-fx-background-color: #FFFFFF0F;
+}
+
+.dark .drawerItem:selected {
+	-fx-background-color: #FFFFFF0F;
+	-selector-color: #60CDFF;
 }
 
 .selector {

@@ -15,12 +15,26 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
  * Controler da pagina Main
  */
 public class MainPageController {
+
+	/**
+	 * Controller de authenticação
+	 */
+	private AuthenticationController auth;
+
+	private ToggleGroup sideMenuGroup;
+
+	private ToggleButton atual;
+
+	private StackNavigator stack = new StackNavigator();
+
+	@FXML StackPane drawerContent;
 	
 	@FXML private Label centerLebel;
 
@@ -36,7 +50,28 @@ public class MainPageController {
 
 	@FXML ToggleButton specialty;
 
-	private ToggleGroup sideMenuGroup;
+	@FXML private void goTO() {
+		ToggleButton tb = (ToggleButton) sideMenuGroup.getSelectedToggle();
+		if (tb == null) {
+			atual.setSelected(true);
+			return;
+		}
+		atual = tb;
+		if (tb.equals(users)) {
+			System.out.println("users");
+			loadUsersPage();
+		} else if(tb.equals(medicalCare)) {
+			System.out.println("medicalCare");
+		} else if(tb.equals(selfService)) {
+			System.out.println("selfService");
+		} else if(tb.equals(schedule)) {
+			System.out.println("schedule");
+			loadSchedulePage();
+		} else if(tb.equals(specialty)) {
+			System.out.println("specialty");
+			loadSpecialtyPage();
+		}
+	}
 		
 	/**
 	 * Desloga o usuario atual
@@ -44,11 +79,6 @@ public class MainPageController {
 	@FXML private void signout() {
 		this.auth.signout();
 	}
-	
-	/**
-	 * Controller de authenticação
-	 */
-	private AuthenticationController auth;
 	
 	/**
 	 * Define o controller de authenticação
@@ -87,20 +117,51 @@ public class MainPageController {
 	}
 
 	public void initialize() {
-		/*this.sideMenuGroup = new ToggleGroup();
+		this.sideMenuGroup = new ToggleGroup();
 		this.users.setToggleGroup(sideMenuGroup);
 		this.medicalCare.setToggleGroup(sideMenuGroup);
 		this.selfService.setToggleGroup(sideMenuGroup);
 		this.schedule.setToggleGroup(sideMenuGroup);
-		this.specialty.setToggleGroup(sideMenuGroup);*/
-		renderUsers();
+		this.specialty.setToggleGroup(sideMenuGroup);
+		this.users.setSelected(true);
+
+		this.atual = this.users;
+
+		this.drawerContent.getChildren().add(new StackPane());
+		//renderUsers();
+	}
+
+	private void loadSpecialtyPage() {
+		FXMLLoader addUserModal = new FXMLLoader(getClass().getResource("../view/pages/SpecialtyPage.fxml"));
+        try {
+			Parent page = addUserModal.load();
+			this.drawerContent.getChildren().clear();
+			this.drawerContent.getChildren().add(page);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void loadSchedulePage() {
+		this.drawerContent.getChildren().clear();
+	}
+
+	private void loadUsersPage() {
+		this.drawerContent.getChildren().clear();
+		FXMLLoader addUserModal = new FXMLLoader(getClass().getResource("../view/pages/UsersPage.fxml"));
+        try {
+			Parent page = addUserModal.load();
+			this.drawerContent.getChildren().add(page);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Renderiza as informações dos usuários
 	 */
 	public void renderUsers() {
-		UserDAO usersDB = new UserDAO();
+		/*UserDAO usersDB = new UserDAO();
 		List<User> users =  usersDB.getUsers(); // Obtem todos os usuários
 		Collections.reverse(users);
 		Iterator<User> it = users.iterator();
@@ -121,7 +182,7 @@ public class MainPageController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 
 }
