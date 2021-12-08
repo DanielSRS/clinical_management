@@ -7,6 +7,7 @@ import com.clinical.management.model.users.User;
 public class Doctor extends User {
 	private Specialty specialty;
 	private Specialty sub_specialty;
+	private int id;
 
 	public Doctor(String name, String cpf, Specialty specialty, String password) {
 		super(name, cpf, OrderTypes.DOCTOR, password);
@@ -27,6 +28,14 @@ public class Doctor extends User {
 
 	public void define_sub_specialty(Specialty sub_specialty) {
 		this.sub_specialty = sub_specialty;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public boolean can_be_removed() {

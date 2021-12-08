@@ -5,15 +5,20 @@ public class Specialty {
 	private Integer id;
 	private String description;
 
-	public Specialty(String name, String description) {
+	public Specialty(String name) {
 		this.name = name;
-		this.description = description;
+		this.description = "";
 		this.id = null;
 	}
 	
 	public Specialty(String name, String description, int id) {
 		this.name = name;
 		this.id = id;
+		this.description = description;
+	}
+	
+	public Specialty(String name, String description) {
+		this.name = name;
 		this.description = description;
 	}
 
