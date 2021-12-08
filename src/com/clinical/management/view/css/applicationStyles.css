@@ -338,8 +338,16 @@
     -fx-border-radius: 4px;
 }
 
+.dark .dotsButton:hover {
+	-fx-background-color: #FFFFFF0F;
+}
+
 .dotsButton:pressed  {
 	-fx-background-color: #00000005;
+}
+
+.dark .dotsButton:pressed  {
+	-fx-background-color: #FFFFFF0A;
 }
 
 .menu-button > .arrow-button {
@@ -352,13 +360,19 @@
 
 .dotsButton .context-menu {
     /*-fx-background-color: rgb(33, 33, 33);*/
-	-fx-background-color: -layer-color;
+	-fx-background-color: #FCFCFC;
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 6;
 /*    -fx-padding: 0.666667em 0.083333em 0.666667em 0.083333em;  8 1 8 1 */
-    -fx-padding: 4px; /* 4 1 8 1 */
+    -fx-padding: 6px; /* 4 1 8 1 */
 	-fx-border-radius: 6px;
-	-fx-border-color: rgba(255, 255, 255, 0);
+	-fx-border-color: #0000000F;
+}
+
+.dark .dotsButton .context-menu {
+    /*-fx-background-color: rgb(33, 33, 33);*/
+	-fx-background-color: #2C2C2C;
+	-fx-border-color: #00000033;
 }
 
 .menu-item:focused .label {
@@ -366,9 +380,13 @@
 }
 
 .menu-item:focused {
-	-fx-background-color: #0000000F;
+	-fx-background-color: #0000000A;
 	-fx-background-radius: 4px;
     -fx-border-radius: 4px;
+}
+
+.dark .menu-item:focused {
+	-fx-background-color: #FFFFFF0F;
 }
 
 .smoke {
@@ -494,4 +512,19 @@
 
 .dark #addSpecialtyIMG {
 	-fx-image: url("../images/addSpecialty.png");
+}
+
+.card-surface {
+	-fx-background-color: #FFFFFFB3;
+	-fx-border-width: 1px;
+    -fx-border-color: #0000000F;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+	-fx-effect: dropshadow(gaussian, #0000000A, 4, 0, 0, 2);
+}
+
+.dark .card-surface {
+	-fx-background-color: #FFFFFF0F;
+    -fx-border-color: #0000001A;
+	-fx-effect: dropshadow(gaussian, #00000021, 4, 0, 0, 2);
 }
