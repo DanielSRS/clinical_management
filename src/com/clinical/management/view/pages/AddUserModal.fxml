@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.AddUserModalController">
    <children>
       <VBox maxHeight="500.0" maxWidth="900.0" prefHeight="200.0" prefWidth="100.0" styleClass="dialog">
@@ -33,12 +32,12 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="435.0" layoutY="10.0" text="Administrador">
+                  <Label disable="true" layoutX="435.0" layoutY="10.0" text="Administrador">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="470.0" layoutY="10.0" text="Medico">
+                  <Label disable="true" layoutX="470.0" layoutY="10.0" text="Medico">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -48,7 +47,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="539.0" layoutY="10.0" text="Recepcionista">
+                  <Label disable="true" layoutX="539.0" layoutY="10.0" text="Recepcionista">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -115,9 +114,8 @@
                         </Label>
                         <HBox prefHeight="24.0" prefWidth="539.0" spacing="20.0" AnchorPane.topAnchor="30.0">
                            <children>
-                              <CheckBox mnemonicParsing="false" selected="true" text="Usuário" />
+                              <CheckBox disable="true" layoutX="92.0" layoutY="10.0" mnemonicParsing="false" selected="true" text="Paciente" />
                               <CheckBox mnemonicParsing="false" text="Medico" />
-                              <CheckBox layoutX="92.0" layoutY="10.0" mnemonicParsing="false" text="Paciente" />
                               <CheckBox layoutX="173.0" layoutY="10.0" mnemonicParsing="false" text="Recepcionista" />
                               <CheckBox layoutX="259.0" layoutY="10.0" mnemonicParsing="false" text="Admin" />
                            </children>

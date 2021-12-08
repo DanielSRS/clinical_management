@@ -1,13 +1,6 @@
 package com.clinical.management.controller;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-
-import com.clinical.management.dao.UserDAO;
-import com.clinical.management.model.users.User;
-import com.clinical.management.view.navigation.StackNavigator;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,11 +21,13 @@ public class MainPageController {
 	 */
 	private AuthenticationController auth;
 
+	private Parent usersPage;
+
+	private Parent specialtyPage;
+
 	private ToggleGroup sideMenuGroup;
 
 	private ToggleButton atual;
-
-	private StackNavigator stack = new StackNavigator();
 
 	@FXML StackPane drawerContent;
 	
@@ -88,23 +83,6 @@ public class MainPageController {
 		this.auth = auth;
 		printAllData();
 	}
-
-	@FXML public void addUser() {
-		FXMLLoader addUserModal = new FXMLLoader(getClass().getResource("../view/pages/AddUserModal.fxml"));
-        try {
-			Parent modal = addUserModal.load();
-			modal.prefHeight(centerLebel.getScene().getHeight());
-			modal.maxHeight(centerLebel.getScene().getHeight());
-			AddUserModalController modelController = addUserModal.getController();
-			modelController.addController(this);
-			StackNavigator.addModal(modal);
-			System.out.println("foi");
-			//loginPageController.setAuth(auth);
-			//stackNavigator.setInitialPage(root);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	/**
 	 * Exibe o nome do do usuário na Label no centro da tela
@@ -128,15 +106,19 @@ public class MainPageController {
 		this.atual = this.users;
 
 		this.drawerContent.getChildren().add(new StackPane());
-		//renderUsers();
+		loadUsersPage();
 	}
 
 	private void loadSpecialtyPage() {
+		this.drawerContent.getChildren().clear();
+		if (specialtyPage != null) {
+			this.drawerContent.getChildren().add(specialtyPage);
+			return;
+		}
 		FXMLLoader addUserModal = new FXMLLoader(getClass().getResource("../view/pages/SpecialtyPage.fxml"));
         try {
-			Parent page = addUserModal.load();
-			this.drawerContent.getChildren().clear();
-			this.drawerContent.getChildren().add(page);
+			specialtyPage = addUserModal.load();
+			this.drawerContent.getChildren().add(specialtyPage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -148,10 +130,14 @@ public class MainPageController {
 
 	private void loadUsersPage() {
 		this.drawerContent.getChildren().clear();
+		if (usersPage != null) {
+			this.drawerContent.getChildren().add(usersPage);
+			return;
+		}
 		FXMLLoader addUserModal = new FXMLLoader(getClass().getResource("../view/pages/UsersPage.fxml"));
         try {
-			Parent page = addUserModal.load();
-			this.drawerContent.getChildren().add(page);
+			this.usersPage = addUserModal.load();
+			this.drawerContent.getChildren().add(usersPage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

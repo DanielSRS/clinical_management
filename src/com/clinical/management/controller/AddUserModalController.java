@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 public class AddUserModalController {
 
-    private MainPageController userListingPageController;
+    private UsersPageController userListingPageController;
 
     @FXML private TextField nameField;
 
@@ -51,7 +51,7 @@ public class AddUserModalController {
     /**
      * Define o controller da pagina principal
      */
-    public void addController(MainPageController controller) {
+    public void addController(UsersPageController controller) {
         this.userListingPageController = controller;
     }
 }

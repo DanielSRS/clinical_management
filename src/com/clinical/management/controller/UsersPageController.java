@@ -27,12 +27,9 @@ public class UsersPageController {
 			Parent modal = addUserModal.load();
 			modal.prefHeight(usersContainer.getScene().getHeight());
 			modal.maxHeight(usersContainer.getScene().getHeight());
-			//AddUserModalController modelController = addUserModal.getController();
-			//modelController.addController(this);
+			AddUserModalController modelController = addUserModal.getController();
+			modelController.addController(this);
 			StackNavigator.addModal(modal);
-			System.out.println("foi");
-			//loginPageController.setAuth(auth);
-			//stackNavigator.setInitialPage(root);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
