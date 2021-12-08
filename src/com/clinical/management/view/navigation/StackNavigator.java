@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 /**
@@ -44,8 +45,12 @@ public class StackNavigator {
         actualPageIndex = 0;
         //isUndecorated = false;
 
+        // font
+        Font font = Font.loadFont(getClass().getResource("../fonts/Segoe Fluent Icons.ttf").toString(), 10);
+
         pages.setId("AplicationBackground");
         Button bt = new Button("");
+        bt.setFont(font);
         bt.setId("voltarButton");
         bt.setPrefSize(46, 32);
         bt.getStylesheets().add(getClass().getResource("../../view/css/applicationStyles.css").toString());

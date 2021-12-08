@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application implements UserListener {
@@ -144,6 +145,9 @@ public class Main extends Application implements UserListener {
         //Label windowName = new Label("barra de titulo");
         //titleBarContainer.getChildren().add(windowName);
         //HBox.setHgrow(windowName, Priority.ALWAYS);
+
+        //font
+        Font font = Font.loadFont(getClass().getResource("../view/fonts/Segoe Fluent Icons.ttf").toString(), 10);
         
 
         // Estilos da barra de titulo
@@ -152,6 +156,7 @@ public class Main extends Application implements UserListener {
 
 		Button closeButton = new Button("");  // Botão de fechar a janela
         closeButton.setId("closeButton"); //windowCloseIcon
+        closeButton.setFont(font);
         
         
         /// bottaõ de minimizar
@@ -159,10 +164,12 @@ public class Main extends Application implements UserListener {
         minimizeButton.setId("minimizeButton"); //windowCloseIcon
         minimizeButton.setOnAction(e -> this.handleMinimize());
         minimizeButton.setPrefSize(46, 32);
+        minimizeButton.setFont(font);
         titleBarContainer.getChildren().add(minimizeButton);
         
         Button maxButton = new Button("");  // Botão de max a janela
         maxButton.setId("maxButton"); //windowCloseIcon
+        maxButton.setFont(font);
         maxButton.getStyleClass().add("svv");
         maxButton.setOnAction(e -> this.handleMaximize());
         maxButton.setPrefSize(46, 32);
