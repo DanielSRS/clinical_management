@@ -7,7 +7,7 @@ import com.clinical.management.model.users.User;
 public class Doctor extends User {
 	private Integer specialty;
 	private Integer sub_specialty;
-	private int id;
+	private Integer id;
 
 	public Doctor(String name, String cpf, String password, Integer specialty) {
 		super(name, cpf, OrderTypes.DOCTOR, password);
@@ -40,11 +40,11 @@ public class Doctor extends User {
 		this.sub_specialty = id;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

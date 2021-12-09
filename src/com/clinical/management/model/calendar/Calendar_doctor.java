@@ -14,6 +14,7 @@ public class Calendar_doctor {
 	private Day_doctor friday;
 	private Day_doctor saturday;
 	private Integer id;
+	private Integer doc_id;
 
 	public Calendar_doctor() {
 		this.id = null;
@@ -81,6 +82,14 @@ public class Calendar_doctor {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getDocID() {
+		return this.doc_id;
+	}
+
+	public void setDocID(int id) {
+		this.doc_id = id;
 	}
 
 	public List<Scheduling> generateCalendarDoctor() {

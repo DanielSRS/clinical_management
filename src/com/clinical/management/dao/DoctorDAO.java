@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,12 @@ public class DoctorDAO extends DatabaseConnection {
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
 			preparedStatement.setInt(1, DoctorToBeSaved.getSpecialty());
-			preparedStatement.setInt(2, DoctorToBeSaved.getSub_specialty());
+			if (DoctorToBeSaved.getSub_specialty() != null) {
+				preparedStatement.setInt(2, DoctorToBeSaved.getSub_specialty());
+			} else {
+				preparedStatement.setNull(2, Types.INTEGER);
+			}
+			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			desconectar();
@@ -109,7 +115,11 @@ public class DoctorDAO extends DatabaseConnection {
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
 			preparedStatement.setInt(1, DoctorToBeSaved.getSpecialty());
-			preparedStatement.setInt(2, DoctorToBeSaved.getSub_specialty());
+			if (DoctorToBeSaved.getSub_specialty() != null) {
+				preparedStatement.setInt(2, DoctorToBeSaved.getSub_specialty());
+			} else {
+				preparedStatement.setNull(2, Types.INTEGER);
+			}
 			preparedStatement.setInt(3, user_ID);
 			preparedStatement.executeUpdate();
 			ResultSet res = preparedStatement.getGeneratedKeys();

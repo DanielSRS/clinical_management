@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="400.0" prefWidth="1044.0" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.UsersPageController">
+<BorderPane prefHeight="400.0" prefWidth="1044.0" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.AgendaPageController">
    <center>
       <StackPane prefHeight="150.0" prefWidth="62.0" BorderPane.alignment="CENTER">
          <children>
@@ -54,7 +54,7 @@
                                  </children>
                               </VBox>
                               <HBox minWidth="0.0" prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" onAction="#addUser" prefWidth="115.0" styleClass="defaultButton" text="Adicionar usuário" visible="false" HBox.hgrow="ALWAYS">
+                              <Button mnemonicParsing="false" prefWidth="115.0" styleClass="defaultButton" text="Adicionar usuário" visible="false" HBox.hgrow="ALWAYS">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>

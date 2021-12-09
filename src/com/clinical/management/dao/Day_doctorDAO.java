@@ -9,25 +9,24 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.clinical.management.model.calendar.Day_doctor;
-import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
 
 public class Day_doctorDAO extends DatabaseConnection {
 
 	/**
-	 * Salva dado do dia do médico no banco de dados
+	 * Salva dado do dia do mï¿½dico no banco de dados
 	 * 
 	 * @param Day_doctorToBeSaved
-	 * @return true se o dia do médico foi salvo na base de dados, do contrario,
+	 * @return true se o dia do mï¿½dico foi salvo na base de dados, do contrario,
 	 *         false
 	 */
 
 	public boolean saveDay_doctor(Day_doctor day_doctorToBeSaved) {
 		conectar();
 		String sql = "INSERT INTO day_doctor (" + "start_service," + "end_service" + "doctor_id" + "duration_service)"
-				+ "VALUES (?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interrogação
-											// será substituido abaixo.
+				+ "VALUES (?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interrogaï¿½ï¿½o
+											// serï¿½ substituido abaixo.
 
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
@@ -44,11 +43,38 @@ public class Day_doctorDAO extends DatabaseConnection {
 		return true;
 	}
 
+	public Integer saveDay_doctor(Day_doctor day_doctorToBeSaved, int id) {
+		Integer novoID = null;
+		conectar();
+		String sql = "INSERT INTO day_doctor (start_service, end_service, doctor_id, duration_service)"
+				+ "VALUES (?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interrogaï¿½ï¿½o
+											// serï¿½ substituido abaixo.
+
+		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try {
+			preparedStatement.setLong(1, day_doctorToBeSaved.getStart_service().getTimeInMillis());
+			preparedStatement.setLong(2, day_doctorToBeSaved.getEnd_service().getTimeInMillis());
+			preparedStatement.setInt(3, day_doctorToBeSaved.getDoctor().getId());
+			preparedStatement.setInt(4, day_doctorToBeSaved.getDuration_service());
+
+			preparedStatement.executeUpdate();
+			ResultSet res = preparedStatement.getGeneratedKeys();
+			if (res.next()) {
+				novoID = res.getInt(1);
+			}
+		} catch (SQLException e) {
+			desconectar();
+			return novoID;
+		}
+		desconectar();
+		return novoID;
+	}
+
 	/**
-	 * Obtem todos os dias do médico salvos na base de dados
+	 * Obtem todos os dias do mï¿½dico salvos na base de dados
 	 * 
 	 * @return Objeto List do tipo day_doctor com as informaÃ§Ãµes dos dias do
-	 *         médico
+	 *         mï¿½dico
 	 * @see com.clinical.management.model.users.User
 	 */
 	public List<Day_doctor> getDay_doctor() {
@@ -99,7 +125,7 @@ public class Day_doctorDAO extends DatabaseConnection {
 				day_doctorList.add(aux);
 			}
 		} catch (SQLException e) {
-			System.out.println("Erro ao recuperar dia do médico");
+			System.out.println("Erro ao recuperar dia do mï¿½dico");
 		}
 
 		desconectar();

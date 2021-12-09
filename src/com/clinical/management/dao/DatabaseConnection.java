@@ -132,7 +132,7 @@ public class DatabaseConnection {
 					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
 		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
 		            + " specialty_id  VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
-		            + " sub_specialty VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
+		            + " sub_specialty VARCHAR (50) REFERENCES specialty (id), \n"
 		            + "	user_id INT REFERENCES users (id) NOT NULL\n"
 		            + ");";
 			

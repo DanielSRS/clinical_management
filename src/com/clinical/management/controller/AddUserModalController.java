@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.clinical.management.dao.Calendar_doctorDAO;
+import com.clinical.management.dao.Day_doctorDAO;
 import com.clinical.management.dao.DoctorDAO;
 import com.clinical.management.dao.SpecialtyDAO;
 import com.clinical.management.dao.UserDAO;
@@ -245,13 +247,16 @@ public class AddUserModalController {
         doctor.setSubSpacialtyID(idDaSubEspecialidade);
         DoctorDAO docDB = new DoctorDAO();
         Integer idDoMedicoCriado = docDB.saveDoctor(doctor, id);
+        System.out.println("Medico: " + doctor.getName() + ", ID: " + idDoMedicoCriado);
+        if (idDoMedicoCriado == null)  return;
         doctor.setId(idDoMedicoCriado);
-        createAgenda(doctor);
+        createAgenda(doctor, idDoMedicoCriado);
     }
 
-    private void createAgenda(Doctor doctor){
+    private void createAgenda(Doctor doctor,Integer docID){
 
-        List<Day_doctor> dias = new ArrayList<>();
+        //List<Day_doctor> dias = new ArrayList<>();
+        Day_doctorDAO dayDAO = new Day_doctorDAO();
 
         Day_doctor seg = null;
         Day_doctor ter = null;
@@ -267,6 +272,8 @@ public class AddUserModalController {
             int horaDeInicioSegunda = Integer.parseInt(segHI.getText());
             int horaDeFimSegunda = Integer.parseInt(segHF.getText());
             seg = new Day_doctor(horaDeInicioSegunda, horaDeFimSegunda, doctor, 20);
+            segid = dayDAO.saveDay_doctor(seg, 1);
+            seg.setId(segid);
         } catch (NumberFormatException e) {
             //
         }
@@ -275,6 +282,8 @@ public class AddUserModalController {
             int horaDeInicioTerca = Integer.parseInt(terHI.getText());
             int horaDeFimTerca = Integer.parseInt(terHF.getText());
             ter = new Day_doctor(horaDeInicioTerca, horaDeFimTerca, doctor, 20);
+            terid = dayDAO.saveDay_doctor(ter, 1);
+            ter.setId(terid);
         } catch (NumberFormatException e) {
             //
         }
@@ -283,6 +292,8 @@ public class AddUserModalController {
             int horaDeInicioQuarta = Integer.parseInt(quaHI.getText());
             int horaDeFimQuarta = Integer.parseInt(quaHF.getText());
             qua = new Day_doctor(horaDeInicioQuarta, horaDeFimQuarta, doctor, 20);
+            quaid = dayDAO.saveDay_doctor(qua, 1);
+            qua.setId(quaid);
         } catch (NumberFormatException e) {
             //
         }
@@ -291,6 +302,8 @@ public class AddUserModalController {
             int horaDeInicioQuinta = Integer.parseInt(quiHI.getText());
             int horaDeFimQuinta = Integer.parseInt(quiHF.getText());
             qui = new Day_doctor(horaDeInicioQuinta, horaDeFimQuinta, doctor, 20);
+            quiid = dayDAO.saveDay_doctor(qui, 1);
+            qui.setId(quiid);
         } catch (NumberFormatException e) {
             //
         }
@@ -299,6 +312,8 @@ public class AddUserModalController {
             int horaDeInicioSexta = Integer.parseInt(sexHI.getText());
             int horaDeFimSexta = Integer.parseInt(sexHF.getText());
             sex = new Day_doctor(horaDeInicioSexta, horaDeFimSexta, doctor, 20);
+            sexid = dayDAO.saveDay_doctor(sex, 1);
+            sex.setId(sexid);
         } catch (NumberFormatException e) {
             //
         }
@@ -307,6 +322,8 @@ public class AddUserModalController {
             int horaDeInicioSabado = Integer.parseInt(sabHI.getText());
             int horaDeFimSabado = Integer.parseInt(sabHF.getText());
             sab = new Day_doctor(horaDeInicioSabado, horaDeFimSabado, doctor, 20);
+            sabid = dayDAO.saveDay_doctor(sab, 1);
+            sab.setId(sabid);
         } catch (NumberFormatException e) {
             //
         }
@@ -315,11 +332,14 @@ public class AddUserModalController {
             int horaDeInicioDomingo = Integer.parseInt(domHI.getText());
             int horaDeFimDomingo = Integer.parseInt(domHF.getText());
             dom = new Day_doctor(horaDeInicioDomingo, horaDeFimDomingo, doctor, 20);
+            domid = dayDAO.saveDay_doctor(dom, 1);
+            dom.setId(domid);
         } catch (NumberFormatException e) {
             //
         }
 
         Calendar_doctor cal = new Calendar_doctor();
+        cal.setDocID(docID);
         cal.setMonday(seg);
         cal.setTuesday(ter);
         cal.setWednesday(qua);
@@ -327,6 +347,9 @@ public class AddUserModalController {
         cal.setFriday(sex);
         cal.setSaturday(sab);
         cal.setSunday(dom);
+
+        Calendar_doctorDAO cdDAO = new Calendar_doctorDAO();
+        cdDAO.saveCalendar_doctor(cal);
         
     }
 
