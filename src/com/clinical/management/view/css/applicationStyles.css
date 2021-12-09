@@ -574,3 +574,15 @@
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
 }
+
+
+/*  titled pane  */
+
+.titled-pane > .title {
+	-fx-background-color: transparent;
+	-fx-padding: -25 0 0 0;
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+	-fx-background-color: transparent;
+  }

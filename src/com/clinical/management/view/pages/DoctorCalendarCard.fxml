@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox prefHeight="295.0" prefWidth="600.0" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.DoctorCalendarCardController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="600.0" styleClass="card-surface">
+         <children>
+            <Label fx:id="doctorName" text="Nome do medico" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" top="20.0" />
+         </padding>
+      </HBox>
+      <TitledPane expanded="false" VBox.vgrow="ALWAYS">
+        <content>
+          <AnchorPane prefHeight="233.0" prefWidth="598.0">
+               <children>
+                  <VBox prefHeight="215.0" prefWidth="189.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label text="Horarios de atendimento">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                           <tabs>
+                              <Tab text="Segunda">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <AnchorPane prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Inicio do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="segHI" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="segMI" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="10.0" layoutY="30.0" prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Fim do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="segHF" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="segMF" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField1111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                             <padding>
+                                                <Insets top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Terça">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <AnchorPane prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Inicio do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="terHI" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="terMI" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="10.0" layoutY="30.0" prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Fim do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="terHF" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="terMF" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField11111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                             <padding>
+                                                <Insets top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Quarta">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <AnchorPane prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Inicio do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="quaHI" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="quaMI" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="10.0" layoutY="30.0" prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Fim do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="quaHF" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="quaMF" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField111111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                             <padding>
+                                                <Insets top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Quinta">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <AnchorPane prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Inicio do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="quiHI" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="quiMI" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField1111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="10.0" layoutY="30.0" prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Fim do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="quiHF" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="quiMF" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField1111111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                             <padding>
+                                                <Insets top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Sexta">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <AnchorPane prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Inicio do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="sexHI" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="sexMI" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField1111111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="10.0" layoutY="30.0" prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Fim do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="sexHF" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="sexMF" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField1111111111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                             <padding>
+                                                <Insets top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Sabado">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <AnchorPane prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Inicio do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="sabHI" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="sabMI" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField11111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="10.0" layoutY="30.0" prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Fim do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="sabHF" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="sabMF" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField11111111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                             <padding>
+                                                <Insets top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Domingo">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <AnchorPane prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Inicio do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="domHI" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="domMI" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField111111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane layoutX="10.0" layoutY="30.0" prefHeight="70.0" prefWidth="220.0">
+                                                   <children>
+                                                      <Label text="Fim do atendimento" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <HBox prefHeight="32.0" prefWidth="183.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
+                                                         <children>
+                                                            <TextField fx:id="domHF" prefWidth="49.0" promptText="HH" styleClass="input" />
+                                                            <Label prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="domMF" layoutX="10.0" layoutY="10.0" prefWidth="49.0" promptText="mm" styleClass="input" />
+                                                            <Label layoutX="59.0" layoutY="10.0" prefHeight="28.0" prefWidth="4.0" text=":">
+                                                               <font>
+                                                                  <Font size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="cpfField111111111" layoutX="59.0" layoutY="10.0" prefWidth="49.0" promptText="ss" styleClass="input" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                             <padding>
+                                                <Insets top="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</VBox>

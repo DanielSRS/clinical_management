@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.clinical.management.model.calendar.Calendar_doctor;
+import com.clinical.management.model.calendar.Day_doctor;
 import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
@@ -88,11 +89,12 @@ public class Calendar_doctorDAO extends DatabaseConnection {
 	 */
 	public List<Calendar_doctor> getCalendar_doctor() {
 		List<Calendar_doctor> calendar_doctorList = new ArrayList<>();
+		Day_doctorDAO dayDAO = new Day_doctorDAO();
 
 		conectar();
 
 		String sql = "SELECT calendar_doctor.id AS calendar_doctor_id, sunday_id, monday_id, tuesday_id, wednesday_id, thursday_id, "
-				+ " friday_id, saturday_id, doctor_id FROM calendar_doctor ON ";
+				+ " friday_id, saturday_id, doctor_id FROM calendar_doctor ";
 
 		ResultSet result = null;
 		PreparedStatement preparedStatement = null;
@@ -102,33 +104,37 @@ public class Calendar_doctorDAO extends DatabaseConnection {
 			result = preparedStatement.executeQuery();
 
 			while (result.next()) {
-				Integer id = result.getInt("sheduling_id");
+				int idDoCalendar = result.getInt("calendar_doctor_id");
+				int ff = result.getInt("monday_id");
+
+				Day_doctor seg = dayDAO.getDay_doctorByID(ff);
+				ff = result.getInt("tuesday_id");
+				Day_doctor ter = dayDAO.getDay_doctorByID(ff);
+				Day_doctor qua = dayDAO.getDay_doctorByID(result.getInt("wednesday_id"));
+				Day_doctor qui = dayDAO.getDay_doctorByID(result.getInt("thursday_id"));
+				Day_doctor sex = dayDAO.getDay_doctorByID(result.getInt("friday_id"));
+				Day_doctor sab = dayDAO.getDay_doctorByID(result.getInt("saturday_id"));
+				Day_doctor dom = dayDAO.getDay_doctorByID(result.getInt("sunday_id"));
+
+				Calendar_doctor cal = new Calendar_doctor();
+				cal.setMonday(seg);
+				cal.setTuesday(ter);
+				cal.setWednesday(qua);
+				cal.setThursday(qui);
+				cal.setFriday(sex);
+				cal.setSaturday(sab);
+				cal.setSunday(dom);
+				cal.setId(idDoCalendar);
+				cal.setDocID(result.getInt("doctor_id"));
+
+				calendar_doctorList.add(cal);
 				
-				Long day = result.getLong("day");
-				Calendar calendar_day = Calendar.getInstance();
-				calendar_day.setTimeInMillis(day);
-
-				Long hour = result.getLong("hour");
-				Calendar calendar_hour = Calendar.getInstance();
-				calendar_hour.setTimeInMillis(hour);
-
-				String name = result.getString("users_name");
-				String cpf = result.getString("cpf");
-				String password = result.getString("password");
-
-				String specialty = result.getString("specialty_name");
-
-				Specialty specialty_field = new Specialty(specialty);
-				
-
-				Doctor doctor = new Doctor(name, cpf, password, specialty_field.getID());
-
-				Scheduling aux = new Scheduling(calendar_day, calendar_hour, doctor, specialty_field.getID());
-				calendar_doctorList.add(aux);
-				aux.setId(id);
 			}
 		} catch (SQLException e) {
 			System.out.println("Erro ao recuperar Agendamentos");
+			e.printStackTrace();
+			desconectar();
+			return calendar_doctorList;
 		}
 
 		desconectar();

@@ -160,14 +160,14 @@ public class Calendar_doctor {
 	 * @return doctor
 	 */
 	public Integer getDoctor() {
-		return doctor;
+		return this.doc_id;
 	}
 
 	/**
 	 * @param doctor
 	 */
 	public void setDoctor(Integer doctor) {
-		this.doctor = doctor;
+		this.doc_id = doctor;
 	}
 
 	public Integer getDocID() {
