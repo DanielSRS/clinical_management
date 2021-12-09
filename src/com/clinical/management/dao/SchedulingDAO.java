@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -13,7 +14,7 @@ import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
 
 /**
- * Classe responsável pela busca no banco de dados especificamente na tabela agedamento
+ * Classe responsï¿½vel pela busca no banco de dados especificamente na tabela agedamento
  *
  */
 public class SchedulingDAO extends DatabaseConnection {
@@ -28,17 +29,21 @@ public class SchedulingDAO extends DatabaseConnection {
 	public boolean saveScheduling(Scheduling schedulingToBeSaved) {
 		conectar();
 		String sql = "INSERT INTO scheduling (" + "day," + "hour," + "doctor_id," + "specialty_id," + "status,"
-				+ "user_id)" + "VALUES (?, ?, ?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interrogação
-															// será substituido abaixo.
+				+ "user_id)" + "VALUES (?, ?, ?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interrogaï¿½ï¿½o
+															// serï¿½ substituido abaixo.
 
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
 			preparedStatement.setLong(1, schedulingToBeSaved.getDay().getTimeInMillis());
 			preparedStatement.setLong(2, schedulingToBeSaved.getHour().getTimeInMillis());
-			preparedStatement.setInt(3, schedulingToBeSaved.getDoctor().getID());
+			preparedStatement.setInt(3, schedulingToBeSaved.getDoctor().getId());
 			preparedStatement.setInt(4, schedulingToBeSaved.getSpecialty());
 			preparedStatement.setString(5, schedulingToBeSaved.getStatus().toString());
-			preparedStatement.setInt(6, schedulingToBeSaved.getPatient().getID());
+			if (schedulingToBeSaved.getPatient() != null) {
+				preparedStatement.setNull(6, schedulingToBeSaved.getPatient().getID());
+			} else {
+				preparedStatement.setNull(6, Types.INTEGER);
+			}
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			desconectar();

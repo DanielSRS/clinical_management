@@ -7,10 +7,12 @@ import java.util.List;
 import com.clinical.management.dao.Calendar_doctorDAO;
 import com.clinical.management.dao.Day_doctorDAO;
 import com.clinical.management.dao.DoctorDAO;
+import com.clinical.management.dao.SchedulingDAO;
 import com.clinical.management.dao.SpecialtyDAO;
 import com.clinical.management.dao.UserDAO;
 import com.clinical.management.model.calendar.Calendar_doctor;
 import com.clinical.management.model.calendar.Day_doctor;
+import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
 import com.clinical.management.model.users.OrderTypes;
@@ -153,6 +155,7 @@ public class AddUserModalController {
         }
  
         if (idDOUsuarioCriado == null) {
+            salvarButton.setDisable(true);
             User newUser = new User(name, cpf, ot, password); // cria usuário
             UserDAO dbUser = new UserDAO();
             idDOUsuarioCriado = dbUser.saveUser(newUser);  // adiciona no banco de dados
@@ -349,8 +352,17 @@ public class AddUserModalController {
         cal.setSunday(dom);
 
         Calendar_doctorDAO cdDAO = new Calendar_doctorDAO();
+        SchedulingDAO agenDAO = new SchedulingDAO();
         cdDAO.saveCalendar_doctor(cal);
         
+        List<Scheduling> agendamentos =  cal.generateCalendarDoctor();
+
+        System.out.println("Agendamento: " + agendamentos.size());
+        
+        for (int i = 0 ;  i < agendamentos.size(); i++) {
+            Scheduling aux = agendamentos.get(i);
+            agenDAO.saveScheduling(aux);
+        }
     }
 
 }

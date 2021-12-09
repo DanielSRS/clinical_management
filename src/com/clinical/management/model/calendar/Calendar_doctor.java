@@ -186,8 +186,9 @@ public class Calendar_doctor {
 		List<Scheduling> mark = new ArrayList<>();
 		if (this.sunday != null) {
 			long timeAvailable = (this.sunday.getEnd_service().getTimeInMillis()
-					- this.sunday.getStart_service().getTimeInMillis()) / 1000 * 60;
+					- this.sunday.getStart_service().getTimeInMillis()) / (1000 * 60);
 			Integer duration = (int) (timeAvailable / this.sunday.getDuration_service());
+			System.out.println("Duração sunday: " + duration);
 			for (int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -207,8 +208,9 @@ public class Calendar_doctor {
 		}
 		if (this.monday != null) {
 			long timeAvailable = (this.monday.getEnd_service().getTimeInMillis()
-					- this.monday.getStart_service().getTimeInMillis()) / 1000 * 60;
+					- this.monday.getStart_service().getTimeInMillis()) / (1000 * 60);
 			Integer duration = (int) (timeAvailable / this.monday.getDuration_service());
+			System.out.println("Duração monday: " + duration);
 			for (int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -228,8 +230,9 @@ public class Calendar_doctor {
 		}
 		if (this.tuesday != null) {
 			long timeAvailable = (this.tuesday.getEnd_service().getTimeInMillis()
-					- this.tuesday.getStart_service().getTimeInMillis()) / 1000 * 60;
+					- this.tuesday.getStart_service().getTimeInMillis()) / (1000 * 60);
 			Integer duration = (int) (timeAvailable / this.tuesday.getDuration_service());
+			System.out.println("Duração tuesday: " + duration);
 			for (int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -249,8 +252,9 @@ public class Calendar_doctor {
 		}
 		if (this.wednesday != null) {
 			long timeAvailable = (this.wednesday.getEnd_service().getTimeInMillis()
-					- this.wednesday.getStart_service().getTimeInMillis()) / 1000 * 60;
+					- this.wednesday.getStart_service().getTimeInMillis()) / (1000 * 60);
 			Integer duration = (int) (timeAvailable / this.wednesday.getDuration_service());
+			System.out.println("Duração wed: " + duration);
 			for (int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -270,8 +274,9 @@ public class Calendar_doctor {
 		}
 		if (this.thursday != null) {
 			long timeAvailable = (this.thursday.getEnd_service().getTimeInMillis()
-					- this.thursday.getStart_service().getTimeInMillis()) / 1000 * 60;
+					- this.thursday.getStart_service().getTimeInMillis()) / (1000 * 60);
 			Integer duration = (int) (timeAvailable / this.thursday.getDuration_service());
+			System.out.println("Duração quin: " + duration);
 			for (int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -291,8 +296,9 @@ public class Calendar_doctor {
 		}
 		if (this.friday != null) {
 			long timeAvailable = (this.friday.getEnd_service().getTimeInMillis()
-					- this.friday.getStart_service().getTimeInMillis()) / 1000 * 60;
+					- this.friday.getStart_service().getTimeInMillis()) / (1000 * 60);
 			Integer duration = (int) (timeAvailable / this.friday.getDuration_service());
+			System.out.println("Duração sex: " + duration);
 			for (int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
@@ -312,8 +318,9 @@ public class Calendar_doctor {
 		}
 		if (this.saturday != null) {
 			long timeAvailable = (this.saturday.getEnd_service().getTimeInMillis()
-					- this.saturday.getStart_service().getTimeInMillis()) / 1000 * 60;
+					- this.saturday.getStart_service().getTimeInMillis()) / (1000 * 60);
 			Integer duration = (int) (timeAvailable / this.saturday.getDuration_service());
+			System.out.println("Duração sab: " + duration);
 			for (int i = 0; i < duration; i++) {
 				Calendar data = Calendar.getInstance();
 				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();

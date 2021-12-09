@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Classe responsável pela conexão com o banco de dados
+ * Classe responsï¿½vel pela conexï¿½o com o banco de dados
  *
  */
 public class DatabaseConnection {
@@ -148,7 +148,7 @@ public class DatabaseConnection {
 		            + "doctor_id INT REFERENCES doctor (id) NOT NULL, \n"
 		            + "specialty_id INT REFERENCES users (id) NOT NULL, \n"
 		            + "status STRING NOT NULL, \n"
-		            + "user_id INT REFERENCES users (id) NOT NULL\n"
+		            + "user_id INT REFERENCES users (id) \n"
 		            + ");";
 			
 			String query = "CREATE TABLE IF NOT EXISTS query (\n"

@@ -90,8 +90,12 @@ public class User {
 	 * Obtem o id do usuário
 	 * @return int com id do usuário
 	 */
-	public int getID() {
+	public Integer getID() {
 		return this.id;
+	}
+
+	public void setUserID(Integer id) {
+		this.id = id;
 	}
 
 }
