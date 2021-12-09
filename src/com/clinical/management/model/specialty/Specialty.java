@@ -2,13 +2,12 @@ package com.clinical.management.model.specialty;
 
 public class Specialty {
 	private String name;
-	private Integer id;
+	private int id;
 	private String description;
 
 	public Specialty(String name) {
 		this.name = name;
 		this.description = "";
-		this.id = null;
 	}
 	
 	public Specialty(String name, String description, int id) {
@@ -30,7 +29,7 @@ public class Specialty {
 		this.name = name;
 	}
 	
-	public Integer getID() {
+	public int getID() {
 		return this.id;
 	}
 	

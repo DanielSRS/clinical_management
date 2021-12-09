@@ -24,14 +24,15 @@ public class QueryDAO extends DatabaseConnection {
 
 	public boolean saveQuery(Query QueryToBeSaved) {
 		conectar();
-		String sql = "INSERT INTO query (" + "scheduling_id," + "medicalRecords_id)"
-				+ "VALUES (?, ?)"; // Ele prepara a query pra executar. onde tem a interrogação
+		String sql = "INSERT INTO query (" + "scheduling_id," + "medicalRecords_id" + "date" + "user_id)"
+				+ "VALUES (?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interrogação
 															// será substituido abaixo.
 
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
 			preparedStatement.setInt(1, QueryToBeSaved.getScheduling());
 			preparedStatement.setInt(2, QueryToBeSaved.getMedicalRecord());
+			preparedStatement.setLong(2, QueryToBeSaved.getDate().getTimeInMillis());
 			preparedStatement.setInt(2, QueryToBeSaved.getUser());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {

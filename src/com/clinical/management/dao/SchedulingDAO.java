@@ -32,7 +32,7 @@ public class SchedulingDAO extends DatabaseConnection {
 			preparedStatement.setLong(1, schedulingToBeSaved.getDay().getTimeInMillis());
 			preparedStatement.setLong(2, schedulingToBeSaved.getHour().getTimeInMillis());
 			preparedStatement.setInt(3, schedulingToBeSaved.getDoctor().getID());
-			preparedStatement.setString(4, schedulingToBeSaved.getSpecialty().getName());
+			preparedStatement.setInt(4, schedulingToBeSaved.getSpecialty());
 			preparedStatement.setString(5, schedulingToBeSaved.getStatus().toString());
 			preparedStatement.setInt(6, schedulingToBeSaved.getPatient().getID());
 			preparedStatement.executeUpdate();
@@ -87,9 +87,9 @@ public class SchedulingDAO extends DatabaseConnection {
 				Specialty specialty_field = new Specialty(specialty);
 				
 
-				Doctor doctor = new Doctor(name, cpf, specialty_field, password);
+				Doctor doctor = new Doctor(name, cpf, password, specialty_field.getID());
 
-				Scheduling aux = new Scheduling(calendar_day, calendar_hour, doctor, specialty_field);
+				Scheduling aux = new Scheduling(calendar_day, calendar_hour, doctor, specialty_field.getID());
 				schedulingList.add(aux);
 				aux.setId(id);
 			}
@@ -156,9 +156,9 @@ public class SchedulingDAO extends DatabaseConnection {
 				Specialty specialty_field = new Specialty(specialty);
 				
 
-				Doctor doctor = new Doctor(name, cpf, specialty_field, password);
+				Doctor doctor = new Doctor(name, cpf, password, specialty_field.getID());
 
-				aux = new Scheduling(calendar_day, calendar_hour, doctor, specialty_field);
+				aux = new Scheduling(calendar_day, calendar_hour, doctor, specialty_field.getID());
 				aux.setId(id);
 			}
 		} catch (SQLException e) {

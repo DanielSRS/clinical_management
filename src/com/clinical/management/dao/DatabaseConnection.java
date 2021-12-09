@@ -98,6 +98,7 @@ public class DatabaseConnection {
                 + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
                 + "	cpf VARCHAR(11) NOT NULL UNIQUE,\n"
 				+ " name VARCHAR(255) NOT NULL,\n"
+                + "	status VARCHAR(255) NOT NULL, \n"
 				+ " password VARCHAR(50) NOT NULL\n"
                 + ");";
 
@@ -131,7 +132,8 @@ public class DatabaseConnection {
 					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
 		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
 		            + " specialty_id  VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
-		            + " sub_specialty VARCHAR (50) REFERENCES specialty (id) NOT NULL\n"
+		            + " sub_specialty VARCHAR (50) REFERENCES specialty (id) NOT NULL, \n"
+		            + "	user_id INT REFERENCES users (id) NOT NULL\n"
 		            + ");";
 			
 			String scheduling = "CREATE TABLE IF NOT EXISTS scheduling (\n"

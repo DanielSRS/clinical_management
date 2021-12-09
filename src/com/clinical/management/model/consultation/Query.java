@@ -9,7 +9,7 @@ public class Query {
 
 	private Integer scheduling;
 	private Integer medicalRecord;
-	private Calendar data;
+	private Calendar date;
 	private Integer user;
 	private Integer id;
 
@@ -17,10 +17,10 @@ public class Query {
 		this.id = id;
 	}
 
-	public Query(int scheduling, int medicalRecord, Calendar data, int user) {
+	public Query(int scheduling, int medicalRecord, Calendar date, int user) {
 		this.scheduling = scheduling;
 		this.medicalRecord = medicalRecord;
-		this.data = data;
+		this.date = date;
 		this.user = user;
 	}
 
@@ -30,7 +30,7 @@ public class Query {
 
 	public void setScheduling(Scheduling scheduling) {
 		this.scheduling = scheduling.getId();
-		this.data = scheduling.getDay();
+		this.date = scheduling.getDay();
 		this.user = scheduling.getPatient().getID();
 	}
 
@@ -50,6 +50,14 @@ public class Query {
 		this.user = user;
 	}
 
+	public Calendar getDate() {
+		return date;
+	}
+
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -57,7 +65,5 @@ public class Query {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
 
 }

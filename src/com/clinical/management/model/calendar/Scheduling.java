@@ -11,12 +11,12 @@ public class Scheduling {
 	private Calendar day;
 	private Calendar hour;
 	private Doctor doctor;
-	private Specialty specialty;
+	private Integer specialty;
 	private OrderStatus status;
 	private User patient;
 	private Integer id;
 
-	public Scheduling(Calendar day, Calendar hour, Doctor doctor, Specialty specialty) {
+	public Scheduling(Calendar day, Calendar hour, Doctor doctor, Integer specialty) {
 
 		this.day = day;
 		this.hour = hour;
@@ -50,12 +50,12 @@ public class Scheduling {
 		this.doctor = doctor;
 	}
 
-	public Specialty getSpecialty() {
+	public Integer getSpecialty() {
 		return specialty;
 	}
 
 	public void setSpecialty(Specialty specialty) {
-		this.specialty = specialty;
+		this.specialty = specialty.getID();
 	}
 
 	public OrderStatus getStatus() {
