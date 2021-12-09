@@ -27,6 +27,10 @@ public class MainPageController {
 
 	private Parent agendaPage;
 
+	private Parent atendimentoMedico;
+
+	private Parent autoAtendimento;
+
 	private ToggleGroup sideMenuGroup;
 
 	private ToggleButton atual;
@@ -59,8 +63,10 @@ public class MainPageController {
 			loadUsersPage();
 		} else if(tb.equals(medicalCare)) {
 			System.out.println("medicalCare");
+			loadAtendimento();
 		} else if(tb.equals(selfService)) {
 			System.out.println("selfService");
+			loadAutoAtendimentoPage();
 		} else if(tb.equals(schedule)) {
 			System.out.println("schedule");
 			loadAgendaPage();
@@ -126,8 +132,19 @@ public class MainPageController {
 		}
 	}
 
-	private void loadSchedulePage() {
+	private void loadAutoAtendimentoPage() {
 		this.drawerContent.getChildren().clear();
+		if (autoAtendimento != null) {
+			this.drawerContent.getChildren().add(autoAtendimento);
+			return;
+		}
+		FXMLLoader addUserModal = new FXMLLoader(getClass().getResource("../view/pages/AutoAtendimento.fxml"));
+        try {
+			this.autoAtendimento = addUserModal.load();
+			this.drawerContent.getChildren().add(autoAtendimento);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void loadUsersPage() {
@@ -160,6 +177,20 @@ public class MainPageController {
 		}
 	}
 
+	private void loadAtendimento() {
+		this.drawerContent.getChildren().clear();
+		if (atendimentoMedico != null) {
+			this.drawerContent.getChildren().add(atendimentoMedico);
+			return;
+		}
+		FXMLLoader addUserModal = new FXMLLoader(getClass().getResource("../view/pages/AtendimentoMedico.fxml"));
+        try {
+			this.atendimentoMedico = addUserModal.load();
+			this.drawerContent.getChildren().add(atendimentoMedico);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * Renderiza as informações dos usuários
 	 */

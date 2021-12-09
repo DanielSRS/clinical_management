@@ -28,8 +28,7 @@ public class SchedulingDAO extends DatabaseConnection {
 
 	public boolean saveScheduling(Scheduling schedulingToBeSaved) {
 		conectar();
-		String sql = "INSERT INTO scheduling (" + "day," + "hour," + "doctor_id," + "specialty_id," + "status,"
-				+ "user_id)" + "VALUES (?, ?, ?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interroga��o
+		String sql = "INSERT INTO scheduling (day, hour, doctor_id, specialty_id, status, user_id) VALUES (?, ?, ?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interroga��o
 															// ser� substituido abaixo.
 
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -63,9 +62,9 @@ public class SchedulingDAO extends DatabaseConnection {
 
 		conectar();
 
-		String sql = "SELECT scheduling.id AS sheduling_id, day, hour, doctor_id, status, user_id, "
+		String sql = "SELECT scheduling.id AS sheduling_id, day, hour, doctor_id, scheduling.status AS sch_status, scheduling.user_id AS sch_user_id, "
 				+ " sub_specialty, cpf, users.name AS users_name, password, specialty.name AS specialty_name FROM scheduling "
-				+ "INNER JOIN doctor ON scheduling.doctor_id = doctor.id " + "INNER JOIN users ON doctor.id = users.id "
+				+ "INNER JOIN doctor ON scheduling.doctor_id = doctor.id INNER JOIN users ON doctor.user_id = users.id "
 				+ "INNER JOIN specialty ON doctor.specialty_id = specialty.id";
 
 		ResultSet result = null;
@@ -102,7 +101,9 @@ public class SchedulingDAO extends DatabaseConnection {
 				aux.setId(id);
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println("Erro ao recuperar Agendamentos");
+			return null;
 		}
 
 		desconectar();
