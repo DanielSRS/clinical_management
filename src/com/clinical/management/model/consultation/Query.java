@@ -3,7 +3,6 @@ package com.clinical.management.model.consultation;
 import java.util.Calendar;
 
 import com.clinical.management.model.calendar.Scheduling;
-import com.clinical.management.model.users.User;
 
 public class Query {
 

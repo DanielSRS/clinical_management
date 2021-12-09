@@ -5,18 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import com.clinical.management.model.consultation.Query;
 import com.clinical.management.model.medicalRecord.MedicalRecord;
 
 public class MedicalRecordDAO extends DatabaseConnection {
 
 	/**
-	 * Salva dado do protuário no banco de dados
+	 * Salva dado do protuï¿½rio no banco de dados
 	 * @param userToBeSaved
-	 * @return true se o protuário foi salvo na base de dados, do contrario, false
+	 * @return true se o protuï¿½rio foi salvo na base de dados, do contrario, false
 	 */
 	public boolean saveMedicalRecord(MedicalRecord medicalRecordToBeSaved) {
 		conectar();
@@ -48,9 +46,9 @@ public class MedicalRecordDAO extends DatabaseConnection {
 	}
 	
 	/**
-	 * Obtem todos  os protuários salvos na base de dados
+	 * Obtem todos  os protuï¿½rios salvos na base de dados
 	 * 
-	 * @return Objeto List do tipo protuário com as informaÃ§Ãµes dos protuários
+	 * @return Objeto List do tipo protuï¿½rio com as informaÃ§Ãµes dos protuï¿½rios
 	 * @see com.clinical.management.model.users.Scheduling
 	 */
 	public List<MedicalRecord> getMedicalRecord() {

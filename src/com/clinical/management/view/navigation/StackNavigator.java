@@ -206,12 +206,12 @@ public class StackNavigator {
         lastPage = bg.getChildren().get(0);
 
         Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(bg.opacityProperty(), 0, Interpolator.EASE_BOTH);
+        //KeyValue kv = new KeyValue(bg.opacityProperty(), 0, Interpolator.EASE_BOTH);
         KeyValue kv2 = new KeyValue(bg.opacityProperty(), 0, Interpolator.EASE_BOTH);
         KeyValue kv3 = new KeyValue(lastPage.scaleXProperty(), 0.75, Interpolator.EASE_BOTH);
         KeyValue kv4 = new KeyValue(lastPage.scaleYProperty(), 0.75, Interpolator.EASE_BOTH);
         KeyValue kv5 = new KeyValue(rootPage.opacityProperty(), 1, Interpolator.EASE_BOTH);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.2), kv);
+        //KeyFrame kf = new KeyFrame(Duration.seconds(0.2), kv);
         KeyFrame kf2 = new KeyFrame(Duration.seconds(0.2), kv2);
         KeyFrame kf3 = new KeyFrame(Duration.seconds(0.2), kv3);
         KeyFrame kf4 = new KeyFrame(Duration.seconds(0.2), kv4);

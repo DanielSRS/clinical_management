@@ -35,22 +35,22 @@
          <children>
             <FlowPane alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0">
                <children>
-                  <Button mnemonicParsing="false" styleClass="roleIndicator" text="Administrador">
+                  <Button fx:id="admin" maxWidth="0.0" mnemonicParsing="false" styleClass="roleIndicator" text="Administrador" visible="false">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="roleIndicator" text="Paciente">
+                  <Button fx:id="paci" maxWidth="0.0" mnemonicParsing="false" styleClass="roleIndicator" text="Paciente" visible="false">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="roleIndicator" text="Médico">
+                  <Button fx:id="doctor" maxWidth="0.0" mnemonicParsing="false" styleClass="roleIndicator" text="Médico" visible="false">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="roleIndicator" text="Recepcionista">
+                  <Button fx:id="rece" maxWidth="0.0" mnemonicParsing="false" styleClass="roleIndicator" text="Recepcionista" visible="false">
                      <font>
                         <Font size="10.0" />
                      </font>

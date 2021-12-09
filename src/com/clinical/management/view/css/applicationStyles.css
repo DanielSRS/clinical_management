@@ -137,6 +137,8 @@
 	-fx-background-color: transparent;
 }
 
+/*
+
 .tab-pane .tab-header-area .tab {
 	-fx-pref-height: 150;
 	-fx-pref-width: 20;
@@ -161,6 +163,8 @@
 	-fx-border-insets: -30 0 -10 0;
     -fx-background-insets: -30 0 -15 0;
 }
+
+*/
 
 .drawerContent {
 	-fx-background-color: -layer-color;
@@ -548,4 +552,25 @@
 	-fx-background-color: #FFFFFF0F;
     -fx-border-color: #0000001A;
 	-fx-effect: dropshadow(gaussian, #00000021, 4, 0, 0, 2);
+}
+
+
+/************************************************/
+
+/* Combo box*/
+
+.combo-box .list-cell 
+{
+    -fx-background: #202020;
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF;
+}
+
+.combo-box-popup .list-view 
+{
+    -fx-background-color: #0000000F, #202020;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
 }

@@ -36,6 +36,10 @@ public class Doctor extends User {
 		this.sub_specialty = sub_specialty.getID();
 	}
 
+	public void setSubSpacialtyID(Integer id) {
+		this.sub_specialty = id;
+	}
+
 	public int getId() {
 		return id;
 	}

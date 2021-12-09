@@ -62,8 +62,14 @@ public class SpecialtyDAO extends DatabaseConnection{
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
 			preparedStatement.setString(1, specialtyToBeSaved.getName());
-			preparedStatement.setString(2, "Descrição");
+			preparedStatement.setString(2, specialtyToBeSaved.getDescription());
 			preparedStatement.executeUpdate();
+			ResultSet res = preparedStatement.getGeneratedKeys();
+
+			if (res.next()) {
+				int id = res.getInt(1);
+				System.out.println("ID gerado: " + id);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			desconectar();

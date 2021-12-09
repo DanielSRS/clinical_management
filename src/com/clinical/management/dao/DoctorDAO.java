@@ -7,23 +7,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.clinical.management.model.calendar.Scheduling;
+//import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.doctor.Doctor;
 
 public class DoctorDAO extends DatabaseConnection {
 	
 	/**
-	 * Salva dado dos médicos no banco de dados
+	 * Salva dado dos mï¿½dicos no banco de dados
 	 * 
 	 * @param DoctorToBeSaved
-	 * @return true se o médico foi salvo na base de dados, do contrario, false
+	 * @return true se o mï¿½dico foi salvo na base de dados, do contrario, false
 	 */
 
 	public boolean saveDoctor(Doctor DoctorToBeSaved) {
 		conectar();
 		String sql = "INSERT INTO doctor (" + "specialty_id," + "sub_specialty)"
-				+ "VALUES (?, ?)"; // Ele prepara a query pra executar. onde tem a interrogação
-															// será substituido abaixo.
+				+ "VALUES (?, ?)"; // Ele prepara a query pra executar. onde tem a interrogaï¿½ï¿½o
+															// serï¿½ substituido abaixo.
 
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
@@ -100,6 +100,29 @@ public class DoctorDAO extends DatabaseConnection {
 		return true;
     }
 	
+	public Integer saveDoctor(Doctor DoctorToBeSaved, int user_ID) {
+		Integer doctor_ID = null;
+		conectar();
+		String sql = "INSERT INTO doctor (specialty_id, sub_specialty, user_id) VALUES (?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interrogaï¿½ï¿½o
+															// serï¿½ substituido abaixo.
+
+		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try {
+			preparedStatement.setInt(1, DoctorToBeSaved.getSpecialty());
+			preparedStatement.setInt(2, DoctorToBeSaved.getSub_specialty());
+			preparedStatement.setInt(3, user_ID);
+			preparedStatement.executeUpdate();
+			ResultSet res = preparedStatement.getGeneratedKeys();
+			if (res.next()) {
+				doctor_ID = res.getInt(1);
+			}
+		} catch (SQLException e) {
+			desconectar();
+			return doctor_ID;
+		}
+		desconectar();
+		return doctor_ID;
+	}
 	
 	
 }

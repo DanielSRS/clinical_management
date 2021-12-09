@@ -23,7 +23,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Segoe MDL2 Assets" size="16.0" />
                            </font>
@@ -39,7 +39,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Segoe MDL2 Assets" size="16.0" />
                            </font>
@@ -55,7 +55,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Segoe MDL2 Assets" size="16.0" />
                            </font>
@@ -71,7 +71,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Segoe MDL2 Assets" size="16.0" />
                            </font>
@@ -87,7 +87,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Segoe MDL2 Assets" size="16.0" />
                            </font>
@@ -97,21 +97,6 @@
                      </children>
                   </AnchorPane>
                </children></VBox>
-            <AnchorPane fx:id="logout1" layoutX="10.0" layoutY="548.0" onMouseClicked="#signout" prefHeight="55.0" prefWidth="254.0" styleClass="drawerItem" stylesheets="@../css/applicationStyles.css">
-               <children>
-                  <Label layoutX="54.0" layoutY="28.0" prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font name="Segoe MDL2 Assets" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="45.0" layoutY="18.0" prefHeight="17.0" prefWidth="189.0" text="Sair" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="18.0">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Pane layoutX="11.0" layoutY="19.0" maxHeight="16.0" maxWidth="3.0" prefHeight="16.0" prefWidth="3.0" styleClass="selector" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="19.0" />
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="logout11" layoutX="10.0" layoutY="345.0" onMouseClicked="#signout" prefHeight="55.0" prefWidth="254.0" styleClass="drawerItem" stylesheets="@../css/applicationStyles.css" visible="false">
                <children>
                   <Label layoutX="54.0" layoutY="28.0" prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
@@ -120,6 +105,21 @@
                      </font>
                   </Label>
                   <Label layoutX="45.0" layoutY="18.0" prefHeight="17.0" prefWidth="189.0" text="Sair 2" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="18.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="11.0" layoutY="19.0" maxHeight="16.0" maxWidth="3.0" prefHeight="16.0" prefWidth="3.0" styleClass="selector" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="19.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="logout1" layoutX="10.0" layoutY="548.0" onMouseClicked="#signout" prefHeight="55.0" prefWidth="254.0" styleClass="drawerItem" stylesheets="@../css/applicationStyles.css">
+               <children>
+                  <Label layoutX="54.0" layoutY="28.0" prefHeight="17.0" prefWidth="189.0" text="" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="Segoe MDL2 Assets" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="45.0" layoutY="18.0" prefHeight="17.0" prefWidth="189.0" text="Sair" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="18.0">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -25,6 +25,8 @@ public class MainPageController {
 
 	private Parent specialtyPage;
 
+	private Parent agendaPage;
+
 	private ToggleGroup sideMenuGroup;
 
 	private ToggleButton atual;
@@ -61,7 +63,7 @@ public class MainPageController {
 			System.out.println("selfService");
 		} else if(tb.equals(schedule)) {
 			System.out.println("schedule");
-			loadSchedulePage();
+			loadAgendaPage();
 		} else if(tb.equals(specialty)) {
 			System.out.println("specialty");
 			loadSpecialtyPage();
@@ -138,6 +140,21 @@ public class MainPageController {
         try {
 			this.usersPage = addUserModal.load();
 			this.drawerContent.getChildren().add(usersPage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void loadAgendaPage() {
+		this.drawerContent.getChildren().clear();
+		if (agendaPage != null) {
+			this.drawerContent.getChildren().add(agendaPage);
+			return;
+		}
+		FXMLLoader addUserModal = new FXMLLoader(getClass().getResource("../view/pages/AgendaPage.fxml"));
+        try {
+			this.agendaPage = addUserModal.load();
+			this.drawerContent.getChildren().add(agendaPage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

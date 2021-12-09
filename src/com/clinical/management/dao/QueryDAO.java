@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.consultation.Query;
-import com.clinical.management.model.doctor.Doctor;
-import com.clinical.management.model.specialty.Specialty;
+
+//import com.clinical.management.model.consultation.Query;
 
 public class QueryDAO extends DatabaseConnection {
 	
@@ -25,8 +24,8 @@ public class QueryDAO extends DatabaseConnection {
 	public boolean saveQuery(Query QueryToBeSaved) {
 		conectar();
 		String sql = "INSERT INTO query (" + "scheduling_id," + "medicalRecords_id" + "date" + "user_id)"
-				+ "VALUES (?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interrogação
-															// será substituido abaixo.
+				+ "VALUES (?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interrogaï¿½ï¿½o
+															// serï¿½ substituido abaixo.
 
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {

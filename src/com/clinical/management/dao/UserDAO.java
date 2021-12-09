@@ -8,6 +8,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.clinical.management.model.users.OrderTypes;
 import com.clinical.management.model.users.User;
 
 public class UserDAO extends DatabaseConnection {
@@ -17,26 +18,34 @@ public class UserDAO extends DatabaseConnection {
 	 * @param userToBeSaved
 	 * @return true se usuário foi salvo na base de dados, do contrario, false
 	 */
-	public boolean saveUser(User userToBeSaved) {
+	public Integer saveUser(User userToBeSaved) {
+		Integer idDOUsuarioCriado = null;
 		conectar();
 		String sql = "INSERT INTO users ("
 				+ "cpf,"
 				+ "name,"
-				+ "password)"
-				+ "VALUES (?, ?, ?)";
+				+ "password,"
+				+ "status)"
+				+ "VALUES (?, ?, ?, ?)";
 		
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
 			preparedStatement.setString(1, userToBeSaved.getCpf());
 			preparedStatement.setString(2, userToBeSaved.getName());
 			preparedStatement.setString(3, userToBeSaved.getPassword());
+			preparedStatement.setString(4, userToBeSaved.getTypes().toString());
 			preparedStatement.executeUpdate();
+			ResultSet res = preparedStatement.getGeneratedKeys();
+
+			if(res.next()) {
+				idDOUsuarioCriado = res.getInt(1);
+			}
 		} catch (SQLException e) {
 			desconectar();
-			return false;
+			return idDOUsuarioCriado;
 		}
 		desconectar();
-		return true;
+		return idDOUsuarioCriado;
 	}
 
 	/**
@@ -49,7 +58,7 @@ public class UserDAO extends DatabaseConnection {
 
 		conectar();
 
-		String sql = "SELECT id, name, cpf, password FROM users";
+		String sql = "SELECT id, name, cpf, status, password FROM users";
 
 		ResultSet result = null;
 		PreparedStatement preparedStatement = null;
@@ -63,7 +72,24 @@ public class UserDAO extends DatabaseConnection {
 				int id = result.getInt("id");
 				String cpf = result.getString("cpf");
 				String password = result.getString("password");
+				String status = result.getString("status");
+
+				OrderTypes ot = OrderTypes.PATIENT;
+
+				if (status.equals(OrderTypes.ADMIN.toString())) {
+					ot = OrderTypes.ADMIN;
+				}
+
+				if (status.equals(OrderTypes.DOCTOR.toString())) {
+					ot = OrderTypes.DOCTOR;
+				}
+
+				if (status.equals(OrderTypes.RECEPTIONIST.toString())) {
+					ot = OrderTypes.RECEPTIONIST;
+				}
+
 				User aux = new User(name, cpf, id, password);
+				aux.setTypes(ot);
 				userList.add(aux);
 				System.out.println("User: " + name + ", cpf: " + cpf + ", id: " + id);
 			}
