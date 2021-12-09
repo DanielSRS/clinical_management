@@ -48,7 +48,6 @@ public class DoctorDAO extends DatabaseConnection {
 	 * Obtem todos  as consulta salvos na base de dados
 	 * 
 	 * @return Objeto List do tipo consulta com as informaÃ§Ãµes dos agendamentos
-	 * @see com.clinical.management.model.users.Scheduling
 	 */
 	public List<Doctor> getDoctor() {
 		List<Doctor> doctorList = new ArrayList<>();
@@ -106,6 +105,12 @@ public class DoctorDAO extends DatabaseConnection {
 		return true;
     }
 	
+	/**
+	 * @param DoctorToBeSaved
+	 * @param user_ID
+	 * @return doctor_ID
+	 * Método responsável por salvar o id do médico
+	 */
 	public Integer saveDoctor(Doctor DoctorToBeSaved, int user_ID) {
 		Integer doctor_ID = null;
 		conectar();

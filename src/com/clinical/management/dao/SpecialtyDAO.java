@@ -9,11 +9,16 @@ import java.util.List;
 
 import com.clinical.management.model.specialty.Specialty;
 
+/**
+ * Classe responsável pela busca no banco de dados especificamente na tabela especialidades
+ *
+ */
 public class SpecialtyDAO extends DatabaseConnection{
 
     /**
      * 
-     * @return
+     * @return specialtyList
+     * retorna uma lista com os dados buscados na tabela especialidades
      */
     public List<Specialty> getSpecialtys() {
 		List<Specialty> specialtyList = new ArrayList<>();
@@ -50,7 +55,8 @@ public class SpecialtyDAO extends DatabaseConnection{
     /**
      * 
      * @param specialtyToBeSaved
-     * @return
+     * @return boolean
+     * se salvo com sucesso no banco de dados retornar true, do contrário retorna false
      */
     public boolean saveSpecialty(Specialty specialtyToBeSaved) {
 		conectar();
@@ -79,6 +85,11 @@ public class SpecialtyDAO extends DatabaseConnection{
 		return true;
 	}
     
+    /**
+     * @param specialtyToBeRemoved
+     * @return boolean
+     * método responsável por remover especialidade do banco de dados
+     */
     public Boolean removeSpecialty(Specialty specialtyToBeRemoved) {
     	conectar();
 		String sql = "DELETE FROM specialty WHERE id = ?";

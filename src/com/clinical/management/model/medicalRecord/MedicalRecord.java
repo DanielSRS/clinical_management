@@ -8,6 +8,10 @@ import java.util.List;
 
 import com.clinical.management.model.patient.Patient;
 
+/**
+ * Classe responsável pelo prontuário médico
+ *
+ */
 public class MedicalRecord {
 	private Integer patient;
 	private String anamnesis;
@@ -17,6 +21,15 @@ public class MedicalRecord {
 	private String treatments;
 	private Integer id;
 
+	/**
+	 * @param patient
+	 * @param anamnesis
+	 * @param physicalExams
+	 * @param hypotheses
+	 * @param diagnoses
+	 * @param treatments
+	 * Construtor da classe prontuário médico
+	 */
 	public MedicalRecord(Integer patient, String anamnesis, String physicalExams, String hypotheses, String diagnoses,
 			String treatments) {
 
@@ -29,6 +42,16 @@ public class MedicalRecord {
 		this.id = null;
 	}
 
+	/**
+	 * @param patient
+	 * @param anamnesis
+	 * @param physicalExams
+	 * @param hypotheses
+	 * @param diagnoses
+	 * @param treatments
+	 * @param id
+	 * Segundo construtor da classe prontuário médico
+	 */
 	public MedicalRecord(Integer patient, String anamnesis, String physicalExams, String hypotheses, String diagnoses,
 			String treatments, Integer id) {
 
@@ -41,62 +64,121 @@ public class MedicalRecord {
 		this.id = id;
 	}
 
+	/**
+	 * @return patient
+	 * pega o paciente
+	 */
 	public Integer getPatient() {
 		return patient;
 	}
 
+	/**
+	 * @param patient
+	 * seta o id do paciente
+	 */
 	public void setPatient(Patient patient) {
 		this.patient = patient.getUser().getID();
 	}
 
+	/**
+	 * @return anamnesis
+	 * pega o anamnese
+	 */
 	public String getAnamnesis() {
 		return anamnesis;
 	}
 
+	/**
+	 * @param anamnesis
+	 * seta o anamnese
+	 */
 	public void setAnamnesis(String anamnesis) {
 		this.anamnesis = anamnesis;
 	}
 
+	/**
+	 * @return physicalExams
+	 * pega os exames físicos
+	 */
 	public String getPhysicalExams() {
 		return physicalExams;
 	}
 
+	/**
+	 * @param physicalExams
+	 * seta os exames físicos
+	 */
 	public void setPhysicalExams(String physicalExams) {
 		this.physicalExams = physicalExams;
 	}
 
+	/**
+	 * @return hypotheses
+	 * pega as hipóteses
+	 */
 	public String getHypotheses() {
 		return hypotheses;
 	}
 
+	/**
+	 * @param hypotheses
+	 * seta as hipóteses
+	 */
 	public void setHypotheses(String hypotheses) {
 		this.hypotheses = hypotheses;
 	}
 
+	/**
+	 * @return diagnoses
+	 * pega os diagnósticos
+	 */
 	public String getDiagnoses() {
 		return diagnoses;
 	}
 
+	/**
+	 * @param diagnoses
+	 * seta os diagnósticos
+	 */
 	public void setDiagnoses(String diagnoses) {
 		this.diagnoses = diagnoses;
 	}
 
+	/**
+	 * @return treatments
+	 * pega os tratamentos
+	 */
 	public String getTreatments() {
 		return treatments;
 	}
 
+	/**
+	 * @param treatments
+	 * seta os tratamentos
+	 */
 	public void setTreatments(String treatments) {
 		this.treatments = treatments;
 	}
 
+	/**
+	 * @return id
+	 * pega o id da classe prontuário médico
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 * seta o id da classe prontuário médico
+	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	/**
+	 * esse método cria 1 arquivo txt com os dados do prontuário médico
+	 */
 	public void printRecipe() {
 		List<String> temps = new ArrayList<>();
 

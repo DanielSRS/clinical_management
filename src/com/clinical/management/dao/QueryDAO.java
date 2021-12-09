@@ -12,6 +12,10 @@ import com.clinical.management.model.consultation.Query;
 
 //import com.clinical.management.model.consultation.Query;
 
+/**
+ * Classe respons�vel pela busca no banco de dados especificamente na tabela consulta
+ *
+ */
 public class QueryDAO extends DatabaseConnection {
 	
 	/**
@@ -46,7 +50,6 @@ public class QueryDAO extends DatabaseConnection {
 	 * Obtem todos  as consulta salvos na base de dados
 	 * 
 	 * @return Objeto List do tipo consulta com as informações dos agendamentos
-	 * @see com.clinical.management.model.users.Scheduling
 	 */
 	public List<Query> getQuery() {
 		List<Query> queryList = new ArrayList<>();

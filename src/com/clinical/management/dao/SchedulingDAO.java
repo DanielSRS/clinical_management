@@ -12,6 +12,10 @@ import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
 
+/**
+ * Classe respons�vel pela busca no banco de dados especificamente na tabela agedamento
+ *
+ */
 public class SchedulingDAO extends DatabaseConnection {
 
 	/**
@@ -48,7 +52,6 @@ public class SchedulingDAO extends DatabaseConnection {
 	 * Obtem todos os agendamentos salvos na base de dados
 	 * 
 	 * @return Objeto List do tipo agendamento com as informações dos agendamentos
-	 * @see com.clinical.management.model.users.Scheduling
 	 */
 	public List<Scheduling> getScheduling() {
 		List<Scheduling> schedulingList = new ArrayList<>();

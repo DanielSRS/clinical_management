@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.clinical.management.model.doctor.Doctor;
+
+/**
+ * Classe respons�vel pela agenda do m�dico
+ *
+ */
 public class Calendar_doctor {
 
 	private Day_doctor sunday;
@@ -16,72 +22,152 @@ public class Calendar_doctor {
 	private Integer id;
 	private Integer doc_id;
 
+	/**
+	 * Construtor da agenda do m�dico
+	 */
 	public Calendar_doctor() {
 		this.id = null;
 	}
 
+	/**
+	 * @return sunday
+	 * pega o domingo no dia do doutor
+	 */
 	public Day_doctor getSunday() {
 		return sunday;
 	}
 
+	/**
+	 * @param sunday
+	 * seta o domingo no dia do doutor
+	 */
 	public void setSunday(Day_doctor sunday) {
 		this.sunday = sunday;
 	}
 
+	/**
+	 * @return monday
+	 * pega a segunda no dia do doutor
+	 */
 	public Day_doctor getMonday() {
 		return monday;
 	}
 
+	/**
+	 * @param monday
+	 * seta a segunda no dia do doutor
+	 */
 	public void setMonday(Day_doctor monday) {
 		this.monday = monday;
 	}
 
+	/**
+	 * @return tuesday
+	 * pega a ter�a no dia do doutor
+	 */
 	public Day_doctor getTuesday() {
 		return tuesday;
 	}
 
+	/**
+	 * @param tuesday
+	 * seta a ter�a no dia do doutor
+	 */
 	public void setTuesday(Day_doctor tuesday) {
 		this.tuesday = tuesday;
 	}
 
+	/**
+	 * @return wednesday
+	 * pega a quarta no dia do doutor
+	 */
 	public Day_doctor getWednesday() {
 		return wednesday;
 	}
 
+	/**
+	 * @param wednesday
+	 * seta a quarta no dia do doutor
+	 */
 	public void setWednesday(Day_doctor wednesday) {
 		this.wednesday = wednesday;
 	}
 
+	/**
+	 * @return thursday
+	 * pega a quinta no dia do doutor
+	 */
 	public Day_doctor getThursday() {
 		return thursday;
 	}
 
+	/**
+	 * @param thursday
+	 * seta a quinta no dia do doutor
+	 */
 	public void setThursday(Day_doctor thursday) {
 		this.thursday = thursday;
 	}
 
+	/**
+	 * @return friday
+	 * pega a sexta no dia do doutor
+	 */
 	public Day_doctor getFriday() {
 		return friday;
 	}
 
+	/**
+	 * @param friday
+	 * seta a sexta no dia do doutor
+	 */
 	public void setFriday(Day_doctor friday) {
 		this.friday = friday;
 	}
 
+	/**
+	 * @return saturday
+	 * pega o s�bado no dia do doutor
+	 */
 	public Day_doctor getSaturday() {
 		return saturday;
 	}
 
+	/**
+	 * @param saturday
+	 * seta o s�bado no dia do doutor
+	 */
 	public void setSaturday(Day_doctor saturday) {
 		this.saturday = saturday;
 	}
 
+	/**
+	 * @return id
+	 */
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+
+	/**
+	 * @return doctor
+	 */
+	public Integer getDoctor() {
+		return doctor;
+	}
+
+	/**
+	 * @param doctor
+	 */
+	public void setDoctor(Integer doctor) {
+		this.doctor = doctor;
 	}
 
 	public Integer getDocID() {
@@ -92,6 +178,10 @@ public class Calendar_doctor {
 		this.doc_id = id;
 	}
 
+	/**
+	 * @return mark
+	 * retorna uma lista de agedamento dos dias da semana
+	 */
 	public List<Scheduling> generateCalendarDoctor() {
 		List<Scheduling> mark = new ArrayList<>();
 		if (this.sunday != null) {
