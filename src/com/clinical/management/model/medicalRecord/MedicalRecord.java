@@ -15,6 +15,7 @@ public class MedicalRecord {
 	private String hypotheses;
 	private String diagnoses;
 	private String treatments;
+	private Integer id;
 
 	public MedicalRecord(Patient patient, String anamnesis, String physicalExams, String hypotheses, String diagnoses,
 			String treatments) {
@@ -25,6 +26,19 @@ public class MedicalRecord {
 		this.hypotheses = hypotheses;
 		this.diagnoses = diagnoses;
 		this.treatments = treatments;
+		this.id = null;
+	}
+
+	public MedicalRecord(Patient patient, String anamnesis, String physicalExams, String hypotheses, String diagnoses,
+			String treatments, Integer id) {
+
+		this.patient = patient;
+		this.anamnesis = anamnesis;
+		this.physicalExams = physicalExams;
+		this.hypotheses = hypotheses;
+		this.diagnoses = diagnoses;
+		this.treatments = treatments;
+		this.id = id;
 	}
 
 	public Patient getPatient() {
@@ -74,10 +88,18 @@ public class MedicalRecord {
 	public void setTreatments(String treatments) {
 		this.treatments = treatments;
 	}
-	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public void printRecipe() {
 		List<String> temps = new ArrayList<>();
-		
+
 		temps.add(this.patient.getUser().getName());
 		temps.add(this.patient.getUser().getCpf());
 		temps.add(this.anamnesis);
@@ -85,16 +107,15 @@ public class MedicalRecord {
 		temps.add(hypotheses);
 		temps.add(physicalExams);
 		temps.add(treatments);
-		
+
 		String path = "c:\\medicalRecords\\" + this.patient.getUser().getName() + ".txt";
-		
+
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
-			for(String temp : temps) {
+			for (String temp : temps) {
 				bw.write(temp);
 				bw.newLine();
 			}
-		}
-		catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

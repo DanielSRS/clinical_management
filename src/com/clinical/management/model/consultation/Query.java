@@ -1,18 +1,20 @@
 package com.clinical.management.model.consultation;
 
-import java.util.List;
-
 import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.medicalRecord.MedicalRecord;
-import com.clinical.management.model.medicalRecord.MedicalRecords;
 
 public class Query {
-	
+
 	private Scheduling scheduling;
-	private MedicalRecords medicalRecords;
-	
+	private MedicalRecord medicalRecord;
+	private Integer id;
+
 	public Query() {
-		
+		this.id = null;
+	}
+
+	public Query(Integer id) {
+		this.id = id;
 	}
 
 	public Scheduling getScheduling() {
@@ -23,21 +25,22 @@ public class Query {
 		this.scheduling = scheduling;
 	}
 
-	public MedicalRecords getMedicalRecords() {
-		return medicalRecords;
+	public MedicalRecord getMedicalRecord() {
+		return medicalRecord;
 	}
 
-	public void setMedicalRecord(MedicalRecords medicalRecords) {
-		this.medicalRecords = medicalRecords;
+	public void setMedicalRecord(MedicalRecord medicalRecord) {
+		this.medicalRecord = medicalRecord;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
-	public List<MedicalRecord> consultRecords(String name) {
-		for(int i = 0; i < this.medicalRecords.patientRecords().size(); i++) {
-			if(name.equals(this.medicalRecords.patientRecords().get(i).getPatient().getUser().getName())) {
-				return this.medicalRecords.patientRecords();
-			}
-		}
-		
-		return null;
-	}
+	
+
 }
