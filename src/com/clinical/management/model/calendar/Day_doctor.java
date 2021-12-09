@@ -8,6 +8,7 @@ public class Day_doctor {
 	private Calendar Start_service, End_service;
 	private Doctor doctor;
 	private Integer duration_service;
+	private Integer id;
 
 	public Day_doctor(int start_service, int end_service, Doctor doctor, Integer duration_service) {
 		this.doctor = doctor;
@@ -18,7 +19,8 @@ public class Day_doctor {
 		Calendar b = Calendar.getInstance();
 		b.set(2000, Calendar.DECEMBER, 01, end_service, 0);
 		this.End_service = b;
-		
+		this.id = null;
+
 	}
 
 	public Calendar getStart_service() {
@@ -52,7 +54,13 @@ public class Day_doctor {
 	public void setDuration_service(Integer duration_service) {
 		this.duration_service = duration_service;
 	}
-	
-	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 }

@@ -20,7 +20,7 @@ public class Doctor extends User {
 		this.sub_specialty = sub_specialty;
 	}
 
-	public int getSpecialty() {
+	public Integer getSpecialty() {
 		return specialty;
 	}
 

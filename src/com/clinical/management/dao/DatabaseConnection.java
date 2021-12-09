@@ -159,8 +159,8 @@ public class DatabaseConnection {
 			String day_doctor = "CREATE TABLE IF NOT EXISTS day_doctor (\n"
 					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
 		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
-		            + "start_service DATETIME NOT NULL, \n"
-		            + "end_service DATETIME NOT NULL, \n"
+		            + "start_service INTEGER NOT NULL, \n"
+		            + "end_service INTEGER NOT NULL, \n"
 		            + "doctor_id INT REFERENCES users (id) NOT NULL, \n"
 		            + "duration_service INT NOT NULL\n"
 		            + ");";
