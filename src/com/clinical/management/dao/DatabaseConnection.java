@@ -168,13 +168,14 @@ public class DatabaseConnection {
 			String calendar_doctor = "CREATE TABLE IF NOT EXISTS calendar_doctor (\n"
 					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
 		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
-					+ "sunday_id    INT REFERENCES users (id), \n"
-				    + "monday_id    INT REFERENCES users (id), \n"
-				    + "tuesday_id   INT REFERENCES users (id), \n"
-				    + "wednesday_id INT REFERENCES users (id), \n"
-				    + "thursday_id  INT REFERENCES users (id), \n"
-				    + "friday_id    INT REFERENCES users (id), \n"
-				    + "saturday_id  INT REFERENCES users (id)\n" 
+					+ "sunday_id    INT REFERENCES day_doctor (id), \n"
+				    + "monday_id    INT REFERENCES day_doctor (id), \n"
+				    + "tuesday_id   INT REFERENCES day_doctor (id), \n"
+				    + "wednesday_id INT REFERENCES day_doctor (id), \n"
+				    + "thursday_id  INT REFERENCES day_doctor (id), \n"
+				    + "friday_id    INT REFERENCES day_doctor (id), \n"
+				    + "saturday_id  INT REFERENCES day_doctor (id), \n"
+				    + "doctor_id	INT REFERENCES doctor (id) NOT NULL\n"
 				    + ");";
 			
 			// Cria banco de dados caso não exista e cria conexão

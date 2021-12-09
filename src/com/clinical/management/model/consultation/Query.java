@@ -4,6 +4,11 @@ import java.util.Calendar;
 
 import com.clinical.management.model.calendar.Scheduling;
 
+/**
+ * Classe responsável pelas consultas
+ * @param 
+ *
+ */
 public class Query {
 
 	private Integer scheduling;
