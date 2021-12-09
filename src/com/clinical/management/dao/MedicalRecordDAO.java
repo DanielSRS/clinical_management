@@ -9,6 +9,10 @@ import java.util.List;
 
 import com.clinical.management.model.medicalRecord.MedicalRecord;
 
+/**
+ * Classe responsável pela busca no banco de dados especificamente na tabela prontuário médico
+ *
+ */
 public class MedicalRecordDAO extends DatabaseConnection {
 
 	/**
@@ -49,7 +53,6 @@ public class MedicalRecordDAO extends DatabaseConnection {
 	 * Obtem todos  os protuï¿½rios salvos na base de dados
 	 * 
 	 * @return Objeto List do tipo protuï¿½rio com as informaÃ§Ãµes dos protuï¿½rios
-	 * @see com.clinical.management.model.users.Scheduling
 	 */
 	public List<MedicalRecord> getMedicalRecord() {
 		List<MedicalRecord> medicalRecordList = new ArrayList<>();

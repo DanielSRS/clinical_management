@@ -7,6 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Classe responsável pela conexão com o banco de dados
+ *
+ */
 public class DatabaseConnection {
 	
 	/**

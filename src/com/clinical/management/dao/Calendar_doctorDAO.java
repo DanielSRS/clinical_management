@@ -13,6 +13,10 @@ import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
 
+/**
+ * Classe responsável pela busca no banco de dados especificamente na tabela agenda do médico
+ *
+ */
 public class Calendar_doctorDAO extends DatabaseConnection {
 
 	/**

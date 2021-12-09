@@ -13,6 +13,10 @@ import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
 
+/**
+ * Classe responsável pela busca no banco de dados especificamente na tabela dia do médico
+ *
+ */
 public class Day_doctorDAO extends DatabaseConnection {
 
 	/**
@@ -49,7 +53,6 @@ public class Day_doctorDAO extends DatabaseConnection {
 	 * 
 	 * @return Objeto List do tipo day_doctor com as informaÃ§Ãµes dos dias do
 	 *         médico
-	 * @see com.clinical.management.model.users.User
 	 */
 	public List<Day_doctor> getDay_doctor() {
 		List<Day_doctor> day_doctorList = new ArrayList<>();
@@ -106,6 +109,11 @@ public class Day_doctorDAO extends DatabaseConnection {
 		return day_doctorList;
 	}
 	
+	/**
+	 * @param day_doctorToBeRemoved
+	 * @return boolean
+	 * Método responsável por remover elemento do banco de dados
+	 */
 	public Boolean removeDay_doctor(Day_doctor day_doctorToBeRemoved) {
     	conectar();
 		String sql = "DELETE FROM day_doctor WHERE id = ?";

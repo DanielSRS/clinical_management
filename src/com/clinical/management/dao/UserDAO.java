@@ -138,6 +138,10 @@ public class UserDAO extends DatabaseConnection {
 		return user;
 	}
 
+	/**
+	 * @return user
+	 * retorna o usuário logado
+	 */
 	public User getLoggedUser() {
 
 		User user =  null;
@@ -192,6 +196,11 @@ public class UserDAO extends DatabaseConnection {
 		return user;
 	}
 
+	/**
+	 * @param userToBeSaved
+	 * @return boolean
+	 * salva o login do usuário
+	 */
 	public boolean saveLoggedUser(User userToBeSaved) {
 		conectar();
 		int result = -1;
@@ -218,6 +227,10 @@ public class UserDAO extends DatabaseConnection {
 		return true;
 	}
 
+	/**
+	 * @return boolean
+	 * remove o login do usuário
+	 */
 	public boolean removeLoggedUser() {
 		conectar();
 		String sql = "UPDATE settings SET logged_user = ? WHERE id = 1;";
