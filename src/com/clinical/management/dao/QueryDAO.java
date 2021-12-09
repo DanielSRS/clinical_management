@@ -30,8 +30,9 @@ public class QueryDAO extends DatabaseConnection {
 
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
-			preparedStatement.setInt(1, QueryToBeSaved.getScheduling().getId());
-			preparedStatement.setInt(2, QueryToBeSaved.getMedicalRecord().getId());
+			preparedStatement.setInt(1, QueryToBeSaved.getScheduling());
+			preparedStatement.setInt(2, QueryToBeSaved.getMedicalRecord());
+			preparedStatement.setInt(2, QueryToBeSaved.getUser());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			desconectar();
@@ -44,18 +45,15 @@ public class QueryDAO extends DatabaseConnection {
 	/**
 	 * Obtem todos  as consulta salvos na base de dados
 	 * 
-	 * @return Objeto List do tipo agendamento com as informações dos agendamentos
+	 * @return Objeto List do tipo consulta com as informações dos agendamentos
 	 * @see com.clinical.management.model.users.Scheduling
 	 */
-	public List<Scheduling> getScheduling() {
-		List<Scheduling> schedulingList = new ArrayList<>();
+	public List<Query> getQuery() {
+		List<Query> queryList = new ArrayList<>();
 
 		conectar();
 
-		String sql = "SELECT scheduling.id AS sheduling_id, day, hour, doctor_id, status, user_id, "
-				+ " sub_specialty, cpf, users.name AS users_name, password, specialty.name AS specialty_name FROM scheduling "
-				+ "INNER JOIN doctor ON scheduling.doctor_id = doctor.id " + "INNER JOIN users ON doctor.id = users.id "
-				+ "INNER JOIN specialty ON doctor.specialty_id = specialty.id";
+		String sql = "SELECT id, scheduling_id, medicalRecords_id, date, user_id FROM query";
 
 		ResultSet result = null;
 		PreparedStatement preparedStatement = null;
@@ -65,37 +63,29 @@ public class QueryDAO extends DatabaseConnection {
 			result = preparedStatement.executeQuery();
 
 			while (result.next()) {
-				Integer id = result.getInt("sheduling_id");
+				Integer id = result.getInt("id");
 				
-				Long day = result.getLong("day");
-				Calendar calendar_day = Calendar.getInstance();
-				calendar_day.setTimeInMillis(day);
-
-				Long hour = result.getLong("hour");
-				Calendar calendar_hour = Calendar.getInstance();
-				calendar_hour.setTimeInMillis(hour);
-
-				String name = result.getString("users_name");
-				String cpf = result.getString("cpf");
-				String password = result.getString("password");
-
-				String specialty = result.getString("specialty_name");
-
-				Specialty specialty_field = new Specialty(specialty);
+				Integer scheduling_id = result.getInt("sheduling_id");
 				
+				Integer medicalRecords_id = result.getInt("medicalRecords_id");
+				
+				Long date = result.getLong("date");
+				Calendar calendar_date = Calendar.getInstance();
+				calendar_date.setTimeInMillis(date);
+				
+				Integer user_id = result.getInt("user_id");
 
-				Doctor doctor = new Doctor(name, cpf, specialty_field, password);
 
-				Scheduling aux = new Scheduling(calendar_day, calendar_hour, doctor, specialty_field);
-				schedulingList.add(aux);
+				Query aux = new Query(scheduling_id, medicalRecords_id, calendar_date, user_id);
+				queryList.add(aux);
 				aux.setId(id);
 			}
 		} catch (SQLException e) {
-			System.out.println("Erro ao recuperar Agendamentos");
+			System.out.println("Erro ao recuperar Consultas");
 		}
 
 		desconectar();
-		return schedulingList;
+		return queryList;
 	}
 	
 }

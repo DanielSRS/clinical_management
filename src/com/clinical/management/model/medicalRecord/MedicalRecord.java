@@ -9,7 +9,7 @@ import java.util.List;
 import com.clinical.management.model.patient.Patient;
 
 public class MedicalRecord {
-	private Patient patient;
+	private Integer patient;
 	private String anamnesis;
 	private String physicalExams;
 	private String hypotheses;
@@ -17,7 +17,7 @@ public class MedicalRecord {
 	private String treatments;
 	private Integer id;
 
-	public MedicalRecord(Patient patient, String anamnesis, String physicalExams, String hypotheses, String diagnoses,
+	public MedicalRecord(Integer patient, String anamnesis, String physicalExams, String hypotheses, String diagnoses,
 			String treatments) {
 
 		this.patient = patient;
@@ -29,7 +29,7 @@ public class MedicalRecord {
 		this.id = null;
 	}
 
-	public MedicalRecord(Patient patient, String anamnesis, String physicalExams, String hypotheses, String diagnoses,
+	public MedicalRecord(Integer patient, String anamnesis, String physicalExams, String hypotheses, String diagnoses,
 			String treatments, Integer id) {
 
 		this.patient = patient;
@@ -41,12 +41,12 @@ public class MedicalRecord {
 		this.id = id;
 	}
 
-	public Patient getPatient() {
+	public Integer getPatient() {
 		return patient;
 	}
 
 	public void setPatient(Patient patient) {
-		this.patient = patient;
+		this.patient = patient.getUser().getID();
 	}
 
 	public String getAnamnesis() {
@@ -100,15 +100,14 @@ public class MedicalRecord {
 	public void printRecipe() {
 		List<String> temps = new ArrayList<>();
 
-		temps.add(this.patient.getUser().getName());
-		temps.add(this.patient.getUser().getCpf());
+		temps.add(this.patient.toString());
 		temps.add(this.anamnesis);
 		temps.add(diagnoses);
 		temps.add(hypotheses);
 		temps.add(physicalExams);
 		temps.add(treatments);
 
-		String path = "c:\\medicalRecords\\" + this.patient.getUser().getName() + ".txt";
+		String path = "c:\\medicalRecords\\" + this.patient + ".txt";
 
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
 			for (String temp : temps) {

@@ -117,5 +117,58 @@ public class SchedulingDAO extends DatabaseConnection {
 		desconectar();
 		return true;
     }
+	
+	public Scheduling getByID(int scheduling_id) {
+		Scheduling aux = null;
+
+		conectar();
+
+		String sql = "SELECT scheduling.id AS sheduling_id, day, hour, doctor_id, status, user_id, "
+				+ " sub_specialty, cpf, users.name AS users_name, password, specialty.name AS specialty_name FROM scheduling WHERE id = ? "
+				+ "INNER JOIN doctor ON scheduling.doctor_id = doctor.id " + "INNER JOIN users ON doctor.id = users.id "
+				+ "INNER JOIN specialty ON doctor.specialty_id = specialty.id";
+
+		ResultSet result = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			preparedStatement = criarPreparedStatement(sql);
+			preparedStatement.setInt(1, scheduling_id);
+			result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+				Integer id = result.getInt("sheduling_id");
+				
+				Long day = result.getLong("day");
+				Calendar calendar_day = Calendar.getInstance();
+				calendar_day.setTimeInMillis(day);
+
+				Long hour = result.getLong("hour");
+				Calendar calendar_hour = Calendar.getInstance();
+				calendar_hour.setTimeInMillis(hour);
+
+				String name = result.getString("users_name");
+				String cpf = result.getString("cpf");
+				String password = result.getString("password");
+
+				String specialty = result.getString("specialty_name");
+
+				Specialty specialty_field = new Specialty(specialty);
+				
+
+				Doctor doctor = new Doctor(name, cpf, specialty_field, password);
+
+				aux = new Scheduling(calendar_day, calendar_hour, doctor, specialty_field);
+				aux.setId(id);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao recuperar Agendamentos");
+			desconectar();
+			return null;
+		}
+
+		desconectar();
+		return aux;
+	}
 
 }

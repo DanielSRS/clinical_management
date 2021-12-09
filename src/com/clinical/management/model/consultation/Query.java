@@ -1,36 +1,53 @@
 package com.clinical.management.model.consultation;
 
+import java.util.Calendar;
+
 import com.clinical.management.model.calendar.Scheduling;
-import com.clinical.management.model.medicalRecord.MedicalRecord;
+import com.clinical.management.model.users.User;
 
 public class Query {
 
-	private Scheduling scheduling;
-	private MedicalRecord medicalRecord;
+	private Integer scheduling;
+	private Integer medicalRecord;
+	private Calendar data;
+	private Integer user;
 	private Integer id;
 
-	public Query() {
-		this.id = null;
-	}
-
-	public Query(Integer id) {
+	public Query(int id) {
 		this.id = id;
 	}
 
-	public Scheduling getScheduling() {
+	public Query(int scheduling, int medicalRecord, Calendar data, int user) {
+		this.scheduling = scheduling;
+		this.medicalRecord = medicalRecord;
+		this.data = data;
+		this.user = user;
+	}
+
+	public Integer getScheduling() {
 		return scheduling;
 	}
 
 	public void setScheduling(Scheduling scheduling) {
-		this.scheduling = scheduling;
+		this.scheduling = scheduling.getId();
+		this.data = scheduling.getDay();
+		this.user = scheduling.getPatient().getID();
 	}
 
-	public MedicalRecord getMedicalRecord() {
+	public Integer getMedicalRecord() {
 		return medicalRecord;
 	}
 
-	public void setMedicalRecord(MedicalRecord medicalRecord) {
+	public void setMedicalRecord(Integer medicalRecord) {
 		this.medicalRecord = medicalRecord;
+	}
+
+	public Integer getUser() {
+		return user;
+	}
+
+	public void setUser(Integer user) {
+		this.user = user;
 	}
 
 	public Integer getId() {

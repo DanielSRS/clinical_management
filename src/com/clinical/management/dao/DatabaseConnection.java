@@ -149,7 +149,9 @@ public class DatabaseConnection {
 					+ "	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\n"
 		            + "	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
 		            + "scheduling_id INT REFERENCES scheduling (id) NOT NULL, \n"
-		            + "medicalRecords_id INT REFERENCES medical_record (id) NOT NULL\n"
+		            + "medicalRecords_id INT REFERENCES medical_record (id) NOT NULL, \n"
+		            + "date INTEGER NOT NULL, \n"
+		            + "user_id INT REFERENCES users (id) NOT NULL\n"
 		            + ");";
 			
 			String day_doctor = "CREATE TABLE IF NOT EXISTS day_doctor (\n"
