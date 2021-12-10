@@ -179,6 +179,47 @@ public class DoctorDAO extends DatabaseConnection {
 		desconectar();
 		return doctor;
 	}
+
+	public Doctor getDoctorUserByID(int id) {
+		Doctor doctor = null;
+
+		conectar();
+
+		String sql = "SELECT doctor.id AS doctor_id, specialty_id, sub_specialty, user_id, users.id AS users_id, cpf, name, password "
+				+ "FROM doctor INNER JOIN users ON doctor.user_id = users_id WHERE doctor.user_id = ? ";
+
+		ResultSet result = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			preparedStatement = criarPreparedStatement(sql);
+			preparedStatement.setInt(1, id);
+			result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+				Integer doctor_id = result.getInt("doctor_id");
+				
+				Integer specialty_id = result.getInt("specialty_id");
+				
+				Integer sub_specialty = result.getInt("sub_specialty");
+
+				String cpf = result.getString("cpf");
+				String name = result.getString("name");
+				String password = result.getString("password");
+
+
+				doctor = new Doctor(name, cpf, password, specialty_id, sub_specialty);
+				doctor.setId(doctor_id);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao recuperar medico por id");
+			e.printStackTrace();
+			return doctor;
+		}
+
+		desconectar();
+		return doctor;
+	}
 	
 	
 }

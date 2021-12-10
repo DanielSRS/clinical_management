@@ -19,6 +19,8 @@ public class ConsultaModalController {
 
     MedicalRecordDAO mrDAO = new MedicalRecordDAO();
 
+    MedicalRecord medical;
+
     @FXML private Button saveButton;
 
     @FXML private TextArea an;

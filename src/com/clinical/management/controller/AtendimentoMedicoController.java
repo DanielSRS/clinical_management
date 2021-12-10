@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
+import com.clinical.management.dao.DoctorDAO;
 import com.clinical.management.dao.SchedulingDAO;
 import com.clinical.management.dao.SpecialtyDAO;
 import com.clinical.management.dao.UserDAO;
@@ -37,7 +38,7 @@ public class AtendimentoMedicoController {
         while(it.hasNext()) {
             Scheduling aux = it.next();
 
-            if(aux.getStatus() != OrderStatus.MARKED || aux.getDoctor().getId() != 5) {
+            if(aux.getStatus() != OrderStatus.MARKED || aux.getDoctor().getId() != 1) {
                 System.out.println("ag não disponivel com id: " + aux.getId());
                 it.remove();
             }
