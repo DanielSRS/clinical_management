@@ -63,7 +63,7 @@ public class SchedulingDAO extends DatabaseConnection {
 		conectar();
 
 		String sql = "SELECT scheduling.id AS sheduling_id, day, hour, doctor_id, scheduling.status AS sch_status, scheduling.user_id AS sch_user_id, "
-				+ " sub_specialty, cpf, users.name AS users_name, password, specialty.name AS specialty_name FROM scheduling "
+				+ " sub_specialty, cpf, users.name AS users_name, password, doctor.specialty_id AS doc_specialty_id, specialty.name AS specialty_name FROM scheduling "
 				+ "INNER JOIN doctor ON scheduling.doctor_id = doctor.id INNER JOIN users ON doctor.user_id = users.id "
 				+ "INNER JOIN specialty ON doctor.specialty_id = specialty.id";
 
@@ -90,8 +90,9 @@ public class SchedulingDAO extends DatabaseConnection {
 				String password = result.getString("password");
 
 				String specialty = result.getString("specialty_name");
+				int specID = result.getInt("doc_specialty_id");
 
-				Specialty specialty_field = new Specialty(specialty);
+				Specialty specialty_field = new Specialty(specialty, "", specID);
 				
 
 				Doctor doctor = new Doctor(name, cpf, password, specialty_field.getID());

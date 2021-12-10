@@ -25,7 +25,6 @@ public class AutoAtendimentoController {
         List<Specialty> especialidades = espDAO.getSpecialtys();
 
         Iterator<Scheduling> it = agendamentos.iterator();
-        Iterator<Specialty> espIT = especialidades.iterator();
 
         while (it.hasNext()) {
             Scheduling aux = it.next();
@@ -36,14 +35,16 @@ public class AutoAtendimentoController {
             String status = aux.getStatus().toString();
             String medico = aux.getDoctor().getName();
             String especialidade = "";
+            Iterator<Specialty> espIT = especialidades.iterator();
             while(espIT.hasNext()) {
                 Specialty auxEsp = espIT.next();
+                System.out.println(auxEsp.getName() + " - " + auxEsp.getID() + " - " + aux.getDoctor().getSpecialty());
                 if (auxEsp.getID() == aux.getDoctor().getSpecialty()) {
                     especialidade = auxEsp.getName();
                 }
             }
             String s = "Data: " + dia + "/ " + mes + " - hora: " + hora + ":" + minutos
-                        + " - Especialidade: " + especialidade + "Dr. " + medico;
+                        + " - Especialidade: " + especialidade + " - Dr. " + medico;
 
             Label l = new Label();
             l.setText(s);
