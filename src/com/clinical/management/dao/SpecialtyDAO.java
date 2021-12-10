@@ -10,7 +10,7 @@ import java.util.List;
 import com.clinical.management.model.specialty.Specialty;
 
 /**
- * Classe responsável pela busca no banco de dados especificamente na tabela especialidades
+ * Classe responsï¿½vel pela busca no banco de dados especificamente na tabela especialidades
  *
  */
 public class SpecialtyDAO extends DatabaseConnection{
@@ -51,12 +51,51 @@ public class SpecialtyDAO extends DatabaseConnection{
 		return specialtyList;
 	}
 
+	/**
+	 * Obtem uma especialidade dado seu id
+	 * @param idDaEspecialidade int com o id da especialidade
+	 * @return Objeto Specialty com as informaÃ§Ãµes da especialidade
+	 * @see com.clinical.management.model.specialty.Specialty
+	 */
+    public Specialty getSpecialtyByID(int idDaEspecialidade) {
+		Specialty specialty = null;
+
+		conectar();
+
+		String sql = "SELECT id, name, description FROM specialty WHERE id = ?";
+
+		ResultSet result = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			preparedStatement = criarPreparedStatement(sql);
+			preparedStatement.setInt(1, idDaEspecialidade);
+			result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+				int id = result.getInt("id");
+				String name = result.getString("name");
+				String description = result.getString("description");
+				System.out.println("Specialty: " + name);
+				specialty = new Specialty(name, description, id);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("Erro ao recuperar especialidades");
+			desconectar();
+			return specialty;
+		}
+		
+		desconectar();
+		return specialty;
+	}
+
 
     /**
      * 
      * @param specialtyToBeSaved
      * @return boolean
-     * se salvo com sucesso no banco de dados retornar true, do contrário retorna false
+     * se salvo com sucesso no banco de dados retornar true, do contrï¿½rio retorna false
      */
     public boolean saveSpecialty(Specialty specialtyToBeSaved) {
 		conectar();
@@ -88,7 +127,7 @@ public class SpecialtyDAO extends DatabaseConnection{
     /**
      * @param specialtyToBeRemoved
      * @return boolean
-     * método responsável por remover especialidade do banco de dados
+     * mï¿½todo responsï¿½vel por remover especialidade do banco de dados
      */
     public Boolean removeSpecialty(Specialty specialtyToBeRemoved) {
     	conectar();

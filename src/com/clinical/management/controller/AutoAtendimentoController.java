@@ -1,5 +1,6 @@
 package com.clinical.management.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -15,6 +16,8 @@ import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -77,13 +80,28 @@ public class AutoAtendimentoController {
             
             for (Map.Entry<Integer,  List<Scheduling>> data : pair.getValue().entrySet()) {
                 Label doc = new Label("        " + data.getKey() + "");
-                contentContainer.getChildren().add(doc);
+                //contentContainer.getChildren().add(doc);
 
-                printAgendamentos(data.getValue());
+                FXMLLoader calCard = new FXMLLoader(getClass().getResource("../view/pages/AgendamentoCard.fxml"));
+                try {
+                    Parent card = calCard.load();
+                    AgendamentoCardController cont = calCard.getController();
+                    cont.setDoctor(data.getValue().get(0).getDoctor());
+                    cont.setEspecialidade(especialidades);
+                    cont.setSchedules(data.getValue());
+                    
+
+                    contentContainer.getChildren().add(card);
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                    e.printStackTrace();
+                }
+
+                //printAgendamentos(data.getValue());
                 //contentContainer.getChildren().add(new Label(""));
                 //System.out.println("Dia: " + pair.getKey());
                 //System.out.println(pair.getValue());
-                contentContainer.getChildren().add(new Label(""));
+                //contentContainer.getChildren().add(new Label(""));
             }
         }
 
@@ -118,6 +136,8 @@ public class AutoAtendimentoController {
             l.setText(s);
 
             contentContainer.getChildren().add(l);
+
+            
         }
     }
 }

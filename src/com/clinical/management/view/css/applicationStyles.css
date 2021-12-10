@@ -545,13 +545,13 @@
     -fx-border-color: #0000000F;
     -fx-border-radius: 7px;
     -fx-background-radius: 7px;
-	-fx-effect: dropshadow(gaussian, #0000000A, 4, 0, 0, 2);
+	/*-fx-effect: dropshadow(gaussian, #0000000A, 4, 0, 0, 2);*/
 }
 
 .dark .card-surface {
 	-fx-background-color: #FFFFFF0F;
     -fx-border-color: #0000001A;
-	-fx-effect: dropshadow(gaussian, #00000021, 4, 0, 0, 2);
+	/*-fx-effect: dropshadow(gaussian, #00000021, 4, 0, 0, 2);*/
 }
 
 
@@ -586,3 +586,16 @@
 .titled-pane > .title > .arrow-button .arrow {
 	-fx-background-color: transparent;
   }
+
+/*    Botão de horario do agendamento */
+
+.scheduling-button {
+	-fx-background-color: transparent;
+	-fx-border-radius: 4px;
+	-fx-border-color: #00000024;
+	-fx-border-width: 1px;
+}
+
+.scheduling-button .text {
+	-fx-text-fill: #707070;
+}
