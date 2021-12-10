@@ -104,17 +104,61 @@ public class Calendar_doctorDAO extends DatabaseConnection {
 			result = preparedStatement.executeQuery();
 
 			while (result.next()) {
-				int idDoCalendar = result.getInt("calendar_doctor_id");
-				int ff = result.getInt("monday_id");
+				Integer idDoCalendar = result.getInt("calendar_doctor_id");
+				Integer sedundaID = result.getInt("monday_id");
+				Integer tercaID =  result.getInt("tuesday_id");
+				Integer quartaID = result.getInt("wednesday_id");
+				Integer quintaID = result.getInt("thursday_id");
+				Integer sextaId = result.getInt("friday_id");
+				Integer sabadoID = result.getInt("saturday_id");
+				Integer dommingoID = result.getInt("sunday_id");
 
-				Day_doctor seg = dayDAO.getDay_doctorByID(ff);
-				ff = result.getInt("tuesday_id");
-				Day_doctor ter = dayDAO.getDay_doctorByID(ff);
-				Day_doctor qua = dayDAO.getDay_doctorByID(result.getInt("wednesday_id"));
-				Day_doctor qui = dayDAO.getDay_doctorByID(result.getInt("thursday_id"));
-				Day_doctor sex = dayDAO.getDay_doctorByID(result.getInt("friday_id"));
-				Day_doctor sab = dayDAO.getDay_doctorByID(result.getInt("saturday_id"));
-				Day_doctor dom = dayDAO.getDay_doctorByID(result.getInt("sunday_id"));
+				System.out.println("IDS: ");
+				System.out.println(sedundaID);
+				System.out.println(tercaID);
+				System.out.println(quartaID);
+				System.out.println(quintaID);
+				System.out.println(sextaId);
+				System.out.println(sabadoID);
+				System.out.println(dommingoID);
+
+				Day_doctor seg = null;
+				Day_doctor ter = null;
+				Day_doctor qua = null;
+				Day_doctor qui = null;
+				Day_doctor sex = null;
+				Day_doctor sab = null;
+				Day_doctor dom = null;
+
+
+				if (sedundaID != 0) {
+					seg = dayDAO.getDay_doctorByID(sedundaID);
+				    //System.out.println("Segunda: " + seg.getStart_service().get(Calendar.HOUR_OF_DAY));
+				}
+				if (tercaID != 0) {
+					ter = dayDAO.getDay_doctorByID(tercaID);
+				    //System.out.println("Terça: " + ter.getStart_service().get(Calendar.HOUR_OF_DAY));
+				}
+				if (quartaID != 0) {
+					qua = dayDAO.getDay_doctorByID(quartaID);
+					//System.out.println("Quarta: " + qua.getStart_service().get(Calendar.HOUR_OF_DAY));
+				}
+				if (quintaID != 0) {
+					qui = dayDAO.getDay_doctorByID(quintaID);
+				    //System.out.println("Quinta: " + qui.getStart_service().get(Calendar.HOUR_OF_DAY));
+				}
+				if (sextaId != 0){
+					sex = dayDAO.getDay_doctorByID(sextaId);
+				    //System.out.println("Sexta: " + sex.getStart_service().get(Calendar.HOUR_OF_DAY));
+				}
+				if (sabadoID != 0) {
+					sab = dayDAO.getDay_doctorByID(sabadoID);
+				    //System.out.println("Sabado: " + sab.getStart_service().get(Calendar.HOUR_OF_DAY));
+				}
+				if (dommingoID != 0) {
+					dom = dayDAO.getDay_doctorByID(dommingoID);
+				    //System.out.println("Domingo: " + dom.getStart_service().get(Calendar.HOUR_OF_DAY));
+				}
 
 				Calendar_doctor cal = new Calendar_doctor();
 				cal.setMonday(seg);

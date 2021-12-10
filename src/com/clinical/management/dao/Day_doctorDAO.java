@@ -159,6 +159,7 @@ public class Day_doctorDAO extends DatabaseConnection {
 
 
 	public Day_doctor getDay_doctorByID(int id) {
+		System.out.println("Buscar dia do medico com id: " + id);
 		Day_doctor day = null;
 
 		conectar();
@@ -166,16 +167,17 @@ public class Day_doctorDAO extends DatabaseConnection {
 		String sql = "SELECT day_doctor.id AS day_doctor_id, start_service, end_service, doctor_id, duration_service,"
 				+ " doctor.id AS doctors_id, specialty_id, sub_specialty, user_id, users.id AS users_id, cpf, users.name AS users_name, status, password FROM day_doctor "
 				+ "INNER JOIN doctor ON day_doctor.doctor_id = doctor.id "
-				+ "INNER JOIN users ON doctor.user_id = users.id";
+				+ "INNER JOIN users ON doctor.user_id = users.id WHERE day_doctor.id = ? ";
 
 		ResultSet result = null;
 		PreparedStatement preparedStatement = null;
 
 		try {
 			preparedStatement = criarPreparedStatement(sql);
+			preparedStatement.setInt(1, id);
 			result = preparedStatement.executeQuery();
 
-			while (result.next()) {
+			if (result.next()) {
 
 				Long start_service = result.getLong("start_service");
 				Calendar calendar_start_service = Calendar.getInstance();
@@ -198,13 +200,23 @@ public class Day_doctorDAO extends DatabaseConnection {
 
 				String password = result.getString("password");
 
-				//System.out.println("Valor do dia: " + calendar_start_service.get(Calendar.HOUR_OF_DAY));
-
 				Doctor doctor = new Doctor(users_name, cpf, password, specialty_field.getID(),
 						specialty_fieldSub.getID());
 
+				/*System.out.println("Hora de inicio: " + calendar_start_service.get(Calendar.HOUR_OF_DAY)
+						+ "Hora de fim: " + calendar_end_service.get(Calendar.HOUR_OF_DAY)
+						+ "Hora de duração: " + duration_service
+						+ "Especialidade: " + specialty_field.getName() + " - id: " + specialty_id
+						+ "Medico: " + doctor.getName());*/
+
 				day = new Day_doctor(calendar_start_service.get(Calendar.HOUR_OF_DAY),
 						calendar_end_service.get(Calendar.HOUR_OF_DAY), doctor, duration_service);
+
+				/*System.out.println("Hora de inicio 2 : " + day.getStart_service().get(Calendar.HOUR_OF_DAY)
+						+ "Hora de fim: " + day.getEnd_service().get(Calendar.HOUR_OF_DAY)
+						+ "Hora de duração: " + day.getDuration_service()
+						+ "Especialidade: " + day.getDoctor().getSpecialty() + " - id: " + specialty_id
+						+ "Medico: " + day.getDoctor().getName());*/
 			}
 		} catch (SQLException e) {
 			System.out.println("Erro ao recuperar dia do m�dico");

@@ -30,8 +30,9 @@ public class AgendaPageController {
 
             Label lb = new Label();
             String f = "ID do calendario: " + aux.getId() + ", ID do medico: " + aux.getDocID();
-            String g = "\n" + aux.getMonday().getStart_service().get(Calendar.HOUR_OF_DAY);
-            System.out.println(f + g);
+            String g = "";
+			if (aux.getMonday() != null) g = "\n" + aux.getMonday().getStart_service().get(Calendar.HOUR_OF_DAY);
+            //System.out.println(f + g);
 
             //contentContainer.getChildren().add(lb);
 
