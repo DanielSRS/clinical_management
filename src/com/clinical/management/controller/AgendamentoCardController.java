@@ -1,5 +1,6 @@
 package com.clinical.management.controller;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -8,14 +9,19 @@ import com.clinical.management.dao.SpecialtyDAO;
 import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
+import com.clinical.management.view.navigation.StackNavigator;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class AgendamentoCardController {
-    private Doctor doctor;
+//rivate Doctor doctor;
+
+    private AutoAtendimentoController ctr;
 
     private List<Scheduling> schedules;
 
@@ -27,8 +33,26 @@ public class AgendamentoCardController {
 
     @FXML private HBox horariosContainer;
 
+    @FXML private void onClick() {
+        System.out.println("clicado");
+        FXMLLoader calCard = new FXMLLoader(getClass().getResource("../view/pages/MarcarConsultaModal.fxml"));
+        try {
+            Parent card = calCard.load();
+            MarcarConsultaModalController cont = calCard.getController();
+            cont.setDoctorName(this.doctorName.getText());
+            cont.setDoctorSpecialty(this.doctorSpecialty.getText());
+            cont.setScheduling(schedules);
+            cont.setCtr(ctr);
+            
+            StackNavigator.addModal(card);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public void setDoctor(Doctor doc) {
-        this.doctor = doc;
+        //this.doctor = doc;
         this.doctorName.setText(doc.getName());
         SpecialtyDAO spd = new SpecialtyDAO();
         Specialty especialidadeDoMedico = spd.getSpecialtyByID(doc.getSpecialty());
@@ -99,5 +123,9 @@ public class AgendamentoCardController {
 
     public void setEspecialidade(List<Specialty> esp) {
         this.especialidades = esp;
+    }
+
+    public void setCtr(AutoAtendimentoController c) {
+        this.ctr = c;
     }
 }

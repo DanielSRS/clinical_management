@@ -6,8 +6,10 @@ import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
 import com.clinical.management.model.users.User;
 
+import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.CalendarConversion;
+
 /**
- * Classe responsável pelo agendamento
+ * Classe responsï¿½vel pelo agendamento
  *
  */
 public class Scheduling {
@@ -71,7 +73,7 @@ public class Scheduling {
 
 	/**
 	 * @return doctor
-	 * pega o médico do agendamento feito
+	 * pega o mï¿½dico do agendamento feito
 	 */
 	public Doctor getDoctor() {
 		return doctor;
@@ -79,7 +81,7 @@ public class Scheduling {
 
 	/**
 	 * @param doctor
-	 * seta o médico do agendamento feito
+	 * seta o mï¿½dico do agendamento feito
 	 */
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
@@ -87,7 +89,7 @@ public class Scheduling {
 
 	/**
 	 * @return specialty
-	 * pega a especialidade do médico nesse agendamento
+	 * pega a especialidade do mï¿½dico nesse agendamento
 	 */
 	public Integer getSpecialty() {
 		return specialty;
@@ -95,7 +97,7 @@ public class Scheduling {
 
 	/**
 	 * @param specialty
-	 * seta a especialidade do médico nesse agendamento
+	 * seta a especialidade do mï¿½dico nesse agendamento
 	 */
 	public void setSpecialty(Specialty specialty) {
 		this.specialty = specialty.getID();
@@ -180,6 +182,77 @@ public class Scheduling {
 		}
 
 		return false;
+	}
+
+	public void changeStatus(String novoStatus) {
+		if (novoStatus.equals(OrderStatus.AVAILABLE.toString())) {
+			this.status = OrderStatus.AVAILABLE;
+		}
+		if (novoStatus.equals(OrderStatus.BLOCKED.toString())) {
+			this.status = OrderStatus.BLOCKED;
+		}
+		if (novoStatus.equals(OrderStatus.MARKED.toString())) {
+			this.status = OrderStatus.MARKED;
+		}
+	}
+
+	public String toString() {
+		/*String s = "";
+		int mes = day.get(Calendar.MONTH) + 1;
+		mes = mes + 1;
+		int dia = day.get(Calendar.DAY_OF_MONTH);
+		String diaS = "";
+		String mesS = "";
+		if (dia < 10) {
+			diaS = "0" + dia;
+		} else {
+			diaS = dia + "";
+		}
+		if (mes < 10) {
+			mesS = "0" + mes;
+		} else {
+			mesS = mes + "";
+		}
+		s = diaS + "/" + mesS + "/" + day.get(Calendar.YEAR);*/
+
+		int h = day.get(Calendar.HOUR_OF_DAY);
+		int m = day.get(Calendar.MINUTE);
+		String hora = "";
+		String minute = "";
+		if (h < 10) {
+			hora = "0" + h;
+		} else {
+			hora = h + "";
+		}
+		if (m < 10) {
+			minute = "0" + m;
+		} else {
+			minute = m + "";
+		}
+
+		return hora + ":" + minute;
+	}
+
+	public String getDataString() {
+		String s = "";
+		int mes = day.get(Calendar.MONTH) + 1;
+		mes = mes + 1;
+		int dia = day.get(Calendar.DAY_OF_MONTH);
+		String diaS = "";
+		String mesS = "";
+		if (dia < 10) {
+			diaS = "0" + dia;
+		} else {
+			diaS = dia + "";
+		}
+		if (mes < 10) {
+			mesS = "0" + mes;
+		} else {
+			mesS = mes + "";
+		}
+		s = diaS + "/" + mesS + "/" + day.get(Calendar.YEAR);
+
+		return s;
 	}
 
 }

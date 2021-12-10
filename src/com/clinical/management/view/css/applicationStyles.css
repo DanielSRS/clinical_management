@@ -599,3 +599,16 @@
 .scheduling-button .text {
 	-fx-text-fill: #707070;
 }
+
+
+.dark .dialog-bg {
+	-fx-background-color: #181818;
+}
+
+.dialog-bg {
+	-fx-background-color:  #E7E7E7;
+}
+
+#addSchedIMG {
+	-fx-image: url("../images/calendar.png");
+}

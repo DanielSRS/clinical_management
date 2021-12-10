@@ -15,6 +15,7 @@ import com.clinical.management.util.UserListener;
 public class AuthenticationController {
 	
 	private User currentLoggedUser;
+	private static User currentLoggedUserStatik;
 	private UserDAO userDao = new UserDAO();
 	private List<UserListener> listners;
 
@@ -58,6 +59,7 @@ public class AuthenticationController {
 			} else {
 				System.out.println("Usuário logado: " + loggedUser.getName());
 				this.currentLoggedUser = loggedUser;
+				AuthenticationController.currentLoggedUserStatik = loggedUser;
 			}
 		}
 		this.listners = new ArrayList<>();
@@ -67,6 +69,7 @@ public class AuthenticationController {
 		User user = userDao.getUserByNameAndPassword(cpf, password);
 		if (user != null) {
 			currentLoggedUser = user;
+			AuthenticationController.currentLoggedUserStatik = user;
 			System.out.println(user.getName() + " esta logado!!");
 			userDao.saveLoggedUser(user);
 			loggedUserChanged();
@@ -79,6 +82,7 @@ public class AuthenticationController {
 		if (currentLoggedUser != null) {
 			System.out.println(currentLoggedUser.getName() + " esta deslogado!!");
 			currentLoggedUser = null;
+			AuthenticationController.currentLoggedUserStatik =  null;
 			userDao.removeLoggedUser();
 			loggedUserChanged();
 			return true;
@@ -102,4 +106,7 @@ public class AuthenticationController {
 		}
 	}
 
+	public static User usuarioLogado() {
+		return currentLoggedUserStatik;
+	}
 }

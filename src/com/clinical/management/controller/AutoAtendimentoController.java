@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.clinical.management.dao.SchedulingDAO;
 import com.clinical.management.dao.SpecialtyDAO;
+import com.clinical.management.model.calendar.OrderStatus;
 import com.clinical.management.model.calendar.Scheduling;
 import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
@@ -26,13 +27,15 @@ public class AutoAtendimentoController {
     SchedulingDAO sch = new SchedulingDAO();
     SpecialtyDAO espDAO = new SpecialtyDAO();
 
-    List<Scheduling> agendamentos =  sch.getScheduling();
+    List<Scheduling> agendamentos;
     List<Specialty> especialidades = espDAO.getSpecialtys();
     
     @FXML private VBox contentContainer;
 
     public void initialize() {
-    
+
+        removeUnavaliable();
+    /*
         Iterator<Scheduling> it = agendamentos.iterator();
 
         // data, lista de agendamentos na data
@@ -79,7 +82,7 @@ public class AutoAtendimentoController {
             contentContainer.getChildren().add(k);
             
             for (Map.Entry<Integer,  List<Scheduling>> data : pair.getValue().entrySet()) {
-                Label doc = new Label("        " + data.getKey() + "");
+                //Label doc = new Label("        " + data.getKey() + "");
                 //contentContainer.getChildren().add(doc);
 
                 FXMLLoader calCard = new FXMLLoader(getClass().getResource("../view/pages/AgendamentoCard.fxml"));
@@ -89,6 +92,7 @@ public class AutoAtendimentoController {
                     cont.setDoctor(data.getValue().get(0).getDoctor());
                     cont.setEspecialidade(especialidades);
                     cont.setSchedules(data.getValue());
+                    cont.setCtr(this);
                     
 
                     contentContainer.getChildren().add(card);
@@ -107,10 +111,102 @@ public class AutoAtendimentoController {
 
         //printAgendamentos(agendamentos);
 
-        
+        */
     }
 
-    private void printAgendamentos(List<Scheduling> agend) {
+    public void renderAgain() {
+        Iterator<Scheduling> it = agendamentos.iterator();
+
+        // data, lista de agendamentos na data
+        Map<Integer, Map<Integer, List<Scheduling>>> agendamentosPorDia = new HashMap<>();
+        
+        
+
+        while (it.hasNext()) {
+            Scheduling aux = it.next();
+            Integer dia = aux.getDay().get(Calendar.DAY_OF_MONTH);
+            Doctor medico = aux.getDoctor();
+            if (agendamentosPorDia.containsKey(dia)) { // se há agendamentos no dia
+                
+                // se em agendametos por dia há agendamentos do medico (por id)
+                if (agendamentosPorDia.get(dia).containsKey(medico.getId())) {
+                    agendamentosPorDia.get(dia).get(medico.getId()).add(aux); // adiciona o agendamento a lista de agendamentos por medico
+                } else {
+                    // id do medico, lista de agendamenots
+                    //
+                    List<Scheduling> agendamentosDoMedicoNoDia = new ArrayList<>();
+                    agendamentosDoMedicoNoDia.add(aux);
+                    agendamentosPorDia.get(dia).put(medico.getId(), agendamentosDoMedicoNoDia);
+                    //agendamentosMedico.put(idDoMedico, agendamentosDoMedicoNoDia);
+                }
+                //agendamentosPorDia.get(dia).add(aux);
+            } else {
+                Map<Integer, List<Scheduling>> agendamentosMedico = new HashMap<>();
+                List<Scheduling> agendamentosDoMedicoNoDia = new ArrayList<>();
+                agendamentosDoMedicoNoDia.add(aux);
+                agendamentosMedico.put(medico.getId(), agendamentosDoMedicoNoDia);
+
+                agendamentosPorDia.put(dia, agendamentosMedico);
+            }
+        }
+
+        for (Map.Entry<Integer, Map<Integer, List<Scheduling>>> pair : agendamentosPorDia.entrySet()) {
+            Label l = new Label();
+            Label k = new Label();
+            Label n = new Label();
+            l.setText("Dia: " + pair.getKey() + "");
+            k.setText("");
+            n.setText("");
+            contentContainer.getChildren().add(l);
+            contentContainer.getChildren().add(k);
+            
+            for (Map.Entry<Integer,  List<Scheduling>> data : pair.getValue().entrySet()) {
+                //Label doc = new Label("        " + data.getKey() + "");
+                //contentContainer.getChildren().add(doc);
+
+                FXMLLoader calCard = new FXMLLoader(getClass().getResource("../view/pages/AgendamentoCard.fxml"));
+                try {
+                    Parent card = calCard.load();
+                    AgendamentoCardController cont = calCard.getController();
+                    cont.setDoctor(data.getValue().get(0).getDoctor());
+                    cont.setEspecialidade(especialidades);
+                    cont.setSchedules(data.getValue());
+                    cont.setCtr(this);
+                    
+
+                    contentContainer.getChildren().add(card);
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                    e.printStackTrace();
+                }
+
+                //printAgendamentos(data.getValue());
+                //contentContainer.getChildren().add(new Label(""));
+                //System.out.println("Dia: " + pair.getKey());
+                //System.out.println(pair.getValue());
+                //contentContainer.getChildren().add(new Label(""));
+            }
+        }
+    }
+    
+
+    public void removeUnavaliable() {
+        this.agendamentos = sch.getScheduling();
+        Iterator<Scheduling> it = agendamentos.iterator();
+
+        while (it.hasNext()) {
+            Scheduling aux = it.next();
+
+            if (aux.getStatus() != OrderStatus.AVAILABLE) {
+                //this.agendamentos.remove(aux);
+                it.remove();
+            }
+        }
+
+        renderAgain();
+    }
+
+    /*private void printAgendamentos(List<Scheduling> agend) {
         Iterator<Scheduling> it = agend.iterator();
         while (it.hasNext()) {
             Scheduling aux = it.next();
@@ -139,5 +235,5 @@ public class AutoAtendimentoController {
 
             
         }
-    }
+    }*/
 }

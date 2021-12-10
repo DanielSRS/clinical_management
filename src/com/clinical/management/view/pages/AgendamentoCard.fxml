@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="117.0" prefWidth="600.0" styleClass="card-surface" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.AgendamentoCardController">
+<HBox maxHeight="-Infinity" minHeight="-Infinity" onMouseClicked="#onClick" prefHeight="117.0" prefWidth="600.0" styleClass="card-surface" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.AgendamentoCardController">
    <children>
       <AnchorPane prefHeight="115.0" prefWidth="86.0">
          <children>

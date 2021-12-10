@@ -39,10 +39,38 @@ public class SchedulingDAO extends DatabaseConnection {
 			preparedStatement.setInt(4, schedulingToBeSaved.getSpecialty());
 			preparedStatement.setString(5, schedulingToBeSaved.getStatus().toString());
 			if (schedulingToBeSaved.getPatient() != null) {
-				preparedStatement.setNull(6, schedulingToBeSaved.getPatient().getID());
+				preparedStatement.setInt(6, schedulingToBeSaved.getPatient().getID());
 			} else {
 				preparedStatement.setNull(6, Types.INTEGER);
 			}
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			desconectar();
+			return false;
+		}
+		desconectar();
+		return true;
+	}
+
+	/**
+	 * Atualiza agendamento
+	 * @param schedulingToBeSaved
+	 * @return
+	 */
+	public boolean updateScheduling(Scheduling schedulingToBeSaved) {
+		conectar();
+		String sql = "UPDATE scheduling SET status = ?, user_id = ? WHERE id = ? "; // Ele prepara a query pra executar. onde tem a interroga��o
+															// ser� substituido abaixo.
+
+		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try {
+			preparedStatement.setString(1, schedulingToBeSaved.getStatus().toString());
+			if (schedulingToBeSaved.getPatient() != null) {
+				preparedStatement.setInt(2, schedulingToBeSaved.getPatient().getID());
+			} else {
+				preparedStatement.setNull(2, Types.INTEGER);
+			}
+			preparedStatement.setInt(3, schedulingToBeSaved.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			desconectar();
@@ -100,6 +128,7 @@ public class SchedulingDAO extends DatabaseConnection {
 				doctor.setId(idDoMedico);
 
 				Scheduling aux = new Scheduling(calendar_day, calendar_hour, doctor, specialty_field.getID());
+				aux.changeStatus(result.getString("sch_status"));
 				schedulingList.add(aux);
 				aux.setId(id);
 			}
