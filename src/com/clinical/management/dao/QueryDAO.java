@@ -27,18 +27,19 @@ public class QueryDAO extends DatabaseConnection {
 
 	public boolean saveQuery(Query QueryToBeSaved) {
 		conectar();
-		String sql = "INSERT INTO query (" + "scheduling_id," + "medicalRecords_id" + "date" + "user_id)"
-				+ "VALUES (?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interroga��o
+		String sql = "INSERT INTO query (scheduling_id, medicalRecords_id, date, user_id)"
+				+ " VALUES (?, ?, ?, ?)"; // Ele prepara a query pra executar. onde tem a interroga��o
 															// ser� substituido abaixo.
 
 		PreparedStatement preparedStatement = criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
 		try {
 			preparedStatement.setInt(1, QueryToBeSaved.getScheduling());
 			preparedStatement.setInt(2, QueryToBeSaved.getMedicalRecord());
-			preparedStatement.setLong(2, QueryToBeSaved.getDate().getTimeInMillis());
-			preparedStatement.setInt(2, QueryToBeSaved.getUser());
+			preparedStatement.setLong(3, QueryToBeSaved.getDate().getTimeInMillis());
+			preparedStatement.setInt(4, QueryToBeSaved.getUser());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			desconectar();
 			return false;
 		}
@@ -96,7 +97,7 @@ public class QueryDAO extends DatabaseConnection {
 
 		conectar();
 
-		String sql = "SELECT id, scheduling_id, medicalRecords_id, date, user_id FROM query WHERE scheduling_id = ? ";
+		String sql = "SELECT id, medicalRecords_id, date, user_id FROM query WHERE scheduling_id = ? ";
 
 		ResultSet result = null;
 		PreparedStatement preparedStatement = null;
@@ -109,7 +110,7 @@ public class QueryDAO extends DatabaseConnection {
 			if (result.next()) {
 				Integer id = result.getInt("id");
 				
-				Integer scheduling_id = result.getInt("sheduling_id");
+				//Integer scheduling_id = result.getInt("sheduling_id");
 				
 				Integer medicalRecords_id = result.getInt("medicalRecords_id");
 				
@@ -120,7 +121,7 @@ public class QueryDAO extends DatabaseConnection {
 				Integer user_id = result.getInt("user_id");
 
 
-				consulta = new Query(scheduling_id, medicalRecords_id, calendar_date, user_id);
+				consulta = new Query(schID, medicalRecords_id, calendar_date, user_id);
 				consulta.setId(id);
 			}
 		} catch (SQLException e) {

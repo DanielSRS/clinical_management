@@ -105,8 +105,8 @@ public class MedicalRecordDAO extends DatabaseConnection {
 		return medicalRecordList;
 	}
 
-	public List<MedicalRecord> getMedicalRecordByID(int schID) {
-		List<MedicalRecord> medicalRecordList = new ArrayList<>();
+	public MedicalRecord getMedicalRecordByID(int schID) {
+		MedicalRecord prontuario = null;
 
 		conectar();
 
@@ -132,16 +132,18 @@ public class MedicalRecordDAO extends DatabaseConnection {
 				String treatments = result.getString("treatments");		
 				
 
-				MedicalRecord aux = new MedicalRecord(user_id, anamnesis, physical_exam, hypotheses, diagnoses, treatments);
-				medicalRecordList.add(aux);
-				aux.setId(id);
+				prontuario = new MedicalRecord(user_id, anamnesis, physical_exam, hypotheses, diagnoses, treatments);
+				prontuario.setId(id);
 			}
 		} catch (SQLException e) {
 			System.out.println("Erro ao recuperar Consultas");
+			e.printStackTrace();
+			desconectar();
+			return prontuario;
 		}
 
 		desconectar();
-		return medicalRecordList;
+		return prontuario;
 	}
 
 }

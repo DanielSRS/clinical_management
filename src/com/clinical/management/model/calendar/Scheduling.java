@@ -141,6 +141,7 @@ public class Scheduling {
 	 */
 	public void setId(Integer id) {
 		this.id = id;
+		System.out.println("Id alterado: " + id);
 	}
 
 	/**

@@ -131,9 +131,10 @@ public class SchedulingDAO extends DatabaseConnection {
 
 				Scheduling aux = new Scheduling(calendar_day, calendar_hour, doctor, specialty_field.getID());
 				aux.changeStatus(result.getString("sch_status"));
-				schedulingList.add(aux);
 				aux.setId(id);
 				aux.setpacienteID(pacienteID);
+				schedulingList.add(aux);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

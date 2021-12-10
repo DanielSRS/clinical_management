@@ -8,6 +8,7 @@ import com.clinical.management.model.medicalRecord.MedicalRecord;
 import com.clinical.management.view.navigation.StackNavigator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 public class ConsultaModalController {
@@ -17,6 +18,8 @@ public class ConsultaModalController {
     QueryDAO qDAO = new QueryDAO();
 
     MedicalRecordDAO mrDAO = new MedicalRecordDAO();
+
+    @FXML private Button saveButton;
 
     @FXML private TextArea an;
 
@@ -29,6 +32,7 @@ public class ConsultaModalController {
     @FXML private TextArea tr;
 
     @FXML private void save() {
+        this.saveButton.setDisable(true);
         System.out.println(an.getText());
         System.out.println(ex.getText());
         System.out.println(hi.getText());
@@ -59,11 +63,26 @@ public class ConsultaModalController {
 
     public void setSch(Scheduling s) {
         this.sch = s;
+        System.out.println("Id do agendamento: " + s.getId());
+        Query consulta = qDAO.getQueryBySchedulingID(this.sch.getId());
+
+        if (consulta != null) {
+            System.out.println("Consulta recuperada");
+            this.saveButton.setDisable(true);
+            MedicalRecord mr = mrDAO.getMedicalRecordByID(consulta.getMedicalRecord());
+
+            if (mr != null) {
+                System.out.println("Prontuario recuperado");
+                an.setText(mr.getAnamnesis());
+                ex.setText(mr.getPhysicalExams());
+                hi.setText(mr.getHypotheses());
+                di.setText(mr.getDiagnoses());
+                tr.setText(mr.getTreatments());
+            }
+        }
     }
 
     public void initialize() {
-        Query consulta = qDAO.getQueryBySchedulingID(this.sch.getId());
-
-        //if ()
+        
     }
 }
