@@ -185,6 +185,10 @@ public class Scheduling {
 		return false;
 	}
 
+	/**
+	 * @param novoStatus
+	 * Mudar status do OrderStatus. Status de agendamento
+	 */
 	public void changeStatus(String novoStatus) {
 		if (novoStatus.equals(OrderStatus.AVAILABLE.toString())) {
 			this.status = OrderStatus.AVAILABLE;
@@ -242,6 +246,10 @@ public class Scheduling {
 		return hora + ":" + minute;
 	}
 
+	/**
+	 * @return s
+	 * Pegando dado do dia e mês
+	 */
 	public String getDataString() {
 		String s = "";
 		int mes = day.get(Calendar.MONTH) + 1;

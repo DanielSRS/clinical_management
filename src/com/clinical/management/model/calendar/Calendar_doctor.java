@@ -194,6 +194,12 @@ public class Calendar_doctor {
 		return todosOsAgendamentos;
 	}
 
+	/**
+	 * @param dia
+	 * @param diaDaSemana
+	 * @return agendamentos
+	 * classe responsável por criar os agendamentos do dia
+	 */
 	private List<Scheduling> createAgendamentos(Day_doctor dia, int diaDaSemana) {
 		List<Scheduling> agendamentos = new ArrayList<>();
 		if (dia == null) return agendamentos;
@@ -213,6 +219,12 @@ public class Calendar_doctor {
 		return agendamentos;
 	}
 
+	/**
+	 * @param dia
+	 * @param diaDaSemana
+	 * @return quantidadeDeAtendimentos
+	 * Método responsável por calcular a quantidade de agendamentos
+	 */
 	private int calcQuantidadeDeAtendimentos(Day_doctor dia, int diaDaSemana) {
 		if (dia == null) return -1; // retorna se o dia for nulo
 		long tempoDisponivel = (dia.getEnd_service().getTimeInMillis()
@@ -222,6 +234,13 @@ public class Calendar_doctor {
 		return quantidadeDeAtendimentos;
 	}
 
+	/**
+	 * @param diaDoMes
+	 * @param dia
+	 * @param consultaIndex
+	 * @return agendamento
+	 * Método responsável por criar agendamento da semana toda
+	 */
 	private Scheduling criarAgendamento(int diaDoMes, Day_doctor dia, int consultaIndex) {
 		Calendar diaDeHoje = Calendar.getInstance();
 		diaDeHoje.set(Calendar.DAY_OF_MONTH, diaDoMes);

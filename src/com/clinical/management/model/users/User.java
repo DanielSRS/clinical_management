@@ -94,6 +94,10 @@ public class User {
 		return this.id;
 	}
 
+	/**
+	 * @param id
+	 * seta o id do usuário
+	 */
 	public void setUserID(Integer id) {
 		this.id = id;
 	}
