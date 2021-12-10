@@ -1,8 +1,10 @@
 package com.clinical.management.model.calendar;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.spi.CalendarDataProvider;
 
 import com.clinical.management.model.doctor.Doctor;
 
@@ -183,163 +185,69 @@ public class Calendar_doctor {
 	 * retorna uma lista de agedamento dos dias da semana
 	 */
 	public List<Scheduling> generateCalendarDoctor() {
-		List<Scheduling> mark = new ArrayList<>();
-		if (this.sunday != null) {
-			long timeAvailable = (this.sunday.getEnd_service().getTimeInMillis()
-					- this.sunday.getStart_service().getTimeInMillis()) / (1000 * 60);
-			Integer duration = (int) (timeAvailable / this.sunday.getDuration_service());
-			System.out.println("Duração sunday: " + duration);
-			for (int i = 0; i < duration; i++) {
-				Calendar data = Calendar.getInstance();
-				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
-				for (int j = 1; j < daysInCurrentMonth; j++) {
-					data.set(Calendar.DAY_OF_MONTH, j);
-					int diaDaSemana = data.get(Calendar.DAY_OF_WEEK);
-					if (diaDaSemana == 1) {
-						Calendar day_final = Calendar.getInstance();
-						day_final.set(Calendar.DAY_OF_MONTH, j);
-						day_final.set(Calendar.HOUR_OF_DAY, this.sunday.getStart_service().get(Calendar.HOUR_OF_DAY)
-								+ i * this.sunday.getDuration_service());
-						mark.add(new Scheduling(day_final, day_final, this.sunday.getDoctor(),
-								this.sunday.getDoctor().getSpecialty()));
-					}
-				}
-			}
-		}
-		if (this.monday != null) {
-			long timeAvailable = (this.monday.getEnd_service().getTimeInMillis()
-					- this.monday.getStart_service().getTimeInMillis()) / (1000 * 60);
-			Integer duration = (int) (timeAvailable / this.monday.getDuration_service());
-			System.out.println("Duração monday: " + duration);
-			for (int i = 0; i < duration; i++) {
-				Calendar data = Calendar.getInstance();
-				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
-				for (int j = 1; j < daysInCurrentMonth; j++) {
-					data.set(Calendar.DAY_OF_MONTH, j);
-					int diaDaSemana = data.get(Calendar.DAY_OF_WEEK);
-					if (diaDaSemana == 2) {
-						Calendar day_final = Calendar.getInstance();
-						day_final.set(Calendar.DAY_OF_MONTH, j);
-						day_final.set(Calendar.HOUR_OF_DAY, this.monday.getStart_service().get(Calendar.HOUR_OF_DAY)
-								+ i * this.monday.getDuration_service());
-						mark.add(new Scheduling(day_final, day_final, this.monday.getDoctor(),
-								this.monday.getDoctor().getSpecialty()));
-					}
-				}
-			}
-		}
-		if (this.tuesday != null) {
-			long timeAvailable = (this.tuesday.getEnd_service().getTimeInMillis()
-					- this.tuesday.getStart_service().getTimeInMillis()) / (1000 * 60);
-			Integer duration = (int) (timeAvailable / this.tuesday.getDuration_service());
-			System.out.println("Duração tuesday: " + duration);
-			for (int i = 0; i < duration; i++) {
-				Calendar data = Calendar.getInstance();
-				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
-				for (int j = 1; j < daysInCurrentMonth; j++) {
-					data.set(Calendar.DAY_OF_MONTH, j);
-					int diaDaSemana = data.get(Calendar.DAY_OF_WEEK);
-					if (diaDaSemana == 3) {
-						Calendar day_final = Calendar.getInstance();
-						day_final.set(Calendar.DAY_OF_MONTH, j);
-						day_final.set(Calendar.HOUR_OF_DAY, this.tuesday.getStart_service().get(Calendar.HOUR_OF_DAY)
-								+ i * this.tuesday.getDuration_service());
-						mark.add(new Scheduling(day_final, day_final, this.tuesday.getDoctor(),
-								this.tuesday.getDoctor().getSpecialty()));
-					}
-				}
-			}
-		}
-		if (this.wednesday != null) {
-			long timeAvailable = (this.wednesday.getEnd_service().getTimeInMillis()
-					- this.wednesday.getStart_service().getTimeInMillis()) / (1000 * 60);
-			Integer duration = (int) (timeAvailable / this.wednesday.getDuration_service());
-			System.out.println("Duração wed: " + duration);
-			for (int i = 0; i < duration; i++) {
-				Calendar data = Calendar.getInstance();
-				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
-				for (int j = 1; j < daysInCurrentMonth; j++) {
-					data.set(Calendar.DAY_OF_MONTH, j);
-					int diaDaSemana = data.get(Calendar.DAY_OF_WEEK);
-					if (diaDaSemana == 4) {
-						Calendar day_final = Calendar.getInstance();
-						day_final.set(Calendar.DAY_OF_MONTH, j);
-						day_final.set(Calendar.HOUR_OF_DAY, this.wednesday.getStart_service().get(Calendar.HOUR_OF_DAY)
-								+ i * this.wednesday.getDuration_service());
-						mark.add(new Scheduling(day_final, day_final, this.wednesday.getDoctor(),
-								this.wednesday.getDoctor().getSpecialty()));
-					}
-				}
-			}
-		}
-		if (this.thursday != null) {
-			long timeAvailable = (this.thursday.getEnd_service().getTimeInMillis()
-					- this.thursday.getStart_service().getTimeInMillis()) / (1000 * 60);
-			Integer duration = (int) (timeAvailable / this.thursday.getDuration_service());
-			System.out.println("Duração quin: " + duration);
-			for (int i = 0; i < duration; i++) {
-				Calendar data = Calendar.getInstance();
-				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
-				for (int j = 1; j < daysInCurrentMonth; j++) {
-					data.set(Calendar.DAY_OF_MONTH, j);
-					int diaDaSemana = data.get(Calendar.DAY_OF_WEEK);
-					if (diaDaSemana == 5) {
-						Calendar day_final = Calendar.getInstance();
-						day_final.set(Calendar.DAY_OF_MONTH, j);
-						day_final.set(Calendar.HOUR_OF_DAY, this.thursday.getStart_service().get(Calendar.HOUR_OF_DAY)
-								+ i * this.thursday.getDuration_service());
-						mark.add(new Scheduling(day_final, day_final, this.thursday.getDoctor(),
-								this.thursday.getDoctor().getSpecialty()));
-					}
-				}
-			}
-		}
-		if (this.friday != null) {
-			long timeAvailable = (this.friday.getEnd_service().getTimeInMillis()
-					- this.friday.getStart_service().getTimeInMillis()) / (1000 * 60);
-			Integer duration = (int) (timeAvailable / this.friday.getDuration_service());
-			System.out.println("Duração sex: " + duration);
-			for (int i = 0; i < duration; i++) {
-				Calendar data = Calendar.getInstance();
-				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
-				for (int j = 1; j < daysInCurrentMonth; j++) {
-					data.set(Calendar.DAY_OF_MONTH, j);
-					int diaDaSemana = data.get(Calendar.DAY_OF_WEEK);
-					if (diaDaSemana == 6) {
-						Calendar day_final = Calendar.getInstance();
-						day_final.set(Calendar.DAY_OF_MONTH, j);
-						day_final.set(Calendar.HOUR_OF_DAY, this.friday.getStart_service().get(Calendar.HOUR_OF_DAY)
-								+ i * this.friday.getDuration_service());
-						mark.add(new Scheduling(day_final, day_final, this.friday.getDoctor(),
-								this.friday.getDoctor().getSpecialty()));
-					}
-				}
-			}
-		}
-		if (this.saturday != null) {
-			long timeAvailable = (this.saturday.getEnd_service().getTimeInMillis()
-					- this.saturday.getStart_service().getTimeInMillis()) / (1000 * 60);
-			Integer duration = (int) (timeAvailable / this.saturday.getDuration_service());
-			System.out.println("Duração sab: " + duration);
-			for (int i = 0; i < duration; i++) {
-				Calendar data = Calendar.getInstance();
-				int daysInCurrentMonth = java.time.LocalDate.now().lengthOfMonth();
-				for (int j = 1; j < daysInCurrentMonth; j++) {
-					data.set(Calendar.DAY_OF_MONTH, j);
-					int diaDaSemana = data.get(Calendar.DAY_OF_WEEK);
-					if (diaDaSemana == 7) {
-						Calendar day_final = Calendar.getInstance();
-						day_final.set(Calendar.DAY_OF_MONTH, j);
-						day_final.set(Calendar.HOUR_OF_DAY, this.saturday.getStart_service().get(Calendar.HOUR_OF_DAY)
-								+ i * this.saturday.getDuration_service());
-						mark.add(new Scheduling(day_final, day_final, this.saturday.getDoctor(),
-								this.saturday.getDoctor().getSpecialty()));
-					}
-				}
-			}
-		}
+		List<Scheduling> todosOsAgendamentos = new ArrayList<>();
 
-		return mark;
+		todosOsAgendamentos.addAll(createAgendamentos(this.sunday, 1));
+		todosOsAgendamentos.addAll(createAgendamentos(this.monday, 2));
+		todosOsAgendamentos.addAll(createAgendamentos(this.tuesday, 3));
+		todosOsAgendamentos.addAll(createAgendamentos(this.wednesday, 4));
+		todosOsAgendamentos.addAll(createAgendamentos(this.thursday, 5));
+		todosOsAgendamentos.addAll(createAgendamentos(this.friday, 6));
+		todosOsAgendamentos.addAll(createAgendamentos(this.sunday, 7));
+		
+		return todosOsAgendamentos;
+	}
+
+	private List<Scheduling> createAgendamentos(Day_doctor dia, int diaDaSemana) {
+		List<Scheduling> agendamentos = new ArrayList<>();
+		if (dia == null) return agendamentos;
+		int quantidadeDeAtendimentos = calcQuantidadeDeAtendimentos(dia, diaDaSemana);
+		int quantidadesDeDiasDoMes = java.time.LocalDate.now().lengthOfMonth();
+		for (int consultaIndex = 0; consultaIndex < quantidadeDeAtendimentos; consultaIndex++) {
+			Calendar mesAtual = Calendar.getInstance();
+			for (int diaDoMes = 1; diaDoMes <= quantidadesDeDiasDoMes; diaDoMes++) {
+				mesAtual.set(Calendar.DAY_OF_MONTH, diaDoMes);
+				int diaDaSemanaNoMes = mesAtual.get(Calendar.DAY_OF_WEEK);
+				if (diaDaSemanaNoMes == diaDaSemana) {
+					Scheduling agendamento = criarAgendamento(diaDoMes, dia, consultaIndex);
+					agendamentos.add(agendamento);
+				}
+			}
+		}
+		return agendamentos;
+	}
+
+	private int calcQuantidadeDeAtendimentos(Day_doctor dia, int diaDaSemana) {
+		if (dia == null) return -1; // retorna se o dia for nulo
+		long tempoDisponivel = (dia.getEnd_service().getTimeInMillis()
+							   - dia.getStart_service().getTimeInMillis()) / (1000 * 60);
+		int duracaoDoAtendimento = dia.getDuration_service();
+		int quantidadeDeAtendimentos = (int) tempoDisponivel / duracaoDoAtendimento;
+		return quantidadeDeAtendimentos;
+	}
+
+	private Scheduling criarAgendamento(int diaDoMes, Day_doctor dia, int consultaIndex) {
+		Calendar diaDeHoje = Calendar.getInstance();
+		diaDeHoje.set(Calendar.DAY_OF_MONTH, diaDoMes);
+		int inicioDoAtendimento = dia.getStart_service().get(Calendar.HOUR_OF_DAY);
+		int tempoDasConsultasAnteriores = consultaIndex * dia.getDuration_service();
+		//int horaDeInicio = inicioDoAtendimento + tempoDasConsultasAnteriores;
+		diaDeHoje.set(Calendar.HOUR_OF_DAY, inicioDoAtendimento);
+		diaDeHoje.set(Calendar.MINUTE, 0);
+		diaDeHoje.add(Calendar.MINUTE, tempoDasConsultasAnteriores);
+
+		/*System.out.println("Dia: " 
+						   + diaDeHoje.get(Calendar.DAY_OF_MONTH)
+						   + "/" + diaDeHoje.get(Calendar.MONTH)
+						   + "/" + diaDeHoje.get(Calendar.YEAR)
+						   + "- Hora: "
+						   + diaDeHoje.get(Calendar.HOUR_OF_DAY)
+						   + ":"
+						   + diaDeHoje.get(Calendar.MINUTE)
+						   );*/
+		
+		Scheduling agendamento = new Scheduling(diaDeHoje, diaDeHoje, dia.getDoctor(), dia.getDoctor().getSpecialty());
+		return agendamento;
 	}
 
 }
