@@ -44,7 +44,7 @@ public class AutoAtendimentoController {
                 }
             }
             String s = "Data: " + dia + "/ " + mes + " - hora: " + hora + ":" + minutos
-                        + " - Especialidade: " + especialidade + " - Dr. " + medico;
+                        + "Status: " + status + " - Especialidade: " + especialidade + " - Dr. " + medico;
 
             Label l = new Label();
             l.setText(s);

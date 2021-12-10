@@ -1,7 +1,6 @@
 package com.clinical.management.controller;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import com.clinical.management.model.calendar.Calendar_doctor;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class AgendaPageController {
@@ -28,10 +26,10 @@ public class AgendaPageController {
         while(it.hasNext()) {
             Calendar_doctor aux = it.next();
 
-            Label lb = new Label();
-            String f = "ID do calendario: " + aux.getId() + ", ID do medico: " + aux.getDocID();
-            String g = "";
-			if (aux.getMonday() != null) g = "\n" + aux.getMonday().getStart_service().get(Calendar.HOUR_OF_DAY);
+            //Label lb = new Label();
+            //String f = "ID do calendario: " + aux.getId() + ", ID do medico: " + aux.getDocID();
+            //String g = "";
+			//if (aux.getMonday() != null) g = "\n" + aux.getMonday().getStart_service().get(Calendar.HOUR_OF_DAY);
             //System.out.println(f + g);
 
             //contentContainer.getChildren().add(lb);

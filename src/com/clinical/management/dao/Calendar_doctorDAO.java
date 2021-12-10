@@ -6,14 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import com.clinical.management.model.calendar.Calendar_doctor;
 import com.clinical.management.model.calendar.Day_doctor;
-import com.clinical.management.model.calendar.Scheduling;
-import com.clinical.management.model.doctor.Doctor;
-import com.clinical.management.model.specialty.Specialty;
 
 /**
  * Classe respons�vel pela busca no banco de dados especificamente na tabela agenda do m�dico

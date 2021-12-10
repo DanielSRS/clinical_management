@@ -1,12 +1,8 @@
 package com.clinical.management.model.calendar;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.spi.CalendarDataProvider;
-
-import com.clinical.management.model.doctor.Doctor;
 
 /**
  * Classe respons�vel pela agenda do m�dico

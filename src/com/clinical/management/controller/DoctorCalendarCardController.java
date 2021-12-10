@@ -1,9 +1,6 @@
 package com.clinical.management.controller;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Calendar;
-import java.util.TimeZone;
 
 import com.clinical.management.dao.DoctorDAO;
 import com.clinical.management.model.calendar.Calendar_doctor;
@@ -80,13 +77,13 @@ public class DoctorCalendarCardController {
         if (agendaDoMedico.getMonday() == null) {
             return;
         }
-        TimeZone tz = agendaDoMedico.getMonday().getStart_service().getTimeZone();
+        //TimeZone tz = agendaDoMedico.getMonday().getStart_service().getTimeZone();
 
         // Getting zone id
-        ZoneId zoneId = tz.toZoneId();
+        //ZoneId zoneId = tz.toZoneId();
 
         // conversion
-        LocalDateTime localDateTime = LocalDateTime.ofInstant(agendaDoMedico.getMonday().getStart_service().toInstant(), zoneId);
+        //LocalDateTime localDateTime = LocalDateTime.ofInstant(agendaDoMedico.getMonday().getStart_service().toInstant(), zoneId);
         //System.out.println(localDateTime.toLocalTime());
         String hora = agendaDoMedico.getMonday().getStart_service().get(Calendar.HOUR_OF_DAY) + "";
         String horafin = agendaDoMedico.getMonday().getEnd_service().get(Calendar.HOUR_OF_DAY) + "";
