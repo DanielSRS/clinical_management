@@ -559,14 +559,14 @@
 
 /* Combo box*/
 
-.combo-box .list-cell 
+.dark .combo-box .list-cell 
 {
     -fx-background: #202020;
     -fx-background-color: transparent;
     -fx-text-fill: #FFFFFF;
 }
 
-.combo-box-popup .list-view 
+.dark .combo-box-popup .list-view 
 {
     -fx-background-color: #0000000F, #202020;
     -fx-border-radius: 4px;
@@ -611,4 +611,32 @@
 
 #addSchedIMG {
 	-fx-image: url("../images/calendar.png");
+}
+
+.dark .tab-pane {
+    -fx-background-color: #202020;
+}
+
+.dark .tab {
+    -fx-background-color: #333333;
+}
+
+.dark .tab-pane>*.tab-header-area>*.tab-header-background
+{
+    -fx-background-color: -fx-outer-border, -fx-text-box-border, #333333;
+}
+
+.dark .tab-pane>*.tab-header-area>*.tab-header-background
+{
+    -fx-background-color: -fx-outer-border, -fx-text-box-border, #333333;
+}
+
+.dark .tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-radius: 0px;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-border-color: #4d1a4dff;
+}
+
+.dark .bd {
+	-fx-background-color: #202020;
 }

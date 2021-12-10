@@ -13,7 +13,7 @@ import com.clinical.management.model.consultation.Query;
 //import com.clinical.management.model.consultation.Query;
 
 /**
- * Classe responsável pela busca no banco de dados especificamente na tabela consulta
+ * Classe responsï¿½vel pela busca no banco de dados especificamente na tabela consulta
  *
  */
 public class QueryDAO extends DatabaseConnection {
@@ -90,5 +90,49 @@ public class QueryDAO extends DatabaseConnection {
 		desconectar();
 		return queryList;
 	}
+
+	public Query getQueryBySchedulingID(int schID) {
+		Query consulta = null;
+
+		conectar();
+
+		String sql = "SELECT id, scheduling_id, medicalRecords_id, date, user_id FROM query WHERE scheduling_id = ? ";
+
+		ResultSet result = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			preparedStatement = criarPreparedStatement(sql);
+			preparedStatement.setInt(1, schID);
+			result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+				Integer id = result.getInt("id");
+				
+				Integer scheduling_id = result.getInt("sheduling_id");
+				
+				Integer medicalRecords_id = result.getInt("medicalRecords_id");
+				
+				Long date = result.getLong("date");
+				Calendar calendar_date = Calendar.getInstance();
+				calendar_date.setTimeInMillis(date);
+				
+				Integer user_id = result.getInt("user_id");
+
+
+				consulta = new Query(scheduling_id, medicalRecords_id, calendar_date, user_id);
+				consulta.setId(id);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao recuperar Consultas");
+			e.printStackTrace();
+			desconectar();
+			return consulta;
+		}
+
+		desconectar();
+		return consulta;
+	}
+
 	
 }

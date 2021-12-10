@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox prefHeight="295.0" prefWidth="600.0" stylesheets="@../css/applicationStyles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clinical.management.controller.DoctorCalendarCardController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="600.0" styleClass="card-surface">
@@ -26,7 +25,7 @@
         <content>
           <AnchorPane prefHeight="233.0" prefWidth="598.0">
                <children>
-                  <VBox prefHeight="215.0" prefWidth="189.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <VBox prefHeight="215.0" prefWidth="189.0" styleClass="bd" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <Label text="Horarios de atendimento">
                            <font>

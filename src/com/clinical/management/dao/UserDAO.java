@@ -138,9 +138,39 @@ public class UserDAO extends DatabaseConnection {
 		return user;
 	}
 
+	public User getUserByID(int userID) {
+		User user =  null;
+
+		conectar();
+
+		String sql = "SELECT id, name, cpf, password FROM users WHERE id = ? ";
+
+		ResultSet result = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			preparedStatement = criarPreparedStatement(sql);
+			preparedStatement.setInt(1, userID);
+			result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+				String name = result.getString("name");
+				int id = result.getInt("id");
+				String cpf = result.getString("cpf");
+				String password = result.getString("password");
+				user = new User(name, cpf, id, password);
+			}
+		} catch(SQLException e) {
+			System.out.println("Erro ao recuperar usuÃ¡rios");
+		}
+		
+		desconectar();
+		return user;
+	}
+
 	/**
 	 * @return user
-	 * retorna o usuário logado
+	 * retorna o usuï¿½rio logado
 	 */
 	public User getLoggedUser() {
 
@@ -199,7 +229,7 @@ public class UserDAO extends DatabaseConnection {
 	/**
 	 * @param userToBeSaved
 	 * @return boolean
-	 * salva o login do usuário
+	 * salva o login do usuï¿½rio
 	 */
 	public boolean saveLoggedUser(User userToBeSaved) {
 		conectar();
@@ -229,7 +259,7 @@ public class UserDAO extends DatabaseConnection {
 
 	/**
 	 * @return boolean
-	 * remove o login do usuário
+	 * remove o login do usuï¿½rio
 	 */
 	public boolean removeLoggedUser() {
 		conectar();
