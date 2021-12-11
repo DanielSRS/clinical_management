@@ -6,7 +6,6 @@ import com.clinical.management.model.doctor.Doctor;
 import com.clinical.management.model.specialty.Specialty;
 import com.clinical.management.model.users.User;
 
-import org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.CalendarConversion;
 
 /**
  * Classe respons�vel pelo agendamento
@@ -21,6 +20,7 @@ public class Scheduling {
 	private OrderStatus status;
 	private User patient;
 	private Integer id;
+	private Integer pacienteID;
 
 	/**
 	 * @param day
@@ -198,6 +198,14 @@ public class Scheduling {
 		if (novoStatus.equals(OrderStatus.MARKED.toString())) {
 			this.status = OrderStatus.MARKED;
 		}
+	}
+
+	public Integer getpacienteID() {
+		return this.pacienteID;
+	}
+
+	public void setpacienteID(int id) {
+		this.pacienteID = id;
 	}
 
 	public String toString() {

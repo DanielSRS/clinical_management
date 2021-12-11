@@ -90,7 +90,7 @@ public class SchedulingDAO extends DatabaseConnection {
 
 		conectar();
 
-		String sql = "SELECT scheduling.id AS sheduling_id, day, hour, doctor_id, scheduling.status AS sch_status, scheduling.user_id AS sch_user_id, "
+		String sql = "SELECT scheduling.user_id AS pacienteID, scheduling.id AS sheduling_id, day, hour, doctor_id, scheduling.status AS sch_status, scheduling.user_id AS sch_user_id, "
 				+ " sub_specialty, doctor.id AS idDoMedico, cpf, users.name AS users_name, password, doctor.specialty_id AS doc_specialty_id, specialty.name AS specialty_name FROM scheduling "
 				+ "INNER JOIN doctor ON scheduling.doctor_id = doctor.id INNER JOIN users ON doctor.user_id = users.id "
 				+ "INNER JOIN specialty ON doctor.specialty_id = specialty.id ORDER BY day";
@@ -104,6 +104,8 @@ public class SchedulingDAO extends DatabaseConnection {
 
 			while (result.next()) {
 				Integer id = result.getInt("sheduling_id");
+
+				Integer pacienteID = result.getInt("pacienteID");
 				
 				Long day = result.getLong("day");
 				Calendar calendar_day = Calendar.getInstance();
@@ -131,6 +133,7 @@ public class SchedulingDAO extends DatabaseConnection {
 				aux.changeStatus(result.getString("sch_status"));
 				schedulingList.add(aux);
 				aux.setId(id);
+				aux.setpacienteID(pacienteID);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
