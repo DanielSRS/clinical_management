@@ -63,7 +63,7 @@ public class MarcarConsultaModalController {
         System.out.println("User: " + cpfField.getText() + ", password: " + this.senhaField.getText());
         User patiente = usd.getUserByNameAndPassword(cpfField.getText(), this.senhaField.getText());
 
-        if (AuthenticationController.usuarioLogado() != null && false) {
+        /*if (AuthenticationController.usuarioLogado() != null && false) {
             Scheduling agendamento = this.horarioCombo.getValue();
 
             if (agendamento != null) {
@@ -81,7 +81,7 @@ public class MarcarConsultaModalController {
                 }
             }
             return;
-        }
+        }*/
 
         if (patiente == null) {
             Alert alert = new Alert(AlertType.INFORMATION);

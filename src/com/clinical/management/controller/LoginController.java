@@ -65,9 +65,7 @@ public class LoginController {
 	}
 	
 	public void initialize() {
-		System.out.println("Login page loaded");
-		String text2 = String.valueOf(Character.toChars(Integer.parseInt("2190", 16)));
-		this.theme.setText(text2);
+		//
 	}
 	
 	public void setAuth(AuthenticationController auth) {

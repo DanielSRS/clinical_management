@@ -1,11 +1,9 @@
 package com.clinical.management.controller;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
-import com.clinical.management.dao.DoctorDAO;
 import com.clinical.management.dao.SchedulingDAO;
 import com.clinical.management.dao.SpecialtyDAO;
 import com.clinical.management.dao.UserDAO;
