@@ -34,7 +34,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="55.0" prefWidth="254.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="189.0" text="medical care" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="17.0" prefWidth="189.0" text="Atendimento médico" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -50,7 +50,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="55.0" prefWidth="254.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="189.0" text="autoatendimento" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="0.0">
+                        <Label prefHeight="17.0" prefWidth="189.0" text="Autoatendimento" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="14.0" />
                            </font>

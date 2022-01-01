@@ -22,7 +22,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <HBox fillHeight="false" maxWidth="56.0" minWidth="5.0" prefHeight="1.0" prefWidth="1.0" HBox.hgrow="ALWAYS" />
-                              <Label prefWidth="480.0" text="Auto atendimento">
+                              <Label prefWidth="480.0" text="Autoatendimento">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
